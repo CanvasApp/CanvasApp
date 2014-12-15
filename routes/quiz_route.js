@@ -4,14 +4,18 @@ var Quiz = require('../models/quiz_model');
 
 module.exports = function(app, jwtauth) {
   app.post('/api/quiz', jwtauth, function(req, res) {
-    var question = new Quiz();
-    question.question = req.body.question;
-    question.answers.javascript = req.body.answerOne;
-    question.answers.python = req.body.answerTwo;
-    question.answers.ruby = req.body.answerThree;
-    question.answers.objective = req.body.answerFour;
-    question.save(function(err, data) {
+    var quiz = new Quiz({
+      question: req.body,
+      answers: {
+        javascript: req.body.javascript,
+        python: req.body.python,
+        ruby: req.body.ruby,
+        objective: true
+      }
+    });
+    quiz.save(function(err, data) {
       if (err) return res.status(500).send('There was an error');
+      console.log(data);
       res.json(data);
     });
   });

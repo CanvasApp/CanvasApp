@@ -3,12 +3,12 @@
 var mongoose = require('mongoose');
 
 var quizSchema = mongoose.Schema({
-  question: String,
+  question: '',
   answers: {
-    javascript: String,
-    python: String,
-    ruby: String,
-    objective: String
+    javascript: '',
+    python: '',
+    ruby: '',
+    objective: Boolean
   }
 });
 
