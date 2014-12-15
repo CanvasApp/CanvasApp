@@ -4,7 +4,6 @@ process.env.MONGO_URL = 'mongodb://localhost/users_test';
 var chai = require('chai');
 var chaihttp = require('chai-http');
 var User = require('../../models/user_model.js');
-
 chai.use(chaihttp);
 
 require('../../server.js');
@@ -23,7 +22,7 @@ describe('the teacher test', function() {
   before(function(done) {
     chai.request(localhost)
     .post('/api/users')
-    .send('test@example.com', 'Foobar123')
+    .send({email:'test1@example.com', password:'Foobar123'})
     .end(function(err, res) {
       if (err) res.status(500).send(err);
       jwtToken = res.body.jwt;
@@ -50,7 +49,7 @@ describe('the teacher test', function() {
     .set({jwt: jwtToken})
     .end(function(err, res) {
       expect(err).to.eql(null);
-      expect(res.body.msg).to.equal('teacher has been removed from this plane of existance');
+      expect(res.body.msg).to.equal('teacher has been removed from this plane of existence');
       done();
     });
   });
