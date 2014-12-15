@@ -33,15 +33,4 @@ module.exports = function(app, jwtauth) {
       });
     });
   });
-
-  // app.post('/api/courses', jwtauth, function(req, res) {
-  //   User.findOne({_id: req.user._id}, function(err, user) {
-  //     if (err) return res.status(500).send('error');
-  //     if (!user) return res.send({msg: 'error'});
-  //     Course.findOne({code: req.body.code}, function(err, data) {
-  //       if (err) return res.status(500).send('error');
-  //       if (!data) return res.send({msg: 'course not found'});
-  //     })
-  //   })
-  // })
 };
