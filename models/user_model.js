@@ -16,7 +16,7 @@ var userSchema = mongoose.Schema({
   userStatus: {
       teacher: false,
       admin: false
-  }, 
+  },
   userclass: [],
   usermessages: [],
   userinfo: {

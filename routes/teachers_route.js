@@ -23,9 +23,9 @@ module.exports = function(app, jwtauth) {
           });
         });
       } else {
-          res.json({msg: 'you do not have permission'});
-      };
-    }); 
+        res.json({msg: 'you do not have permission'});
+      }
+    });
   });
 
   //unconfirm teacher
@@ -47,7 +47,7 @@ module.exports = function(app, jwtauth) {
         });
       } else {
         res.json({msg: 'you do not have permission'});
-      };
+      }
     });
   });
 };

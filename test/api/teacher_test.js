@@ -34,7 +34,7 @@ describe('the teacher test', function() {
   //creates an admin
   before(function(done) {
     chai.request(localhost)
-    .post('/api/confirmadmin')
+    .put('/api/confirmadmin')
     .set({jwt: jwtToken})
     .end(function(err, res) {
       if (err) return res.status(500).send(err);
@@ -45,20 +45,22 @@ describe('the teacher test', function() {
 
   it('should be able to create a teacher', function(done) {
     chai.request(localhost)
-    .post('/api/confirmteacher')
+    .put('/api/confirmteacher')
     .set({jwt: jwtToken})
+    .send({email: 'test1@example.com'})
     .end(function(err, res) {
       expect(err).to.eql(null);
       console.log(res.body);
-      expect(res.body.msg).to.equal('confirmed user is teacher');
+      expect(res.body.msg).to.equal('user is now a teacher');
       done();
     });
   });
 
   it('should be able to remove a teacher', function(done) {
     chai.request(localhost)
-    .post('/api/unconfirmteacher')
+    .put('/api/unconfirmteacher')
     .set({jwt: jwtToken})
+    .send({email: 'test1@example.com'})
     .end(function(err, res) {
       expect(err).to.eql(null);
       expect(res.body.msg).to.equal('teacher has been removed from this plane of existence');
