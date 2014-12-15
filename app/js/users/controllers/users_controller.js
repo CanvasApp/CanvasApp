@@ -39,7 +39,22 @@ module.exports = function(app) {
 
       if(!$scope.createUser.lastName)
         $scope.errors.push({msg: 'Give us your last name, unless you want us to get it from the NSA'});
-      };
+
+      $http({
+        method: 'POST',
+        url: '/api/users',
+        data: $scope.createUser
+
+      })
+      .success(function(data) {
+        console.log(data);
+        $cookies.jwt = data.jwt;
+        $location.path('/class_tree');
+      })
+      .error(function(data) {
+        $scope.push.errors({msg: 'something went wrong'});
+      });
     };
+
   }]);
 };
