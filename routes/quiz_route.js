@@ -2,9 +2,9 @@
 
 module.exports = function(app, jwtauth) {
   var Quiz = require('../models/quiz_model');
-  var Counter = require('../lib/counter');
+  var UniqueId = require('../lib/uid');
 
-  //create a quiz question
+  //creates a quiz question
   app.post('/api/quiz', jwtauth, function(req, res) {
     var quiz = new Quiz({  
       quizQuestion: {
@@ -16,7 +16,7 @@ module.exports = function(app, jwtauth) {
           objectiveC: req.body.quizQuestion.questionValue.objectiveC
         }
       },
-      code: Counter(),
+      code: UniqueId(),
       answerArray: []
     });
     quiz.save(function(err, data) {
@@ -27,7 +27,7 @@ module.exports = function(app, jwtauth) {
     });
   });
 
-  //get all of the quiz questions
+  //find all of the quiz questions
   app.get('/api/quizzes', jwtauth, function(req, res) {
     Quiz.find(function(err, data) {
       if (err) return res.status(500).send('error');
@@ -36,21 +36,38 @@ module.exports = function(app, jwtauth) {
     });
   });
 
-  // app.get('/api/quiz', jwtauth, function(req, res) {
-  //   Quiz.findOne({})
-  // })
-
-  app.put('api/quiz/:id', jwtauth, function(req, res) {
-    var question = req.body;
-    delete question._id;
-    Quiz.findOneAndUpdate({_id: req.params.id}, question, function(err, data) {
-      if (err) return res.status(500).send('Unable to edit');
+  //find one quiz question by its code
+  app.get('/api/quiz/:code', jwtauth, function(req, res) {
+    Quiz.findOne({code: req.params.code}, function(err, data) {
+      if (err) return res.status(500).send('error');
+      if (!data) return res.send({msg: 'could not find quiz question'});
       res.json(data);
     });
   });
 
-  app.delete('api/quiz', jwtauth, function(req, res) {
-    Quiz.remove({_id: req.params.id}, function(err) {
+  //find one quiz question by its code and allows the user to change info
+  app.put('/api/quiz/:code', jwtauth, function(req, res) {
+    Quiz.findOne({code: req.params.code}, function(err, quiz) {
+      if (err) return res.status(500).send('error');
+      if (!quiz) return res.send({msg: 'could not find quiz question'});
+      console.log(quiz);
+      quiz.quizQuestion.question = req.body.quizQuestion.question;
+      quiz.quizQuestion.questionValue.javascript = req.body.quizQuestion.questionValue.javascript;
+      quiz.quizQuestion.questionValue.python = req.body.quizQuestion.questionValue.python;
+      quiz.quizQuestion.questionValue.ruby = req.body.quizQuestion.questionValue.ruby;
+      quiz.quizQuestion.questionValue.objectiveC = req.body.quizQuestion.questionValue.objectiveC;
+      console.log(quiz);
+      quiz.save(function(err, data) {
+        if (err) res.status(500).send('error');
+        if (!data) res.send({msg: 'could not save quiz question'});
+        res.json(data);
+      });
+    });
+  });
+
+  //finds one quiz question by its code and deletes it
+  app.delete('api/quiz/:code', jwtauth, function(req, res) {
+    Quiz.remove({code: req.params.code}, function(err) {
       if (err) return res.status(500).send('Unable to delete');
       res.json({msg: 'The ether has enveloped the question and it is lost to humanity'});
     });
