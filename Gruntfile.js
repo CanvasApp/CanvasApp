@@ -32,7 +32,7 @@ module.exports = function(grunt) {
         ignoreLeaks: true,
         reporter: 'tap'
       },
-      src: ['test/api/user_test.js', 'test/api/teacher_test.js', 'test/api/classes_test.js']
+      src: ['test/api/user_test.js', 'test/api/teacher_test.js', 'test/api/courses_test.js']
     },
 
     clean: {

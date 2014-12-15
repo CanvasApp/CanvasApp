@@ -1,6 +1,6 @@
 'use strict';
 
-var User = require('../models/user_model.js');
+var User = require('../models/user_model');
 
 module.exports = function(app, passport) {
   app.get('/api/users', passport.authenticate('basic', {
