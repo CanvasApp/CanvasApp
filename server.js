@@ -13,6 +13,8 @@ app.set('jwtSecret', process.env.JWT_SECRET || 'changethisordie');
 
 app.use(passport.initialize());
 
+app.use(express.static(__dirname + '/build'));
+
 require('./lib/passport')(passport);
 var jwtauth = require('./lib/jwt_auth')(app.get('jwtSecret'));
 
@@ -20,11 +22,15 @@ var canvasRouter = express.Router();
 canvasRouter.use(jwtauth);
 
 require('./routes/index.js')(app);
-require('./routes/users_routes.js')(app, passport);
+require('./routes/users_routes.js')(app, passport, canvasRouter);
 require('./routes/users_index_route.js')(app, jwtauth);
 require('./routes/teachers_route.js')(app, jwtauth);
 require('./routes/quiz_route.js')(app, jwtauth);
 require('./routes/courses_route.js')(app, jwtauth);
+
+app.get('*', function(req, res) {
+  res.sendfile('./build/index.html');
+});
 
 app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'), function() {

@@ -40,4 +40,4 @@ adminSchema.methods.generateToken = function(secret) {
   return token;
 };
 
-module.exports = mongoose.model('Admin', userSchema);
+module.exports = mongoose.model('Admin', adminSchema);
