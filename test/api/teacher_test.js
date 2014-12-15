@@ -24,29 +24,43 @@ describe('the teacher test', function() {
     .post('/api/users')
     .send({email:'test1@example.com', password:'Foobar123'})
     .end(function(err, res) {
-      if (err) res.status(500).send(err);
+      if (err) return res.status(500).send(err);
       jwtToken = res.body.jwt;
       console.log(jwtToken);
       done();
     });
   });
 
+  //creates an admin
+  before(function(done) {
+    chai.request(localhost)
+    .put('/api/confirmadmin')
+    .set({jwt: jwtToken})
+    .end(function(err, res) {
+      if (err) return res.status(500).send(err);
+      console.log(res.body);
+      done();
+    });
+  });
+
   it('should be able to create a teacher', function(done) {
     chai.request(localhost)
-    .post('/api/confirmteacher')
+    .put('/api/confirmteacher')
     .set({jwt: jwtToken})
+    .send({email: 'test1@example.com'})
     .end(function(err, res) {
       expect(err).to.eql(null);
       console.log(res.body);
-      expect(res.body.msg).to.equal('confirmed user is teacher');
+      expect(res.body.msg).to.equal('user is now a teacher');
       done();
     });
   });
 
   it('should be able to remove a teacher', function(done) {
     chai.request(localhost)
-    .post('/api/unconfirmteacher')
+    .put('/api/unconfirmteacher')
     .set({jwt: jwtToken})
+    .send({email: 'test1@example.com'})
     .end(function(err, res) {
       expect(err).to.eql(null);
       expect(res.body.msg).to.equal('teacher has been removed from this plane of existence');

@@ -10,7 +10,7 @@ module.exports = function(app, jwtauth) {
     User.findOne({_id: req.user._id}, function(err, user) {
       if (err) return res.status(500).send('error');
       if (!user) return res.status(500).send('error');
-      if (user.teacher.confirmed === true) {
+      if (user.userStatus.admin === true) {
         var course = new Course({
           name: req.body.name,
           summary: req.body.description.substr(0, 15) + '...',
@@ -20,7 +20,7 @@ module.exports = function(app, jwtauth) {
           prereq: [],
           pass: {confirmed: false}
         });
-        console.log(user.teacher.confirmed);
+        console.log(user.teacher);
         course.save(function(err, data) {
           if (err) return res.status(500).send('error');
           if (!data) return res.send({msg: 'information not saved'});
@@ -38,7 +38,7 @@ module.exports = function(app, jwtauth) {
     User.findOne({_id: req.user._id}, function(err, user) {
       if (err) return res.status(500).send('error');
       if (!user) return res.status(500).send('error');
-      if (user.teacher.confirmed === true) {
+      if (user.userStatus.teacher === true) {
         Course.find(function(err, data) {
           console.log('getting all of the courses');
           if (err) return res.status(500).send('error');
@@ -56,7 +56,7 @@ module.exports = function(app, jwtauth) {
     User.findOne({_id: req.user._id}, function(err, user) {
       if (err) res.status(500).send('error');
       if (!user) return res.status(500).send('error');
-      if (user.teacher.confirmed === true) {
+      if (user.userStatus.teacher === true) {
         Course.findOne({code: req.body.code}, function(err, data) {
           console.log('coursing it up');
           if (err) return res.status(500).send('error.');
@@ -74,7 +74,7 @@ module.exports = function(app, jwtauth) {
     User.findOne({_id: req.user._id}, function(err, user) {
       if (err) res.status(500).send('error');
       if (!user) return res.status(500).send('error');
-      if (user.teacher.confirmed === true) {
+      if (user.userStatus.teacher === true) {
         Course.findOne({code: req.body.code}, function(err, course) {
           if (err) return res.status(500).send('error');
           if (!course) return res.send({msg: 'course not found'});
@@ -100,7 +100,7 @@ module.exports = function(app, jwtauth) {
     User.findOne({_id: req.user._id}, function(err, user) {
       if (err) res.status(500).send('error');
       if (!user) return res.status(500).send('error');
-      if (user.teacher.confirmed === true) {
+      if (user.userStatus.admin === true) {
         Course.remove({code: req.body.code}, function(err, data) {
           if (err) return res.status(500).send('error');
           if (!data) return res.send({msg:'error. not deleted'});

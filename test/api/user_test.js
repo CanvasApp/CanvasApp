@@ -81,7 +81,7 @@ describe('test the api', function() {
     .set({jwt: jwtToken})
     .end(function(err, res) {
       expect(err).to.eql(null);
-      expect(res.body.msg).to.equal('user removed');
+      expect(res.body.msg).to.equal('user has been sent to the phantom zone');
       done();
     });
   });

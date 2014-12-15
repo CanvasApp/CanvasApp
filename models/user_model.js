@@ -14,8 +14,8 @@ var userSchema = mongoose.Schema({
     password: String
   },
   userStatus: {
-    teacher: {confirmed: false},
-    admin: {confirmed: false}
+      teacher: false,
+      admin: false
   },
   userclass: [],
   usermessages: [],

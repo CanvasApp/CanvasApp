@@ -33,16 +33,15 @@ describe('the courses test', function() {
     .end(function(err, res) {
       if (err) res.status(500).send('error');
       jwtToken = res.body.jwt;
-      console.log('courses test begins');
       console.log(jwtToken);
       done();
     });
   });
 
-  //makes user a teacher
+  //makes user an admin
   before(function(done) {
     chai.request(localhost)
-    .post('/api/confirmteacher')
+    .put('/api/confirmadmin')
     .set({jwt: jwtToken})
     .end(function(err, res) {
       if (err) res.status(500).send('error');
