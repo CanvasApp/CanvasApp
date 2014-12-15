@@ -13,7 +13,7 @@ module.exports = function(app, jwtauth) {
       if (user.teacher.confirmed === true) {
         var course = new Course({
           name: req.body.name,
-          summary: req.body.summary,
+          summary: req.body.description.substr(0, 15) + '...',
           schedule: req.body.schedule,
           description: req.body.description,
           code: moment().unix(),
@@ -25,7 +25,7 @@ module.exports = function(app, jwtauth) {
           if (err) return res.status(500).send('error');
           if (!data) return res.send({msg: 'information not saved'});
           console.log(data);
-          res.json(data);
+          res.json({msg: 'course created', code: data.code});
         });
       } else {
         res.json({msg: 'not a teacher'});
@@ -81,11 +81,10 @@ module.exports = function(app, jwtauth) {
           console.log(course);
           course.name = req.body.name;
           course.schedule = req.body.schedule;
-          course.summary = req.body.summary;
           course.description = req.body.description;
           course.save(function(err, data) {
           if (err) return res.status(500).send('error');
-          if (!data) return res.status({msg:'error.  not updated'})
+          if (!data) return res.status({msg:'error.  not updated'});
           console.log(data);
           res.json({msg: 'course updated'});
         });
@@ -98,13 +97,14 @@ module.exports = function(app, jwtauth) {
 
   //deletes a course
   app.delete('/api/course', jwtauth, function(req, res) {
-    User.findOne({code: req.body.code}, function(err, user) {
+    User.findOne({_id: req.user._id}, function(err, user) {
       if (err) res.status(500).send('error');
       if (!user) return res.status(500).send('error');
       if (user.teacher.confirmed === true) {
-        Course.remove({_id: req.course._id}, function(err, data) {
+        Course.remove({code: req.body.code}, function(err, data) {
           if (err) return res.status(500).send('error');
-          if (!data) return res.status(500).send('error. not deleted');
+          if (!data) return res.send({msg:'error. not deleted'});
+          console.log(data);
           res.json({ msg: 'course removed'});
         });
       } else {
