@@ -26,7 +26,6 @@ describe('the teacher test', function() {
     .end(function(err, res) {
       if (err) res.status(500).send(err);
       jwtToken = res.body.jwt;
-      //console.log('the teacher test user');
       console.log(jwtToken);
       done();
     });

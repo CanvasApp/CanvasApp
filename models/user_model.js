@@ -18,7 +18,7 @@ var userSchema = mongoose.Schema({
   userclass: [],
   usermessages: [],
   userinfo: {
-    name: String,
+    name: {first:String, last:String},
     phone: String
   }
 });
