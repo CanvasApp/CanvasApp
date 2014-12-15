@@ -9,7 +9,7 @@ var courseSchema = mongoose.Schema({
   summary: String,
   schedule: {type: String, required: true},
   description: String,
-  code: Number,
+  code: String,
   prereq: [],
   pass: {confirmed: false}
 });

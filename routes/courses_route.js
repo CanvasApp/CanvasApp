@@ -3,7 +3,7 @@
 module.exports = function(app, jwtauth) {
   var Course = require('../models/courses_model');
   var User = require('../models/user_model');
-  var moment = require('moment');
+  var Counter = require('../lib/counter');
 
   //creates a course
   app.post('/api/courses', jwtauth, function(req, res) {
@@ -16,11 +16,11 @@ module.exports = function(app, jwtauth) {
           summary: req.body.description.substr(0, 15) + '...',
           schedule: req.body.schedule,
           description: req.body.description,
-          code: moment().unix(),
+          code: Counter(),
           prereq: [],
           pass: {confirmed: false}
         });
-        console.log(user.teacher);
+        console.log(user.userStatus.teacher);
         course.save(function(err, data) {
           if (err) return res.status(500).send('error');
           if (!data) return res.send({msg: 'information not saved'});
@@ -104,7 +104,6 @@ module.exports = function(app, jwtauth) {
         Course.remove({code: req.body.code}, function(err, data) {
           if (err) return res.status(500).send('error');
           if (!data) return res.send({msg:'error. not deleted'});
-          console.log(data);
           res.json({ msg: 'course removed'});
         });
       } else {

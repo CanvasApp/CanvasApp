@@ -6,12 +6,13 @@ var quizSchema = mongoose.Schema({
   quizQuestion: {
     question: {type: String, required: true},
     questionValue: {
-      javascript: {type: Boolean, value: 1 },
-      python: {type: Boolean, value: 2},
-      ruby: {type: Boolean, value: 3},
-      objectiveC: {type: Boolean, value: 4}
+      javascript: {type: Boolean, default:false },
+      python: {type: Boolean, default:false},
+      ruby: {type: Boolean, default:false},
+      objectiveC: {type: Boolean, default:false}
     }
   },
+  code: String,
   answerArray: []
 });
 
