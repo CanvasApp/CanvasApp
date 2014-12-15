@@ -65,9 +65,9 @@ describe('test the api', function() {
 
   it('should update user info', function(done) {
     chai.request(localhost)
-    .put('/api/userinfo')
+    .put('/api/user')
     .set({jwt: jwtToken})
-    .send({userinfo:{name:'joe', phone:'555-444-3333'}})
+    .send({email: 'test1@example.com', userinfo:{name: {first: 'joe', last: 'elsey'}, phone:'555-444-3333'}})
     .end(function(err, res) {
       expect(err).to.eql(null);
       expect(res.body.msg).to.equal('user updated');
