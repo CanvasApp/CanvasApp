@@ -24,9 +24,21 @@ describe('the teacher test', function() {
     .post('/api/users')
     .send({email:'test1@example.com', password:'Foobar123'})
     .end(function(err, res) {
-      if (err) res.status(500).send(err);
+      if (err) return res.status(500).send(err);
       jwtToken = res.body.jwt;
       console.log(jwtToken);
+      done();
+    });
+  });
+
+  //creates an admin
+  before(function(done) {
+    chai.request(localhost)
+    .post('/api/confirmadmin')
+    .set({jwt: jwtToken})
+    .end(function(err, res) {
+      if (err) return res.status(500).send(err);
+      console.log(res.body);
       done();
     });
   });

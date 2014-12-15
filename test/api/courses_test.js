@@ -42,7 +42,7 @@ describe('the courses test', function() {
   //makes user a teacher
   before(function(done) {
     chai.request(localhost)
-    .post('/api/confirmteacher')
+    .post('/api/confirmadmin')
     .set({jwt: jwtToken})
     .end(function(err, res) {
       if (err) res.status(500).send('error');

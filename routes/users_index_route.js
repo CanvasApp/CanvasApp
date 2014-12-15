@@ -45,7 +45,7 @@ module.exports = function(app, jwtauth) {
     User.remove({_id: req.user._id}, function(err, data) {
       if (err) return res.status(500).send('error');
       if (!data) return res.send({msg: 'user not deleted'});
-      res.json({msg: 'user removed'});
+      res.json({msg: 'user has been sent to the phantom zone'});
     });
   });
 };

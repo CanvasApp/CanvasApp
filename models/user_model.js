@@ -13,8 +13,10 @@ var userSchema = mongoose.Schema({
     email: String,
     password: String
   },
-  teacher: {confirmed: false},
-  admin: {confirmed: false},
+  userStatus: {
+      teacher: false,
+      admin: false
+  }, 
   userclass: [],
   usermessages: [],
   userinfo: {
