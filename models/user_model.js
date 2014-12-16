@@ -14,11 +14,15 @@ var userSchema = mongoose.Schema({
     password: String
   },
   userStatus: {
-      teacher: false,
-      admin: false
+    teacher: false,
+    admin: false
   },
   userclass: [],
-  usermessages: [],
+  usermessages: {
+    from: String,
+    subject: String,
+    main: String
+  },
   userinfo: {
     name: {first:String, last:String},
     phone: String
