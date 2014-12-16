@@ -11,7 +11,7 @@ module.exports = function(app, jwtauth) {
       if (err) return res.status(500).send('error');
       if (!user) return res.send({msg: 'user not found'});
       if (user.userStatus.teacher === true) {
-        var quiz = new Quiz({  
+        var quiz = new Quiz({
           quizQuestion: {
             question: req.body.quizQuestion.question,
             questionValue: {

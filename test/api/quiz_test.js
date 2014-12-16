@@ -14,7 +14,7 @@ var localhost = 'http://localhost:3000';
 
 User.collection.remove(function(err) {
   if (err) throw (err);
-})
+});
 
 Quiz.collection.remove(function(err) {
   if (err) throw (err);
@@ -25,7 +25,7 @@ describe('all things quiz route', function() {
   var quizcode;
 
   //create a user
-  before(function (done) {
+  before(function(done) {
     chai.request(localhost)
     .post('/api/users')
     .send({username:'test6@example.com', password:'foobar123'})
@@ -37,11 +37,11 @@ describe('all things quiz route', function() {
   });
 
   //create an admin
-  before(function (done) {
+  before(function(done) {
     chai.request(localhost)
     .put('/api/confirmadmin')
     .set({jwt:jwtToken})
-    .end(function (err, res) {
+    .end(function(err, res) {
       if (err) res.status(500).send('error');
       console.log(res.body);
       done();
@@ -66,7 +66,7 @@ describe('all things quiz route', function() {
       .end(function(err, res) {
         quizcode = res.body.code;
         expect(err).to.eql(null);
-        expect(res.body).to.have.property('quizQuestion')
+        expect(res.body).to.have.property('quizQuestion');
         console.log(res.body);
         done();
       });

@@ -25,7 +25,7 @@
   "indent": 2,
   "latedef": true,
   "maxlen": 200,
-  "newcap": true,
+  "newcap": false,
   "quotmark": "single",
   "undef": true,
   "unused": true,
