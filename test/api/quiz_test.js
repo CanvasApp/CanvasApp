@@ -38,7 +38,7 @@ describe('all things quiz route', function() {
 
   //create an admin
   before(function (done) {
-    cha.request(localhost)
+    chai.request(localhost)
     .put('/api/confirmadmin')
     .set({jwt:jwtToken})
     .end(function (err, res) {
@@ -75,7 +75,7 @@ describe('all things quiz route', function() {
   it('should be able to get all of the questions', function(done) {
     chai.request(localhost)
       .get('/api/quizzes')
-      .sent({jwt: jwtToken})
+      .set({jwt: jwtToken})
       .end(function(err, res) {
         expect(err).to.eql(null);
         expect(Array.isArray(res.body)).to.equal(true);
