@@ -29,6 +29,8 @@ require('./routes/quiz_route.js')(app, jwtauth);
 require('./routes/courses_route.js')(app, jwtauth);
 require('./routes/admin_routes.js')(app, jwtauth);
 require('./routes/messages_route.js')(app, jwtauth);
+require('./routes/student_route.js')(app,jwtauth);
+
 
 app.get('*', function(req, res) {
   res.sendfile('./build/index.html');

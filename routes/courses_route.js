@@ -53,19 +53,11 @@ module.exports = function(app, jwtauth) {
 
   //gets just one course
   app.get('/api/course/:code', jwtauth, function(req, res) {
-    User.findOne({_id: req.user._id}, function(err, user) {
-      if (err) res.status(500).send('error');
-      if (!user) return res.status(500).send('error');
-      if (user.userStatus.teacher === true) {
-        Course.findOne({code: req.params.code}, function(err, data) {
-          console.log('coursing it up');
-          if (err) return res.status(500).send('error.');
-          if (!data) return res.send({msg:'course not found'});
-          res.json(data);
-        });
-      } else {
-        res.json({msg: 'not a teacher'});
-      }
+    Course.findOne({code: req.params.code}, function(err, data) {
+      console.log('coursing it up');
+      if (err) return res.status(500).send('error.');
+      if (!data) return res.send({msg:'course not found'});
+      res.json(data);
     });
   });
 

@@ -31,7 +31,7 @@ describe('test the api', function() {
   it('should create a user', function(done) {
     chai.request(localhost)
     .post('/api/users')
-    .send({email:'test@example.com', password:'Foobar123'})
+    .send({email:'test10@example.com', password:'Foobar123'})
     .end(function(err, res) {
       expect(err).to.eql(null);
       expect(res.body).to.have.property('jwt');
@@ -67,7 +67,7 @@ describe('test the api', function() {
     chai.request(localhost)
     .put('/api/user')
     .set({jwt: jwtToken})
-    .send({email: 'test1@example.com', userinfo:{name: {first: 'joe', last: 'elsey'}, phone:'555-444-3333'}})
+    .send({email: 'test1@example.com', name: {first: 'joe', last: 'elsey'}, phone:'555-444-3333'})
     .end(function(err, res) {
       expect(err).to.eql(null);
       expect(res.body.msg).to.equal('user updated');
