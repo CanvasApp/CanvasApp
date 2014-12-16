@@ -11,13 +11,12 @@ module.exports = function(app, jwtauth) {
       if (err) return res.status(500).send('error');
       if (!user) return res.status(500).send('error');
       if (user.userStatus.admin === true) {
-        var uniqueid = new UniqueId();
         var course = new Course({
           name: req.body.name,
           summary: req.body.description.substr(0, 15) + '...',
           schedule: req.body.schedule,
           description: req.body.description,
-          code: uniqueid(),
+          code: UniqueId(),
           prereq: [],
           pass: {confirmed: false}
         });

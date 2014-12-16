@@ -16,7 +16,7 @@ require('./users/controllers/users_controller')(codeApp);
 
 //routes
 
-codeApp.config(['$routeProvider', function($routeProvider){
+codeApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider
   .when('/signup', {
     templateUrl: 'templates/users/signup_template.html',
@@ -26,5 +26,3 @@ codeApp.config(['$routeProvider', function($routeProvider){
     redirectTo: '/'
   });
 }]);
-
-

@@ -22,7 +22,6 @@ Courses.collection.remove(function(err) {
 
 describe('the courses test', function() {
   var jwtToken;
-  var prereqArr = [];
   var regcode;
 
   //creates a user
@@ -57,9 +56,7 @@ describe('the courses test', function() {
       .send({
         name: 'Foundations 1',
         schedule: 'Winter 2015',
-        description: 'the first class you take',
-        prereq: prereqArr,
-        pass: {confirmed:false}
+        description: 'the first class you take'
       })
       .end(function(err, res) {
         regcode = res.body.code;
@@ -75,8 +72,8 @@ describe('the courses test', function() {
     .put('/api/courses/' + regcode)
     .set({jwt: jwtToken})
     .send({
-      name: 'Javascript Foundations 2', 
-      schedule: 'Fall 2015', 
+      name: 'Javascript Foundations 2',
+      schedule: 'Fall 2015',
       description: 'the step before the dev accelator'
     })
     .end(function(err, res) {

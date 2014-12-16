@@ -12,7 +12,7 @@ module.exports = function(app, jwtauth) {
       if (!user) return res.send({msg: 'user not found'});
       if (user.userStatus.teacher === true) {
         var uniqueid = new UniqueId();
-        var quiz = new Quiz({  
+        var quiz = new Quiz({
           quizQuestion: {
             question: req.body.quizQuestion.question,
             questionValue: {

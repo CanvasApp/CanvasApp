@@ -9,4 +9,4 @@ var messagesSchema = mongoose.Schema({
   message: String
 });
 
-module.exports = mongoose.model('Message', messagesSchema );
+module.exports = mongoose.model('Message', messagesSchema);
