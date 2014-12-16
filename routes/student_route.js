@@ -39,29 +39,49 @@ module.exports = function(app, jwtauth) {
   });
 
   //teacher marks a students course pass as true
-  app.put('/api/studentpasscourse/:email', jwtauth, function(req, res) {
+  app.put('/api/studentpasscourse/:email', jwtauth, function(req, res, next) {
     User.findOne({_id: req.user._id}, function(err, user) {
       if (err) return res.status(500).send('error');
       if (!user) return res.send({msg: 'user not found'});
       if (user.userStatus.teacher === true) {
         Course.findOne({code:req.body.code}, function(err, course) {
           if (err) return res.status(500).send('error');
-          if (!course) return res.send({msg: 'user not found'});
-          console.log(course.students);
+          if (!course) return res.send({msg: 'course not found'});
+          //console.log(course.students + '!');
           for(var i = 0; i < course.students.length; i++) {
-           if(course.students[i].email === req.params.email){
+           if(course.students[i].email === req.params.email) {
             course.students[i].pass = true;
            }
           } 
           course.save(function(err, data) {
             if (err) return res.status(500).send('error');
             if (!data) return res.send({msg: 'data not saved'});
-            res.json(data.students);
           });
+          User.findOne({'basic.email':req.params.email}, function(err, user) {
+          if (err) return res.status(500).send('error');
+          if (!user) return res.send({msg: 'user not found'});
+          for(var j = 0; j < user.userclass.length; j++) {
+            if(user.userclass[j].code === req.body.code) {
+              for(var k = 0; k < user.userclass[j].students.length; k++) {
+                if(user.userclass[j].students[k].email === req.params.email) {
+                  user.userclass[j].students[k].pass = true;
+                }
+              }
+            }
+          }
+          user.save(function(err, data) {
+            if (err) return res.status(500).send('error');
+            if (!data) return res.send({msg: 'data not saved'});
+            res.json(data.userclass);
+          });
+          console.log(user.userclass);
+        });
         });
       } else {
         res.json({msg: 'you do not have permission'});
       }
     });
   });
+
+  
 };
