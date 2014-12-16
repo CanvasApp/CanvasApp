@@ -3,13 +3,17 @@
 var mongoose = require('mongoose');
 
 var quizSchema = mongoose.Schema({
-  question: '',
-  answers: {
-    javascript: '',
-    python: '',
-    ruby: '',
-    objective: Boolean
-  }
+  quizQuestion: {
+    question: {type: String, required: true},
+    questionValue: {
+      javascript: {type: Boolean, default:false },
+      python: {type: Boolean, default:false},
+      ruby: {type: Boolean, default:false},
+      objectiveC: {type: Boolean, default:false}
+    }
+  },
+  code: String,
+  answerArray: []
 });
 
 module.exports = mongoose.model('Quiz', quizSchema);

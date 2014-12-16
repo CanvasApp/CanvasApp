@@ -16,18 +16,17 @@
     "url": "https://github.com/CanvasApp/CanvasApp/issues"
   },
   "homepage": "https://github.com/CanvasApp/CanvasApp",
-
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.10.0",
     "express": "^4.10.4",
+    "jwt-simple": "^0.2.0",
     "moment": "^2.8.4",
     "mongoose": "^3.8.20",
-    "bcrypt-nodejs": "0.0.3",
-    "jwt-simple": "^0.2.0",
+    "node-uuid": "^1.4.2",
     "passport": "^0.2.1",
     "passport-http": "^0.2.2"
   },
-
   "devDependencies": {
     "chai": "^1.10.0",
     "chai-http": "^1.0.0",
