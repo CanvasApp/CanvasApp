@@ -29,7 +29,7 @@ describe('the course adding test', function() {
   before(function(done) {
     chai.request(localhost)
     .post('/api/users')
-    .send({email:'test1@example.com', password:'Foobar123'})
+    .send({email:'test2@example.com', password:'Foobar123'})
     .end(function(err, res) {
       if (err) return res.status(500).send('error');
       AdminJwtToken = res.body.jwt;
@@ -72,7 +72,7 @@ describe('the course adding test', function() {
   before(function(done) {
     chai.request(localhost)
     .post('/api/users')
-    .send({email:'test1@example.com', password:'Foobar123'})
+    .send({email:'test3@example.com', password:'Foobar123'})
     .end(function(err, res) {
       if (err) return res.status(500).send('error');
       StudentJwtToken = res.body.jwt;
@@ -88,6 +88,7 @@ describe('the course adding test', function() {
       .end(function(err, res) {
         expect(err).to.eql(null);
         expect(res.body.userclass.length).to.be.above(0);
+        done();
       });
   });
 });
