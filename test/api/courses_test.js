@@ -30,7 +30,7 @@ describe('the courses test', function() {
     .post('/api/users')
     .send({email:'test@example.com', password:'Foobar123'})
     .end(function(err, res) {
-      if (err) res.status(500).send('error');
+      if (err) return res.status(500).send('error');
       jwtToken = res.body.jwt;
       console.log(jwtToken);
       done();
@@ -43,7 +43,7 @@ describe('the courses test', function() {
     .put('/api/confirmadmin')
     .set({jwt: jwtToken})
     .end(function(err, res) {
-      if (err) res.status(500).send('error');
+      if (err) return res.status(500).send('error');
       console.log(res.body);
       done();
     });

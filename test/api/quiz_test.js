@@ -29,7 +29,8 @@ describe('all things quiz route', function() {
     chai.request(localhost)
     .post('/api/users')
     .send({username:'test6@example.com', password:'foobar123'})
-    .end(function(res) {
+    .end(function(err, res) {
+      if (err) return res.status(500).send('error');
       jwtToken = res.body.jwt;
       console.log(jwtToken);
       done();
@@ -42,7 +43,7 @@ describe('all things quiz route', function() {
     .put('/api/confirmadmin')
     .set({jwt:jwtToken})
     .end(function(err, res) {
-      if (err) res.status(500).send('error');
+      if (err) return res.status(500).send('error');
       console.log(res.body);
       done();
     });

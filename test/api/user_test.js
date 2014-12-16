@@ -31,7 +31,7 @@ describe('test the api', function() {
   it('should create a user', function(done) {
     chai.request(localhost)
     .post('/api/users')
-    .send({email:'test@example.com', password:'Foobar123'})
+    .send({email:'test10@example.com', password:'Foobar123'})
     .end(function(err, res) {
       expect(err).to.eql(null);
       expect(res.body).to.have.property('jwt');
