@@ -1,5 +1,5 @@
 'use strict';
-
+console.log('in here');
 module.exports = function(app) {
   app.controller('usersCtrl', ['$scope', '$http', '$cookies', '$base64', '$location', function($scope, $http, $cookies, $base64, $location) {
 
@@ -23,35 +23,35 @@ module.exports = function(app) {
       });
     };
 
-    $scope.createUser = function() {
+    $scope.newUser = function() {
       $scope.errors = [];
-      $http.defaults.headers.common['Authorization'] = 'Basic' + $base64.encode($scope.createUser.email + ':' + $scope.user.password);
+      // $http.defaults.headers.common['Authorization'] = 'Basic' + $base64.encode($scope.newUser.email + ':' + $scope.newUser.password);
 
-      if($scope.createUser.password !== $scope.createUser.passwordConfirmation)
-        $scope.errors.push({msg: 'Password does not match.'});
+      // if($scope.newUser.password !== $scope.newUser.passwordConfirmation)
+      //   $scope.errors.push({msg: 'Password does not match.'});
 
-      if(!$scope.createUser.email)
-        $scope.errors.push({msg: 'You failed to enter an email. How are we suppossed to keep track of you?'});
+      // if(!$scope.newUser.email)
+      //   $scope.errors.push({msg: 'You failed to enter an email. How are we suppossed to keep track of you?'});
 
 
-      if(!$scope.createUser.firstName)
-        $scope.errors.push({msg: 'Please enter your first name so we can say hi.'});
+      // if(!$scope.newUser.firstName)
+      //   $scope.errors.push({msg: 'Please enter your first name so we can say hi.'});
 
-      if(!$scope.createUser.lastName)
-        $scope.errors.push({msg: 'Give us your last name, unless you want us to get it from the NSA'});
+      // if(!$scope.newUser.lastName)
+      //   $scope.errors.push({msg: 'Give us your last name, unless you want us to get it from the NSA'});
 
       $http({
         method: 'POST',
         url: '/api/users',
-        data: $scope.createUser
-
+        data: $scope.newUser()
       })
       .success(function(data) {
+        console.log($scope.newUser);
         console.log(data);
         $cookies.jwt = data.jwt;
-        $location.path('/class_tree');
+        $location.path('/classtree');
       })
-      .error(function(data) {
+      .error(function() {
         $scope.push.errors({msg: 'something went wrong'});
       });
     };
