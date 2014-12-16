@@ -1,0 +1,53 @@
+body {
+	background: #E1DED2; 
+}
+
+.logo {
+	margin-top: 20px;
+	height: 65px;
+}
+
+/*Dash*/
+
+nav {
+	margin-left: 300px;
+	margin-top: -50px;
+}
+
+.navigation {
+	display: inline-block;
+}
+
+li {
+	font-family: "Forza";
+	font-size: 22px;
+}
+
+ul ul { /*dropdown part*/
+	display: none;
+}
+
+ul li:hover > ul {
+	display: block;
+}
+
+a:link {
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+/*Frontpage*/
+
+.quiz { /*make this button sexy*/
+	font-family: "Forza";
+
+}
+
+.signin {
+	font-family: "Forza";
+	float: right;
+	margin-top: 300px;
+}
