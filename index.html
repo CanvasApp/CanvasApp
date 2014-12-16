@@ -4,15 +4,23 @@
   <meta charset='utf-8'>
   <title>CanvasApp(change?)</title>
   <link rel="stylesheet" href="scss/layout.css">
+  <script type="text/javascript">
+
+    function popup(){
+      cuteLittleWindow = window.open("quiz.html", "littleWindow", "location=no,width=450,height=400"); 
+}
+
+</script>
 </head>
 
 <body>
   <header> <img class="logo" src="images/logo.png"> </header>
 
   <article>
-    <section>
-      <button class="quiz">Take the Quiz</button>
-    <section>
+    <section class="interest">
+      <p>What are you interested in?</p>
+      <a href="javascript:popup()"> <button class="quiz">Take the Quiz</a></button></a>
+    </section>
 
     <section class="signin">
       <form>Sign in
@@ -21,6 +29,8 @@
 
       <p><label for="password">Password</label>
         <input id="password" name="password" type="text" placeholder="Password"></p>
+
+      <button class="create">Sign In</button>
       </form>
     </section>
 

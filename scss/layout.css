@@ -4,7 +4,7 @@ body {
 
 .logo {
 	margin-top: 20px;
-	height: 65px;
+	height: 63px;
 }
 
 /*Dash*/
@@ -12,6 +12,8 @@ body {
 nav {
 	margin-left: 300px;
 	margin-top: -50px;
+	font-family: "Forza";
+	font-size: 20px;
 }
 
 .navigation {
@@ -33,21 +35,56 @@ ul li:hover > ul {
 
 a:link {
     color: black;
+    text-decoration: none;
+    font-family: "Forza";
 }
 
 a:visited {
     color: black;
+    text-decoration: none;
+    font-family: "Forza";
 }
 
 /*Frontpage*/
 
+button:hover {
+	background: #5C5E5C;
+}
+
 .quiz { /*make this button sexy*/
 	font-family: "Forza";
+	font-size: 40px;
+	padding: 25px;
+	position: relative;
+    vertical-align: middle;
 
 }
 
 .signin {
 	font-family: "Forza";
-	float: right;
-	margin-top: 300px;
+	margin: 20% 5% 10% 80%;
 }
+
+p {
+	font-family: "Forza";
+	font-size: 24px;
+}
+
+.interest {
+	margin: 10% 10% 20% 30%;
+}
+
+/*button create account*/
+.create {
+	font-family: "Forza";
+	padding: 10px;
+	font-size: 16px;
+	display: inline-block;
+}
+
+/*quiz page*/
+.classes {
+	font-size: 20px;
+}
+
+
