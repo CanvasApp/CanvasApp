@@ -14,7 +14,7 @@ var localhost = 'http://localhost:3000';
 
 User.collection.remove(function(err) {
   if (err) throw (err);
-})
+});
 
 Quiz.collection.remove(function(err) {
   if (err) throw (err);
@@ -66,7 +66,7 @@ describe('all things quiz route', function() {
       .end(function(err, res) {
         quizcode = res.body.code;
         expect(err).to.eql(null);
-        expect(res.body).to.have.property('quizQuestion')
+        expect(res.body).to.have.property('quizQuestion');
         console.log(res.body);
         done();
       });

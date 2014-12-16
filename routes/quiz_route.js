@@ -11,6 +11,7 @@ module.exports = function(app, jwtauth) {
       if (err) return res.status(500).send('error');
       if (!user) return res.send({msg: 'user not found'});
       if (user.userStatus.teacher === true) {
+        var uniqueid = new UniqueId();
         var quiz = new Quiz({  
           quizQuestion: {
             question: req.body.quizQuestion.question,
@@ -21,7 +22,7 @@ module.exports = function(app, jwtauth) {
               objectiveC: req.body.quizQuestion.questionValue.objectiveC
             }
           },
-          code: UniqueId(),
+          code: uniqueid(),
           answerArray: []
         });
         quiz.save(function(err, data) {
