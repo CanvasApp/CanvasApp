@@ -33,16 +33,15 @@ describe('the courses test', function() {
     .end(function(err, res) {
       if (err) res.status(500).send('error');
       jwtToken = res.body.jwt;
-      console.log('courses test begins');
       console.log(jwtToken);
       done();
     });
   });
 
-  //makes user a teacher
+  //makes user an admin
   before(function(done) {
     chai.request(localhost)
-    .post('/api/confirmteacher')
+    .put('/api/confirmadmin')
     .set({jwt: jwtToken})
     .end(function(err, res) {
       if (err) res.status(500).send('error');
@@ -73,9 +72,13 @@ describe('the courses test', function() {
 
   it('should be able to edit course info', function(done) {
     chai.request(localhost)
-    .put('/api/courses')
+    .put('/api/courses/' + regcode)
     .set({jwt: jwtToken})
-    .send({name: 'Javascript Foundations 2', schedule: 'Fall 2015', description: 'the step before the dev accelator', code: regcode})
+    .send({
+      name: 'Javascript Foundations 2', 
+      schedule: 'Fall 2015', 
+      description: 'the step before the dev accelator'
+    })
     .end(function(err, res) {
       expect(err).to.eql(null);
       expect(res.body.msg).to.equal('course updated');
@@ -85,9 +88,8 @@ describe('the courses test', function() {
 
   it('should be able to get a course', function(done) {
     chai.request(localhost)
-    .post('/api/course')
+    .get('/api/course/' + regcode)
     .set({jwt: jwtToken})
-    .send({code: regcode})
     .end(function(err, res) {
       expect(err).to.eql(null);
       expect(res.body).to.have.property('name');
@@ -97,7 +99,7 @@ describe('the courses test', function() {
 
   it('should be able to delete a course', function(done) {
     chai.request(localhost)
-    .delete('/api/course')
+    .delete('/api/course/' + regcode)
     .set({jwt: jwtToken})
     .send({code: regcode})
     .end(function(err, res) {
