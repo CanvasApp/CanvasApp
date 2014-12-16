@@ -11,7 +11,7 @@ module.exports = function(app, jwtauth) {
       if (user.userStatus.admin === true) {
         User.findOne({'basic.email': req.body.email}, function(err, user) {
           if (err) return res.status(500).send('error');
-          if (!user) return res.send({msg: 'user not found'});
+          if (!user || !req.body.email) return res.send({msg: 'user not found'});
           console.log(user);
           user.userStatus.teacher = true;
           console.log(user.userStatus.teacher);
@@ -36,12 +36,13 @@ module.exports = function(app, jwtauth) {
       if (user.userStatus.admin === true) {
         User.findOne({'basic.email': req.body.email}, function(err, user) {
           if (err) return res.status(500).send('error');
-          if (!user) return res.send({msg: 'user not found'});
+          if (!user || !req.body.email) return res.send({msg: 'user not found'});
           user.userStatus.teacher = false;
           console.log(user.userStatus.teacher);
           user.save(function(err, data) {
             if (err) return res.status(500).send('error');
             if (!data) return res.send({msg: 'data not saved'});
+            console.log(data);
             res.json({msg: 'teacher has been removed from this plane of existence'});
           });
         });
