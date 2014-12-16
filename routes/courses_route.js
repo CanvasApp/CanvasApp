@@ -18,14 +18,14 @@ module.exports = function(app, jwtauth) {
           description: req.body.description,
           code: UniqueId(),
           prereq: [],
-          pass: {confirmed: false}
+          students: []
         });
         console.log(user.userStatus.teacher);
         course.save(function(err, data) {
           if (err) return res.status(500).send('error');
           if (!data) return res.send({msg: 'information not saved'});
           console.log(data);
-          res.json({msg: 'course created', code: data.code});
+          res.json({msg: 'course created', code: data.code, data: data});
         });
       } else {
         res.json({msg: 'not a teacher'});

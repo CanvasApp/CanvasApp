@@ -9,7 +9,8 @@ module.exports = function(app, jwtauth) {
     User.findOne({_id: req.user._id}, function(err, user) {
       if (err) res.status(500).send('error');
       if (!user) res.send({msg: 'user not found'});
-      Course.findOne({code: req.params.code}, function(err, course) {
+      Course.findOneAndUpdate({code: req.params.code}, {$push:{students: {email: req.user.basic.email, pass: false}}},
+       function(err, course) {
         if (err) res.status(500).send('error');
         if (!course) res.send({msg: 'course not found'});
         User.findOneAndUpdate({_id: req.user._id}, {$push:{userclass: course}},
@@ -43,20 +44,20 @@ module.exports = function(app, jwtauth) {
       if (err) return res.status(500).send('error');
       if (!user) return res.send({msg: 'user not found'});
       if (user.userStatus.teacher === true) {
-        User.findOne({'basic.email':req.params.email}, function(err, user) {
+        Course.findOne({code:req.body.code}, function(err, course) {
           if (err) return res.status(500).send('error');
-          if (!user) return res.send({msg: 'user not found'});
-          console.log(user.userclass);
-          for(var i = 0; i < user.userclass.length; i++) {
-           if(user.userclass[i].code === req.body.code){
-            user.userclass[i].pass.confirmed = true;
-            user.save(function(err, data) {
-              if (err) return res.status(500).send('error');
-              if (!data) return res.send({msg: 'data not saved'});
-              res.json(data.userclass);
-            });
+          if (!course) return res.send({msg: 'user not found'});
+          console.log(course.students);
+          for(var i = 0; i < course.students.length; i++) {
+           if(course.students[i].email === req.params.email){
+            course.students[i].pass = true;
            }
           } 
+          course.save(function(err, data) {
+            if (err) return res.status(500).send('error');
+            if (!data) return res.send({msg: 'data not saved'});
+            res.json(data.students);
+          });
         });
       } else {
         res.json({msg: 'you do not have permission'});
