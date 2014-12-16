@@ -50,14 +50,16 @@ module.exports = function(app, jwtauth) {
           for(var i = 0; i < user.userclass.length; i++) {
            if(user.userclass[i].code === req.body.code){
             user.userclass[i].pass.confirmed = true;
+            user.save(function(err, data) {
+              if (err) return res.status(500).send('error');
+              if (!data) return res.send({msg: 'data not saved'});
+              res.json(data.userclass);
+            });
            }
-          }
-          user.save(function(err, data) {
-            if (err) return res.status(500).send('error');
-            if (!data) return res.send({msg: 'data not saved'});
-            res.json(data.userclass);
-          });
+          } 
         });
+      } else {
+        res.json({msg: 'you do not have permission'});
       }
     });
   });

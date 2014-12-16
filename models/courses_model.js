@@ -11,7 +11,7 @@ var courseSchema = mongoose.Schema({
   description: String,
   code: String,
   prereq: [],
-  pass: {confirmed: false}
+  pass: {confirmed: {type: Boolean, required: true}}
 });
 
 module.exports = mongoose.model('Course', courseSchema);
