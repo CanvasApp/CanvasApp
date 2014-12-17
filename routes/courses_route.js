@@ -3,10 +3,11 @@
 module.exports = function(app, jwtauth) {
   var Course = require('../models/courses_model');
   var User = require('../models/user_model');
+  var Enrollment = require('../models/enrollment_model');
   var UniqueId = require('../lib/uid');
 
   //creates a course
-  app.post('/api/courses', jwtauth, function(req, res) {
+  app.post('/api/courseenrollment', jwtauth, function(req, res, next) {
     User.findOne({_id: req.user._id}, function(err, user) {
       if (err) return res.status(500).send('error');
       if (!user) return res.status(500).send('error');
@@ -16,19 +17,24 @@ module.exports = function(app, jwtauth) {
           summary: req.body.description.substr(0, 15) + '...',
           schedule: req.body.schedule,
           description: req.body.description,
-          code: UniqueId(),
-          prereq: [],
-          students: []
+          code: UniqueId()
         });
-        console.log(user.userStatus.teacher);
+        var enrollment = new Enrollment({
+          enrollment:{code: course.code}
+        });
+        enrollment.save(function(err, data) {
+          if (err) return res.status(500).send('error');
+          if (!data) return res.send({msg: 'enrollment did not save'});
+          console.log(data);
+        });
         course.save(function(err, data) {
           if (err) return res.status(500).send('error');
-          if (!data) return res.send({msg: 'information not saved'});
+          if (!data) return res.send({msg: 'course did not save'});
           console.log(data);
           res.json({msg: 'course created', code: data.code, data: data});
         });
       } else {
-        res.json({msg: 'not a teacher'});
+        res.json({msg: 'not an admin'});
       }
     });
   });
