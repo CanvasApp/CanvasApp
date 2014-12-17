@@ -5,15 +5,15 @@ require('angular-mocks');
 
 describe('Users Controller', function() {
   var $controllerConstructor;
-  var $httpBackend;
+  //var $httpBackend;
   var $scope;
-  var $cookies;
+  //var $cookies;
 
   beforeEach(angular.mock.model,('codeApp'));
 
   beforeEach(angular.mock.inject(function($rootScope, $controller) {
     $scope = $rootScope.$new();
-    $controllerConstructor = $controller
+    $controllerConstructor = $controller;
   }));
 
   it('should be able to create a controller', function() {
