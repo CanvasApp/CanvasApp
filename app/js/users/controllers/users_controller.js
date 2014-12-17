@@ -5,11 +5,11 @@ module.exports = function(app) {
 
     $scope.signIn = function() {
       $scope.errors = [];
-      $http.defaults.headers.common['Authorization'] = 'Basic' + $base64.encode($scope.user.email + ':' + $scope.user.password);
+      // $http.defaults.headers.common['Authorization'] = 'Basic' + $base64.encode($scope.user.email + ':' + $scope.user.password);
 
       $http({
         method: 'GET',
-        url: '/api/users'
+        url: '/api/user'
       })
       .success(function(data) {
         console.log('worked');
@@ -43,7 +43,7 @@ module.exports = function(app) {
       $http({
         method: 'POST',
         url: '/api/users',
-        data: $scope.newUser()
+        // data: $scope.newUser()
       })
       .success(function(data) {
         console.log($scope.newUser);
