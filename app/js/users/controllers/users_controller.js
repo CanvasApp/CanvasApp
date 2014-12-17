@@ -19,7 +19,7 @@ module.exports = function(app) {
       .error(function(data) {
         console.log('did not work');
         console.log(data);
-        $scope.push.errors(data);
+        $scope.errors.push(data);
       });
     };
 
@@ -37,8 +37,8 @@ module.exports = function(app) {
       console.log('yes');
       return $http({
         method: 'POST',
-        url: 'api/users',
-        data: $scope.newUser
+        url: '/api/users',
+        data: $scope.newUser,
       })
       .success(function(data) {
         console.log('please');
@@ -48,7 +48,8 @@ module.exports = function(app) {
         $location.path('/classtree');
       })
       .error(function(data) {
-        $scope.push.errors(data);
+        console.log(data);
+        $scope.errors.push({msg: 'something went wrong'});
       });
     };
 
