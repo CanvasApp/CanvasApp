@@ -19,31 +19,19 @@ module.exports = function(app) {
       .error(function(data) {
         console.log('did not work');
         console.log(data);
-        $scope.push.errors(data);
+        $scope.errors.push(data);
       });
     };
 
-    $scope.newUser = function() {
+    $scope.signIn = function() {
       $scope.errors = [];
-      // $http.defaults.headers.common['Authorization'] = 'Basic' + $base64.encode($scope.newUser.email + ':' + $scope.newUser.password);
-
-      // if($scope.newUser.password !== $scope.newUser.passwordConfirmation)
-      //   $scope.errors.push({msg: 'Password does not match.'});
-
-      // if(!$scope.newUser.email)
-      //   $scope.errors.push({msg: 'You failed to enter an email. How are we suppossed to keep track of you?'});
-
-
-      // if(!$scope.newUser.firstName)
-      //   $scope.errors.push({msg: 'Please enter your first name so we can say hi.'});
-
-      // if(!$scope.newUser.lastName)
-      //   $scope.errors.push({msg: 'Give us your last name, unless you want us to get it from the NSA'});
+      if ($scope.newUser.password !== $scope.newUser.passwordConfirmation) $scope.errors.push({msg: 'password and confirmation did not match'});
+      if (!$scope.newUser.email) $scope.errors.push({msg: 'did not specify an email'});
 
       $http({
         method: 'POST',
         url: '/api/users',
-        data: $scope.newUser()
+        data: $scope.newUser,
       })
       .success(function(data) {
         console.log($scope.newUser);
@@ -51,8 +39,9 @@ module.exports = function(app) {
         $cookies.jwt = data.jwt;
         $location.path('/classtree');
       })
-      .error(function() {
-        $scope.push.errors({msg: 'something went wrong'});
+      .error(function(data) {
+        console.log(data);
+        $scope.errors.push({msg: 'something went wrong'});
       });
     };
 
