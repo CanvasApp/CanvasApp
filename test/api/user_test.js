@@ -18,16 +18,6 @@ User.collection.remove(function(err) {
 describe('test the api', function() {
   var jwtToken;
 
-  it('should get a basic route', function(done) {
-    chai.request(localhost)
-      .get('/')
-      .end(function(err, res) {
-        expect(err).to.eql(null);
-        expect(res.body).to.equal('hello world');
-        done();
-      });
-  });
-
   it('should create a user', function(done) {
     chai.request(localhost)
     .post('/api/users')
