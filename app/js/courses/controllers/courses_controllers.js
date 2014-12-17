@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
   app.controller('courseCtrl', ['$scope', '$http', '$cookies','$location', function($scope, $http, $cookies, $location) {
-    if(!$cookies.jwt || !$cookies.jwt.length) return $location.path('/users';)
+    if(!$cookies.jwt || !$cookies.jwt.length) return $location.path('/users');
 
     $http.defaults.headers.common['jwt'] = $cookies.jwt;
 
