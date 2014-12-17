@@ -40,10 +40,11 @@ module.exports = function(app) {
       console.log('get in signin');
       $http({
         method: 'GET',
-        url: 'api/user'
+        url: '/api/user'
       })
       .success(function(data) {
         console.log('worked');
+        $scope.msg = 'success!';
         $cookies.jwt = data.jwt;
         $location.path('/dash');
       })
@@ -73,8 +74,8 @@ module.exports = function(app) {
       })
       .success(function(data) {
         console.log('please');
-
         console.log(data);
+        $scope.msg = 'success!';
         $cookies.jwt = data.jwt;
         $location.path('/classtree');
       })
@@ -29890,11 +29891,12 @@ require("./../../bower_components/angular-mocks/angular-mocks.js");
 
 describe('Users Controller', function() {
   var $controllerConstructor;
-  //var $httpBackend;
+  var $httpBackend;
   var $scope;
-  //var $cookies;
+  var $location;
+  var $cookies = {jwt: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1N…4NDV9.5dr6hQ2rJr9972-LuyxcL6xnVVRRwdbJ7CDNHKDgcrQ'};
 
-  beforeEach(angular.mock.model,('codeApp'));
+  beforeEach(angular.mock.module('codeApp'));
 
   beforeEach(angular.mock.inject(function($rootScope, $controller) {
     $scope = $rootScope.$new();
@@ -29902,9 +29904,52 @@ describe('Users Controller', function() {
   }));
 
   it('should be able to create a controller', function() {
-    var userController = $controllerConstructor('userCtrl', {$scope: $scope});
-    expect(typeof userController).toBe('object');
+    var usersController = $controllerConstructor('usersCtrl', {$scope: $scope});
+    expect(typeof usersController).toBe('object');
+  });
+
+  describe('users tests', function() {
+  beforeEach(angular.mock.inject(function(_$httpBackend_) {
+    $httpBackend = _$httpBackend_;
+    $controllerConstructor('usersCtrl', {$scope: $scope});
+  }));
+
+  afterEach(function() {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+  });
+
+  it('should create a user', function() {
+    $httpBackend.expectPOST('/api/users').respond(200, $cookies.jwt);
+
+    $scope.newUser = {
+      email: 'test@example.com',
+      password: 'Foobar123',
+      passwordConfirmation: 'Foobar123'
+    };
+
+    $scope.signUp();
+    $httpBackend.flush();
+
+    expect($scope.msg).toEqual('success!');
+  });
+
+  it('should get a user', function() {
+    $httpBackend.expectGET('/api/user').respond(200, $cookies.jwt);
+
+    $scope.user = {
+      email: 'test@example.com',
+      password: 'Foobar123'
+    };
+
+    $scope.signIn();
+    $httpBackend.flush();
+
+    expect($scope.msg).toEqual('success!');
   });
 });
+
+});
+
 
 },{"../../app/js/client":1,"./../../bower_components/angular-mocks/angular-mocks.js":5}]},{},[8]);
