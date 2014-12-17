@@ -49,8 +49,13 @@ module.exports = function(app) {
 
     $scope.deleteUser = function() {
       $http({
-        method: ''
+        method: 'DELETE',
+        url: '/api/user',
+        data: $scope.user
       })
-    }
-  }])
-}
+      .success(function () {
+        $scope.user.remove();
+      });
+    };
+  }]);
+};
