@@ -81,14 +81,5 @@ describe('the course adding test', function() {
     });
   });
 
-  it('should push a course into a students array', function(done) {
-    chai.request(localhost)
-      .put('/api/studentcourse/' + regcode)
-      .set({jwt: StudentJwtToken})
-      .end(function(err, res) {
-        expect(err).to.eql(null);
-        expect(res.body.userclass.length).to.be.above(0);
-        done();
-      });
-  });
+  
 });
