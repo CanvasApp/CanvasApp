@@ -44,7 +44,7 @@ module.exports = function(app) {
         method: 'POST',
         url: '/api/users',
         data: $scope.newUser()
-      }
+      })
       .success(function(data) {
         console.log($scope.newUser);
         console.log(data);
