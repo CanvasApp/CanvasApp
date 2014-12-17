@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('userIndexController',['$scope', '$http', '$cookies', '$location', function($scope, $http, $cookies, $location) {
+  app.controller('userIndexCtrl',['$scope', '$http', '$cookies', '$location', function($scope, $http, $cookies, $location) {
     if(!$cookies.jwt || !$cookies.jwt.length) return $location.path('/users');
 
     $http.defaults.headers.common['jwt'] = $cookies.jwt;
@@ -22,7 +22,8 @@ module.exports = function(app) {
     $scope.User = function() {
       $http({
         method: 'GET',
-        url: '/api/user'
+        url: '/api/user',
+        data: $scope.user
       })
       .success(function(data) {
         $scope.user = data;
@@ -35,7 +36,7 @@ module.exports = function(app) {
     $scope.changeUserInfo = function() {
       $http({
         method: 'PUT',
-        url: '/api/user'
+        url: '/api/user',
         data: $scope.user
       })
       .success(function(data) {
