@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="generator">
 <head>
   <meta charset='utf-8'>
   <title>CanvasApp(change?)</title>
   <link rel="stylesheet" href="scss/layout.css">
-  <script type="text/javascript">
-
-    function popup(){
-      cuteLittleWindow = window.open("quiz.html", "littleWindow", "location=no,width=450,height=400"); 
-}
+  <script src="lib/angular.js"></script>
+  <script src="js/notes.js"></script>
+  <!--<script src="js/controllers/notes_ctrl.js"></script>-->
 
 </script>
 </head>
 
-<body>
+<body data-ng-app="codeApp">
   <header> <img class="logo" src="images/logo.png"> </header>
 
   <article>
     <section class="interest">
-      <p>What are you interested in?</p>
-      <a href="javascript:popup()"> <button class="quiz">Take the Quiz</a></button></a>
+      <p>"What are you interested in?"</p>
+      <button class="quiz">Take the Quiz</button>
     </section>
+
+    <section>
+    <div ng-controller="GeneratorController as generator">
+      <h1>{{generator.appear.name}}</h1>
+    </div> <!--Where the angular goes... -->
+    </section>
+
+
 
     <section class="signin">
       <form>Sign in

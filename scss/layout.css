@@ -1,3 +1,4 @@
+/*note: fix padding around the quiz button*/
 body {
 	background: #E1DED2; 
 }
@@ -54,10 +55,8 @@ button:hover {
 .quiz { /*make this button sexy*/
 	font-family: "Forza";
 	font-size: 40px;
-	padding: 25px;
+	padding: 25px; 
 	position: relative;
-    vertical-align: middle;
-
 }
 
 .signin {
