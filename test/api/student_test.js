@@ -6,6 +6,8 @@ var chaihttp = require('chai-http');
 var User = require('../../models/user_model.js');
 var Courses = require('../../models/courses_model');
 chai.use(chaihttp);
+chai.use(require('chai-things'));
+chai.should();
 
 require('../../server.js');
 
@@ -53,7 +55,7 @@ describe('the course adding test', function() {
   //creates a course
   before(function(done) {
     chai.request(localhost)
-      .post('/api/courses')
+      .post('/api/courseenrollment')
       .set({jwt: AdminJwtToken})
       .send({
         name: 'Foundations 1',
@@ -81,5 +83,37 @@ describe('the course adding test', function() {
     });
   });
 
-  
+  it('should add a student to enrollment', function(done) {
+    chai.request(localhost)
+      .put('/api/studentenrollment/' + regcode)
+      .set({jwt:StudentJwtToken})
+      .end(function(err, res) {
+        expect(err).to.eql(null);
+        expect(res.body.enrollment.students).to.have.deep.property('[0].email', 'test3@example.com');
+        done();
+      });
+  });
+
+  it('should add a teacher to enrollment', function(done) {
+    chai.request(localhost)
+      .put('/api/teacherenrollment/' + regcode)
+      .set({jwt: AdminJwtToken})
+      .end(function(err, res) {
+        expect(err).to.eql(null);
+        expect(res.body.enrollment.teachers).to.have.deep.property('[0].email', 'test2@example.com');
+        done();
+      });
+  });
+
+  it('should mark a student pass as true', function(done) {
+    chai.request(localhost)
+      .put('/api/studentenrollmentpass/' + regcode)
+      .set({jwt: AdminJwtToken})
+      .send({email: 'test3@example.com'})
+      .end(function(err, res) {
+        expect(err).to.eql(null);
+        expect(res.body.enrollment.students).to.have.deep.property('[0].pass',true);
+        done();
+      });
+  });
 });

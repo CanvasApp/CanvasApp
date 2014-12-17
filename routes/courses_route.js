@@ -7,7 +7,7 @@ module.exports = function(app, jwtauth) {
   var UniqueId = require('../lib/uid');
 
   //creates a course
-  app.post('/api/courseenrollment', jwtauth, function(req, res, next) {
+  app.post('/api/courseenrollment', jwtauth, function(req, res) {
     User.findOne({_id: req.user._id}, function(err, user) {
       if (err) return res.status(500).send('error');
       if (!user) return res.status(500).send('error');

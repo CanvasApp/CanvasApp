@@ -51,7 +51,7 @@ describe('the courses test', function() {
 
   it('should be able to create a course', function(done) {
     chai.request(localhost)
-      .post('/api/courses')
+      .post('/api/courseenrollment')
       .set({jwt: jwtToken})
       .send({
         name: 'Foundations 1',
