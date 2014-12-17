@@ -9,9 +9,7 @@ var courseSchema = mongoose.Schema({
   summary: String,
   schedule: {type: String, required: true},
   description: String,
-  code: String,
-  prereq: [],
-  pass: {confirmed: false}
+  code: String
 });
 
 module.exports = mongoose.model('Course', courseSchema);

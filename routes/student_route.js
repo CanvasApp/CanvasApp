@@ -2,62 +2,67 @@
 
 module.exports = function(app, jwtauth) {
   var User = require('../models/user_model');
-  var Course = require('../models/courses_model');
-
-  //student puts class in their array
-  app.put('/api/studentcourse/:code', jwtauth, function(req, res) {
+  var Enrollment = require('../models/enrollment_model');
+  
+  //add students to enrollment
+  app.put('/api/studentenrollment/:code', jwtauth, function(req, res) {
     User.findOne({_id: req.user._id}, function(err, user) {
-      if (err) res.status(500).send('error');
-      if (!user) res.send({msg: 'user not found'});
-      Course.findOne({code: req.params.code}, function(err, course) {
-        if (err) res.status(500).send('error');
-        if (!course) res.send({msg: 'course not found'});
-        User.findOneAndUpdate({_id: req.user._id}, {$push:{userclass: course}},
-         function(err, data) {
-          if (err) res.status(500).send('error');
-          if (!data) res.send({msg: 'course not aquired'});
-          res.json(data);
+      if (err) return res.status(500).send('error');
+      if (!user) return res.send({msg: 'user not found'});
+      console.log('user found');
+        Enrollment.findOneAndUpdate({'enrollment.code': req.params.code}, {$push:{'enrollment.students':{email: req.user.basic.email, pass:false}}}, 
+          function(err, enrollment) {
+        if (err) return res.status(500).send('error');
+        if (!enrollment) return res.send({msg: 'class not found'});
+        console.log('course found');
+        res.json(enrollment);
         });
-      });
     });
   });
 
-  //teacher gets a students courses
-  app.get('/api/studentcourses/:email', jwtauth, function(req, res) {
+  //add teacher to enrollment
+  app.put('/api/teacherenrollment/:code', jwtauth, function(req, res) {
     User.findOne({_id: req.user._id}, function(err, user) {
       if (err) return res.status(500).send('error');
       if (!user) return res.send({msg: 'user not found'});
       if (user.userStatus.teacher === true) {
-        User.findOne({'basic.email':req.params.email}, function(err, user) {
+        Enrollment.findOneAndUpdate({'enrollment.code': req.params.code}, {$push:{'enrollment.teachers':{email: req.user.basic.email}}},
+        function(err, enrollment) {
           if (err) return res.status(500).send('error');
-          if (!user) return res.send({msg: 'user not found'});
-          res.json(user.userclass);
+          if (!enrollment) return res.send({msg: 'teacher not enrolled in class'});
+          res.json(enrollment);
         });
+      } else {
+        res.json({msg: 'if you could teach the class then you wouldnt need to take it'});
       }
     });
   });
 
-  //teacher marks a students course pass as true
-  app.put('/api/studentpasscourse/:email', jwtauth, function(req, res) {
+  //mark a student pass as true
+  app.put('/api/studentenrollmentpass/:code', jwtauth, function(req, res) {
     User.findOne({_id: req.user._id}, function(err, user) {
       if (err) return res.status(500).send('error');
       if (!user) return res.send({msg: 'user not found'});
+      console.log(user.userStatus.teacher);
       if (user.userStatus.teacher === true) {
-        User.findOne({'basic.email':req.params.email}, function(err, user) {
+        Enrollment.findOne({'enrollment.code': req.params.code}, function(err, enrollment) {
           if (err) return res.status(500).send('error');
-          if (!user) return res.send({msg: 'user not found'});
-          console.log(user.userclass);
-          for(var i = 0; i < user.userclass.length; i++) {
-           if(user.userclass[i].code === req.body.code){
-            user.userclass[i].pass.confirmed = true;
-           }
+          if (!enrollment) return res.send({msg: 'enrollment not found'});
+          for (var i = 0; i < enrollment.enrollment.students.length; i++) {
+            if (enrollment.enrollment.students[i].email === req.body.email) {
+              console.log(enrollment.enrollment.students[i]);
+              enrollment.enrollment.students[i].pass = true;
+            }
           }
-          user.save(function(err, data) {
+          enrollment.markModified('enrollment.students');
+          enrollment.save(function(err, data) {
             if (err) return res.status(500).send('error');
-            if (!data) return res.send({msg: 'data not saved'});
-            res.json(data.userclass);
+            if (!data) return res.send({msg: 'enrollment not saved'});
+            res.json(data);
           });
         });
+      } else {
+        res.json({msg: 'students can not pass themselves.'});
       }
     });
   });
