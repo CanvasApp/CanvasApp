@@ -5,3 +5,5 @@ CanvasApp/**/*bundle.js
 build/
 npm-debug.log
 test/angular_testbundle.js
+.DS_Store
+
