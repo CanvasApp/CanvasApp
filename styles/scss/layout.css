@@ -1,0 +1,100 @@
+/*note: fix padding around the quiz button*/
+body {
+	background: #E1DED2; 
+}
+
+.logo {
+	margin-top: 20px;
+	height: 65px;
+}
+
+/*Dash*/
+
+nav {
+	margin-left: 300px;
+	margin-top: -50px;
+	font-family: "Forza";
+	font-size: 20px;
+	color: #30302F;
+}
+
+.navigation {
+	display: inline-block;
+}
+
+a:link {
+    text-decoration: none;
+    font-family: "Forza";
+    color: #30302F;
+}
+
+a:visited {
+    text-decoration: none;
+    font-family: "Forza";
+    color: #30302F;
+}
+
+/*Frontpage*/
+
+button:hover {
+	background: #5C5E5C;
+}
+
+.quiz { 
+	font-family: "Forza";
+	color: #30302F;
+	font-size: 40px;
+	padding: 25px; 
+	position: relative;
+}
+
+.interest {
+	margin-top: 100px;
+	text-align: center;
+}
+
+.signin {
+	font-family: "Forza";
+	float: right;
+	margin-top: 100px;
+}
+
+.header {
+	font-size: 24px;
+}
+
+p {
+	font-family: "Forza";
+	font-size: 20px;
+	color: #30302F;
+}
+
+/*button create account*/
+.create {
+	font-family: "Forza";
+	padding: 10px;
+	font-size: 16px;
+	color: #30302F;
+	display: inline-block;
+	
+}
+
+/*quiz page*/
+.classes {
+	font-size: 20px;
+	color: #30302F;
+}
+
+/*create account inputs */
+input[type="text"] {
+    font-family: "Forza";
+}
+
+input:focus {
+	border: 2px solid #30302F;
+}
+
+/*media queries*/
+@media only screen and (min-width: 480px) {
+
+
