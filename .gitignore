@@ -4,4 +4,5 @@ bower_components/
 CanvasApp/**/*bundle.js
 build/
 npm-debug.log
-angular_testbundle.js
+test/angular_testbundle.js
+

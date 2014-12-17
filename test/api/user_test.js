@@ -47,7 +47,6 @@ describe('test the api', function() {
     .set({jwt: jwtToken})
     .end(function(err, res) {
       expect(err).to.eql(null);
-      console.log(res.body);
       expect(res.body).to.have.property('_id');
       done();
     });
