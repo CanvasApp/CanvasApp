@@ -32,7 +32,6 @@ describe('all things quiz route', function() {
     .end(function(err, res) {
       if (err) return res.status(500).send('error');
       jwtToken = res.body.jwt;
-      console.log(jwtToken);
       done();
     });
   });
@@ -44,7 +43,6 @@ describe('all things quiz route', function() {
     .set({jwt:jwtToken})
     .end(function(err, res) {
       if (err) return res.status(500).send('error');
-      console.log(res.body);
       done();
     });
   });
@@ -68,7 +66,6 @@ describe('all things quiz route', function() {
         quizcode = res.body.code;
         expect(err).to.eql(null);
         expect(res.body).to.have.property('quizQuestion');
-        console.log(res.body);
         done();
       });
   });

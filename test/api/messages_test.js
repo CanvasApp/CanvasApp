@@ -39,7 +39,6 @@ describe('messages: ', function() {
     .end(function(err, res) {
       if (err) return res.status(500).send('create1');
       oneTk = res.body.jwt;
-      console.log(oneTk);
       done();
     });
   });
@@ -51,7 +50,6 @@ describe('messages: ', function() {
     .end(function(err, res) {
       if (err) return res.status(500).send('create2');
       twoTk = res.body.jwt;
-      console.log(twoTk);
       done();
     });
   });
@@ -63,7 +61,6 @@ describe('messages: ', function() {
     .end(function(err, res) {
       if (err) return res.status(500).send('create3');
       threeTk = res.body.jwt;
-      console.log(threeTk);
       done();
     });
   });
@@ -75,7 +72,6 @@ describe('messages: ', function() {
     .end(function(err, res) {
       if (err) return res.status(500).send('create4');
       fourTk = res.body.jwt;
-      console.log(fourTk);
       done();
     });
   });
@@ -87,7 +83,6 @@ describe('messages: ', function() {
     .end(function(err, res) {
       if (err) return res.status(500).send('create5');
       fiveTk = res.body.jwt;
-      console.log(fiveTk);
       done();
     });
   });
@@ -99,7 +94,6 @@ describe('messages: ', function() {
     .end(function(err, res) {
       if (err) return res.status(500).send('create6');
       sixTk = res.body.jwt;
-      console.log(sixTk);
       done();
     });
   });
@@ -111,7 +105,6 @@ describe('messages: ', function() {
     .end(function(err, res) {
       if (err) return res.status(500).send('create7');
       sevenTk = res.body.jwt;
-      console.log(sevenTk);
       done();
     });
   });
@@ -123,7 +116,6 @@ describe('messages: ', function() {
     .end(function(err, res) {
       if (err) return res.status(500).send('create8');
       eightTk = res.body.jwt;
-      console.log(eightTk);
       done();
     });
   });

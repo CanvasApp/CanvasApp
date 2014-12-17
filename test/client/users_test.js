@@ -7,7 +7,6 @@ describe('Users Controller', function() {
   var $controllerConstructor;
   var $httpBackend;
   var $scope;
-  var $location;
   var $cookies = {jwt: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1N…4NDV9.5dr6hQ2rJr9972-LuyxcL6xnVVRRwdbJ7CDNHKDgcrQ'};
 
   beforeEach(angular.mock.module('codeApp'));

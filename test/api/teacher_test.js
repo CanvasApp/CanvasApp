@@ -26,7 +26,6 @@ describe('the teacher test', function() {
     .end(function(err, res) {
       if (err) return res.status(500).send(err);
       jwtToken = res.body.jwt;
-      console.log(jwtToken);
       done();
     });
   });
@@ -38,7 +37,6 @@ describe('the teacher test', function() {
     .set({jwt: jwtToken})
     .end(function(err, res) {
       if (err) return res.status(500).send(err);
-      console.log(res.body);
       done();
     });
   });
@@ -50,7 +48,6 @@ describe('the teacher test', function() {
     .send({email: 'test1@example.com'})
     .end(function(err, res) {
       expect(err).to.eql(null);
-      console.log(res.body);
       expect(res.body.msg).to.equal('user is now a teacher');
       done();
     });
