@@ -40,7 +40,10 @@ module.exports = function(app) {
         data: $scope.user
       })
       .success(function(data) {
-        $scope.user = data;
+        $scope.user.email = data;
+        $scope.user.phonenumber = data;
+        $scope.user.firstname = data;
+        $scope.user.lastname = data;
         console.log(data);
       })
       .error(function(data) {
@@ -49,6 +52,8 @@ module.exports = function(app) {
     };
 
     $scope.deleteUser = function() {
+      if ($scope.user.email !== $scope.user.emailConfirmation) 
+        $scope.errors.push({msg: 'email and confirmation did not match'});
       $http({
         method: 'DELETE',
         url: '/api/user',
