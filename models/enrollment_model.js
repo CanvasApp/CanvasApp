@@ -5,7 +5,8 @@ var mongoose = require('mongoose');
 var enrollmentSchema = mongoose.Schema({
   enrollment:{
     code: String,
-    students:[]
+    students:[],
+    teachers:[]
   }
 });
 

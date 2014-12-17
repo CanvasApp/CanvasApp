@@ -9,21 +9,20 @@ module.exports = function(app, jwtauth) {
 
 
   //add students to enrollment
-
-
-
-  //teacher gets course enrollment
-  app.get('/api/courseenrollment/:code', jwtauth, function(req, res) {
+  app.put('/api/studentenrollment/:code', jwtauth, function(req, res) {
     User.findOne({_id: req.user._id}, function(err, user) {
       if (err) return res.status(500).send('error');
       if (!user) return res.send({msg: 'user not found'});
-      if (user.userStatus.teacher === true) {
-        Enrollment.findOne({'enrollment.code':req.params.code}, function(err, enrollment) {
-          if (err) return res.status(500).send('error');
-          if (!user) return res.send({msg: 'user not found'});
-          res.json(enrollment.students);
-        });
-      }
+      console.log('user found');
+        Enrollment.findOneAndUpdate({'enrollment.code': req.params.code}, {$push:{'enrollment.students':{email: req.user.basic.email}}}, 
+          function(err, enrollment) {
+        if (err) return res.status(500).send(err);
+        if (!enrollment) return res.send({msg: 'class not found'});
+        console.log('course found');
+        res.json(enrollment);
+      });
     });
   });
+
+  
 };
