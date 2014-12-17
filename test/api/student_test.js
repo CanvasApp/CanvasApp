@@ -35,7 +35,6 @@ describe('the course adding test', function() {
     .end(function(err, res) {
       if (err) return res.status(500).send('error');
       AdminJwtToken = res.body.jwt;
-      console.log(AdminJwtToken);
       done();
     });
   });
@@ -47,7 +46,6 @@ describe('the course adding test', function() {
     .set({jwt: AdminJwtToken})
     .end(function(err, res) {
       if (err) return res.status(500).send('error');
-      console.log(res.body);
       done();
     });
   });
@@ -65,7 +63,6 @@ describe('the course adding test', function() {
       .end(function(err, res) {
         if (err) return res.status(500).send('error');
         regcode = res.body.code;
-        console.log(regcode);
         done();
       });
   });
@@ -78,7 +75,6 @@ describe('the course adding test', function() {
     .end(function(err, res) {
       if (err) return res.status(500).send('error');
       StudentJwtToken = res.body.jwt;
-      console.log(StudentJwtToken);
       done();
     });
   });

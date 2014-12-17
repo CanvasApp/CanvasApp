@@ -9,10 +9,11 @@ module.exports = function(app) {
       console.log('get in signin');
       $http({
         method: 'GET',
-        url: 'api/user'
+        url: '/api/user'
       })
       .success(function(data) {
         console.log('worked');
+        $scope.msg = 'success!';
         $cookies.jwt = data.jwt;
         $location.path('/dash');
       })
@@ -42,8 +43,8 @@ module.exports = function(app) {
       })
       .success(function(data) {
         console.log('please');
-
         console.log(data);
+        $scope.msg = 'success!';
         $cookies.jwt = data.jwt;
         $location.path('/classtree');
       })

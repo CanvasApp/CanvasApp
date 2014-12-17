@@ -32,7 +32,6 @@ describe('the courses test', function() {
     .end(function(err, res) {
       if (err) return res.status(500).send('error');
       jwtToken = res.body.jwt;
-      console.log(jwtToken);
       done();
     });
   });
@@ -44,7 +43,6 @@ describe('the courses test', function() {
     .set({jwt: jwtToken})
     .end(function(err, res) {
       if (err) return res.status(500).send('error');
-      console.log(res.body);
       done();
     });
   });
