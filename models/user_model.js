@@ -18,11 +18,7 @@ var userSchema = mongoose.Schema({
     admin: false
   },
   userclass: [],
-  usermessages: {
-    from: String,
-    subject: String,
-    main: String
-  },
+  usermessages: Array,
   userinfo: {
     name: {first:String, last:String},
     phone: String

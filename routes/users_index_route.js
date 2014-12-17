@@ -28,8 +28,8 @@ module.exports = function(app, jwtauth) {
       if (!user) return res.send({msg: 'user error'});
       console.log(user);
       user.basic.email = req.body.email;
-      user.userinfo.name = {first: req.body.name.first, last: req.body.name.last};
-      user.userinfo.phone = req.body.phone;
+      user.userinfo.name = {first: req.body.userinfo.name.first, last: req.body.userinfo.name.last};
+      user.userinfo.phone = req.body.userinfo.phone;
       console.log(user);
       user.save(function(err, data) {
         if (err) return res.status(500).send('error');

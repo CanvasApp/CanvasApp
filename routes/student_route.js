@@ -48,9 +48,9 @@ module.exports = function(app, jwtauth) {
           if (!user) return res.send({msg: 'user not found'});
           console.log(user.userclass);
           for(var i = 0; i < user.userclass.length; i++) {
-           if(user.userclass[i].code === req.body.code){
-            user.userclass[i].pass.confirmed = true;
-           }
+            if(user.userclass[i].code === req.body.code){
+              user.userclass[i].pass.confirmed = true;
+            }
           }
           user.save(function(err, data) {
             if (err) return res.status(500).send('error');
