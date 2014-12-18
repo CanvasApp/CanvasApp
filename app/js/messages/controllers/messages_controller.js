@@ -11,8 +11,20 @@ module.exports = function(app) {
       $http({
         method: 'POST',
         url: ('api/sendmessage'),
-        data: $scope.send
+        data: $scope.email
+      })
+      .success(function() {
+        $location.path('/inbox');
+      })
+      .error(function(data) {
+        console.log(data);
       });
+    };
+    $scope.getMail = function() {
+
     };
   }]);
 };
+
+
+

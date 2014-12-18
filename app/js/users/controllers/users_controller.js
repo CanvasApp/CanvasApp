@@ -3,9 +3,10 @@ console.log('in here');
 module.exports = function(app) {
   app.controller('usersCtrl', ['$scope', '$http', '$cookies', '$base64', '$location', function($scope, $http, $cookies, $base64, $location) {
     console.log('get in controller');
+
     $scope.signIn = function() {
       $scope.errors = [];
-      $http.defaults.headers.common['Authorization'] = 'Basic' + $base64.encode($scope.user.email + ':' + $scope.user.password);
+      $http.defaults.headers.common['Authorization'] = 'Basic ' + $base64.encode($scope.user.email + ':' + $scope.user.password);
       console.log('get in signin');
       $http({
         method: 'GET',
@@ -27,7 +28,7 @@ module.exports = function(app) {
     $scope.signUp = function() {
       console.log('get in signin');
       $scope.errors = [];
-      $http.defaults.headers.common['Authorization'] = 'Basic' + $base64.encode($scope.newUser.email + ':' + $scope.newUser.password);
+      $http.defaults.headers.common['Authorization'] = 'Basic ' + $base64.encode($scope.newUser.email + ':' + $scope.newUser.password);
 
       if($scope.newUser.password !== $scope.newUser.passwordConfirmation)
         $scope.errors.push({msg: 'Password does not match.'});
