@@ -15,6 +15,7 @@ var codeApp = angular.module('codeApp', ['ngRoute', 'ngCookies', 'base64']);
 require('./users/controllers/users_controller')(codeApp);
 require('./users/controllers/user_index_controller')(codeApp);
 require('./messages/controllers/messages_controller')(codeApp);
+require('./teachers/controllers/admin_controller')(codeApp);
 //routes
 
 codeApp.config(['$routeProvider', function($routeProvider) {
@@ -42,6 +43,9 @@ codeApp.config(['$routeProvider', function($routeProvider) {
   .when('/message', {
     templateUrl: 'templates/messages/message_template.html',
     controller: 'messagesCtrl'
+  })
+  .when('/admin', {
+    templateUrl: 'templates/admin/admin_template.html'
   })
   .otherwise({
     redirectTo: '/'
