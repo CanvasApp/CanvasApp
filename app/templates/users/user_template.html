@@ -1,19 +1,15 @@
 <div data-ng-controller='userIndexCtrl'>
-  <form name='userinfo'>
-    <input type='text' data-ng-model='user.firstname'>First Name</input>
-    <input type='text' data-ng-model='user.lastname'>Last Name</input>
-    <input type='text' data-ng-model='user.phonenumber'>Phone Number</input>
+  <form name='userinfo' data-ng-init='User()'>
+    <input type='text' data-ng-model='user.basic.email'>Email</input>
+    <input type='text' data-ng-model='user.userinfo.name.first'>First Name</input>
+    <input type='text' data-ng-model='user.userinfo.name.last'>Last Name</input>
+    <input type='text' data-ng-model='user.userinfo.phone'>Phone Number</input>
     <button data-ng-click='changeUserInfo()'>Save User Info</button>
-  </form>
-  <form name='finduser'>
-    <input type='text' data-ng-model='user.email'>enter user email</input>
-    <button data-ng-click='User()'>Find User</button>
-  </form>
-  <form name='getallusers'>
-    <button data-ng-click='Users()'>Get All Users</button>
+        <div>{{user.basic.email}}</div>
+        <div>{{user.userinfo}}</div>
   </form>
   <form name='deleteuser'>
-    <input type='text' data-ng-model='user.email'>enter user email to delete account</input>
-    <input type='text' data-ng-model='user.emailConfirmation'>Confirm email</input>
+    <input type='text' data-ng-model='deleteuser.email'>enter user email to delete account</input>
+    <input type='text' data-ng-model='deleteuser.emailConfirmation'>Confirm email</input>
     <button data-ng-click='deleteUser()'>Delete User</button>
 </div>

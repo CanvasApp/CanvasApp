@@ -28,14 +28,16 @@ module.exports = function(app, jwtauth) {
       if (!user) return res.send({msg: 'user error'});
       console.log(user);
       user.basic.email = req.body.email;
-      user.userinfo.name = {first: req.body.name.first, last: req.body.name.last};
+      user.userinfo.name.first = req.body.first;
+      user.userinfo.name.last = req.body.last;
       user.userinfo.phone = req.body.phone;
-      console.log(user);
+      if (!req.body.email) return res.send({msg: user.basic.email});
       user.save(function(err, data) {
         if (err) return res.status(500).send('error');
-        if (!data) return res.send({msg: 'user info not saved'});
+        if (!data) return res.send({msg: 'did not save'});
         console.log(data);
-        res.json({msg:'user updated'});
+        res.json({msg: 'user updated', email: user.basic.email, 
+          name: user.userinfo.name.first});
       });
     });
   });

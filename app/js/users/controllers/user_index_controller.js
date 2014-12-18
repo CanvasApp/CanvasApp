@@ -7,6 +7,7 @@ module.exports = function(app) {
     $http.defaults.headers.common['jwt'] = $cookies.jwt;
 
     $scope.allUsers = function() {
+      console.log('find all users');
       $http({
         method: 'GET',
         url: '/api/allusers'
@@ -19,11 +20,12 @@ module.exports = function(app) {
       });
     };
 
+    //loads the info of the currently logged in user
     $scope.User = function() {
+      console.log('find user');
       $http({
         method: 'GET',
-        url: '/api/user',
-        data: $scope.user
+        url: '/api/user'
       })
       .success(function(data) {
         $scope.user = data;
@@ -33,17 +35,14 @@ module.exports = function(app) {
       });
     };
 
-    $scope.changeUserInfo = function(userinfo) {
+    $scope.changeUserInfo = function(user) {
+      console.log('you tried to change user info');
       $http({
         method: 'PUT',
         url: '/api/user',
-        data: $scope.user
+        data: user
       })
       .success(function(data) {
-        $scope.user.email = data.email;
-        $scope.user.phonenumber = data.phonenumber;
-        $scope.user.firstname = data.firstname;
-        $scope.user.lastname = data.lastname;
         console.log(data);
       })
       .error(function(data) {
@@ -51,8 +50,9 @@ module.exports = function(app) {
       });
     };
 
-    $scope.deleteUser = function(email, emailConfirmation) {
-      if ($scope.user.email !== $scope.user.emailConfirmation) 
+    $scope.deleteUser = function() {
+      console.log('you tried to delete user');
+      if ($scope.deleteuser.demail !== $scope.deleteuser.emailConfirmation) 
         $scope.errors.push({msg: 'email and confirmation did not match'});
       $http({
         method: 'DELETE',
