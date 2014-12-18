@@ -33,7 +33,7 @@ module.exports = function(app) {
       });
     };
 
-    $scope.changeUserInfo = function() {
+    $scope.changeUserInfo = function(user) {
       $http({
         method: 'PUT',
         url: '/api/user',

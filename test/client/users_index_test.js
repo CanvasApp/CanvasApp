@@ -17,6 +17,65 @@ describe('Users Index Controller', function() {
   }));
 
   it('should be able to create a controller', function() {
-    var usersIndedController = $controllerConstructor('userIndexCtrl')
-  })
+    var usersIndexController = $controllerConstructor('userIndexCtrl', {$scope: $scope});
+    expect(typeof usersIndexController).toBe('object');
+  });
+
+  describe('users index tests', function {
+    beforeEach(angular.mock.inject(function(_$httpBackend_) {
+      $httpBackend = _$httpBackend_;
+      $controllerConstructor('userIndexCtrl', {$scope: $scope}, {$cookies, $cookies});
+    }));
+
+    afterEach(function() {
+      $httpBackend.verifyNoOutstandingExpectation();
+      $httpBackend.verifyNoOutstandingRequest();
+    });
+
+    it('should get all users', function() {
+      $httpBackend.expectGET('/api/allusers').respond(200, [{'basic' : { 'email' : 'test@example.com' }}]);
+
+      $scope.allUsers();
+      $httpBackend.flush();
+
+      expect($scope.basic.email).toEqual('test@example.com');
+    });
+
+    it('should get one users by jwt', function() {
+      $httpBackend.expectGET('/api/user').respond(200);
+
+      $scope.user = $cookies.jwt;
+
+      $scope.User();
+      $httpBackend.flush();
+
+      expect($scope.basic.email).toEqual('test@example.com');
+    });
+
+    it('should be able to change the user info', function() {
+      $httpBackend.expectPUT('/api/user').respond(200, 
+        [{'basic' :{ 'email' : 'test@example.com'}, {userInfo: {name: {first: 'test', last: 'example'}, {phone: '5556667777'}}}}]);
+      var user = {userinfo: {name: {first: 'test', last: 'example'}, phone: '5556667777'}};
+      user.userinfo.name.first = 'joe';
+      user.userinfo.name.last = 'test';
+      user.userinfo.phone = '2342342344';
+      $scope.user = $cookies.jwt;
+
+      $httpBackend.flush();
+
+      expect($scope.user.userinfo.name.first).toBe('joe');
+      expect($scope.user.userinfo.name.last).toBe('test');
+      expect($scope.user.userinfo.phone).toBe('2342342344');
+    });
+
+    it('should be able to delete a user', function() {
+      $httpBackend.expectDELETE('/api/user').respond(200);
+      $scope.users = [user];
+      var user = {'basic' : { 'email' : 'test@example.com' }};
+
+      $scope.deleteUser(user);
+
+      expect($scope.users.length).toBe(0);
+    });
+  });
 })
