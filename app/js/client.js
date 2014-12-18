@@ -14,6 +14,7 @@ var codeApp = angular.module('codeApp', ['ngRoute', 'ngCookies', 'base64']);
 //controllers
 require('./users/controllers/users_controller')(codeApp);
 require('./users/controllers/user_index_controller')(codeApp);
+require('./messages/controllers/messages_controller')(codeApp);
 //routes
 
 codeApp.config(['$routeProvider', function($routeProvider) {
@@ -29,6 +30,10 @@ codeApp.config(['$routeProvider', function($routeProvider) {
   .when('/userprofile', {
     templateUrl: 'templates/users/user_template.html',
     controller: 'userIndexCtrl'
+  })
+  .when('/inbox', {
+    templateUrl: 'templates/messages/inbox_template.html',
+    controller: 'messagesCtrl'
   })
   .otherwise({
     redirectTo: '/'

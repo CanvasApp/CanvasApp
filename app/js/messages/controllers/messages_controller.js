@@ -1,7 +1,8 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('usersCtrl', ['$scope', '$http', '$cookies', '$base64', '$location', function($scope, $http, $cookies, $base64, $location) {
+  app.controller('messagesCtrl', ['$scope', '$http', '$cookies', '$base64', '$location', function($scope, $http, $cookies, $base64, $location) {
+    $http.defaults.headers.common['jwt'] = $cookies.jwt;
 
     $scope.newMessage = function() {
       $location.path('/composemessage');
@@ -21,7 +22,13 @@ module.exports = function(app) {
       });
     };
     $scope.getMail = function() {
-
+      $http({
+        method: 'GET',
+        url: '/api/inbox'
+      })
+      .success(function(data) {
+        console.log(data);
+      });
     };
   }]);
 };
