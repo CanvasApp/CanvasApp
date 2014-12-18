@@ -33,7 +33,7 @@ module.exports = function(app) {
       });
     };
 
-    $scope.changeUserInfo = function(user) {
+    $scope.changeUserInfo = function(userinfo) {
       $http({
         method: 'PUT',
         url: '/api/user',
@@ -51,7 +51,7 @@ module.exports = function(app) {
       });
     };
 
-    $scope.deleteUser = function() {
+    $scope.deleteUser = function(email, emailConfirmation) {
       if ($scope.user.email !== $scope.user.emailConfirmation) 
         $scope.errors.push({msg: 'email and confirmation did not match'});
       $http({
