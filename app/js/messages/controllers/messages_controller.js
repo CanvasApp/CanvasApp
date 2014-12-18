@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('usersCtrl', ['$scope', '$http', '$cookies', '$base64', '$location', function($scope, $http, $cookies, $base64, $location) {
+  app.controller('messagesCtrl', ['$scope', '$http', '$cookies', '$base64', '$location', function($scope, $http, $cookies, $base64, $location) {
     $http.defaults.headers.common['jwt'] = $cookies.jwt;
 
     $scope.newMessage = function() {
@@ -25,6 +25,9 @@ module.exports = function(app) {
       $http({
         method: 'GET',
         url: '/api/inbox'
+      })
+      .success(function(data) {
+        console.log(data);
       });
     };
   }]);
