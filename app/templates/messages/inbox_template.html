@@ -1,12 +1,28 @@
-<div data-ng-controller="messagesCtrl">
-  <ul class="inbox-window">
-    <li class="subject-display" ng-repeat="message in messages">
-      from: {{message.from}} subject: {{message.subject}}
-    </li>
-    <li class="subject-display" ng-if="results.length == 0">
-      <strong>No results found...</strong>
-    </li>
-  </ul>
-  <button data-ng-click="newMessage()">Write new message</button>
-  <button data-ng-click="getMail()">Get mail</button>
-</div>
+<!DOCTYPE html>
+<html ng-app="generator">
+<head>
+  <meta charset='utf-8'>
+  <title>Code Fellows</title>
+  <link rel="stylesheet" href="../../scss/layout.css">
+</head>
+
+<header> <img class="logo" src="../../images/logo.png"> </header>
+<body>
+  <div data-ng-controller="messagesCtrl">
+    <ul class="inbox-window">
+      <li class="subject-display" ng-repeat="message in messages">
+        From: {{message.from}} Subject: {{message.subject}}
+      </li>
+      <li class="subject-display" ng-if="results.length == 0">
+        <strong>No results found...</strong>
+      </li>
+    </ul>
+    <button class="create" data-ng-click="newMessage()">Compose New Message</button>
+    <button class="create" data-ng-click="getMail()">Get Mail</button>
+  </div>
+</body>
+</html>
+
+
+<!--access these files form the message tab
+style everything

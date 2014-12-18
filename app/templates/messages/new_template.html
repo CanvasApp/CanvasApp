@@ -1,21 +1,33 @@
-<div data-ng-controller="messagesCtrl">
-  <article>
-    <section>
-      <p>New Message</p>
-    </section>
+<!DOCTYPE html>
+<html ng-app="generator">
+<head>
+  <meta charset='utf-8'>
+  <title>Code Fellows</title>
+  <link rel="stylesheet" href="../../scss/layout.css">
+</head>
 
-    <section>
-      <form name="newMessage">
-      <p><label for="name">To</label>
-        <input id="name" name="name" type="text" placeholder="email" data-ng-model="newMessage.to"></p>
+<header><img class="logo" src="../../images/logo.png"> </header>
+<body>
+  <div data-ng-controller="messagesCtrl">
+    <article>
+      <section>
+        <p>New Message</p>
+      </section>
 
-      <p><label for="subject">Subject</label>
-        <input id="message"  name="message" type="text" placeholder="Subject" data-ng-model="newMessage.subject"></p>
+      <section>
+        <form name="newMessage">
+        <p><label for="name">To</label>
+          <input id="name" name="name" type="text" placeholder="Email" data-ng-model="newMessage.to"></p>
 
-      <p><label for="message">Message</label>
-        <input id="message" name="message" type="text" data-ng-model="newMessage.message"></p>
+        <p><label for="subject">Subject</label>
+          <input id="message"  name="message" type="text" placeholder="Subject" data-ng-model="newMessage.subject"></p>
 
-      <button data-ng-click="send()"> Send </button>
-    </section>
-  </article>
-</div>
+        <p><label for="message">Message</label>
+          <input id="message" name="message" type="text" data-ng-model="newMessage.message"></p> <!--STYLE THIS MAKE IT BIGGER!!-->
+
+        <button class="create" data-ng-click="send()"> Send </button>
+      </section>
+    </article>
+  </div>
+</body>
+</html>

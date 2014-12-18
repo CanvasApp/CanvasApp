@@ -1,7 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="generator">
+<head>
+  <meta charset='utf-8'>
+  <title>Code Fellows</title>
+  <link rel="stylesheet" href="../../scss/layout.css">
+</head>
+
+<header> <img class="logo" src="../../images/logo.png"> </header>
+<body>
 <div data-ng-controller='usersCtrl'>
   <form name='userForm'>
-    <input type='text' data-ng-model='user.email'></input>
-    <input type='password' data-ng-model='user.password'></input>
-    <button data-ng-click='signIn()'>Sign In</button>
+    <p>Email</p><input type='text' data-ng-model='user.email'></input>
+    <p>Password</p><input type='password' data-ng-model='user.password'></input>
+    <button class="create" data-ng-click='signIn()'>Sign In</button>
   </form>
 </div>
+</body>
+</html>
