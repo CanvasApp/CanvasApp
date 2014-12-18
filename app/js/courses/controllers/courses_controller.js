@@ -10,10 +10,14 @@ module.exports = function(app) {
       $http({
         method: 'POST',
         url: '/api/courseenrollment',
-        data: $scope.newCourse
+        data: {
+          name: $scope.course.name,
+          schedule: $scope.course.schedule,
+          description: $scope.course.description
+        }
       })
       .success(function(data) {
-        $scope.newCourse = data;
+        console.log(data);
       })
       .error(function(data) {
         console.log(data);
@@ -47,7 +51,7 @@ module.exports = function(app) {
       });
     };
 
-    $scope.updatedCourse = function() {
+    $scope.updateCourse = function() {
       $http({
         method: 'PUT',
         url: '/api/courses/' + $scope.code,
@@ -64,11 +68,14 @@ module.exports = function(app) {
     $scope.deleteCourse = function() {
       $http({
         method: 'DELETE',
-        url: '/api/course/' + $scope.code,
-        data: $scope.code
+        url: '/api/course/' + code,
+        data: code
       })
-      .success(function() {
-        $scope.course.remove();
+      .success(function(data) {
+        console.log(data);
+      })
+      .error(function(data) {
+        console.log(data);
       });
     };
   }]);
