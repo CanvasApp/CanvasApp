@@ -40,10 +40,10 @@ module.exports = function(app) {
         data: $scope.user
       })
       .success(function(data) {
-        $scope.user.email = data;
-        $scope.user.phonenumber = data;
-        $scope.user.firstname = data;
-        $scope.user.lastname = data;
+        $scope.user.email = data.email;
+        $scope.user.phonenumber = data.phonenumber;
+        $scope.user.firstname = data.firstname;
+        $scope.user.lastname = data.lastname;
         console.log(data);
       })
       .error(function(data) {
