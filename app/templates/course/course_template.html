@@ -3,6 +3,7 @@
     <input type='text' data-ng-model='course.name'>Name</input>
     <input type='text' data-ng-model='course.schedule'>Schedule</input>
     <input type='text' data-ng-model='course.description'>Description</input>
+    <input type='text' data-ng-model='course.code'>Course Code</input>
     <button data-ng-click='createCourse()'>Create Course</button>
     <button data-ng-click='updateCourse()'>Update Course</button>
   </form>
@@ -13,7 +14,7 @@
   <form name='getcourse'>
     <input type='text' data-ng-model='course.code'>Enter Course Code</input>
     <button data-ng-click='getCourse()'>Get Course</button>
-    <div>{{course.code}}</div>
+    <div>{{course}}</div>
   </form>
   <form name='delete' data-ng-model='deletecourse'>
     <input type='text'>Enter Course Code</input>

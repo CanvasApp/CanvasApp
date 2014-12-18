@@ -41,10 +41,7 @@ module.exports = function(app) {
     $scope.getCourse = function() {
       $http({
         method: 'GET',
-        url: '/api/course',
-        data: {
-          code: $scope.course.code
-        }
+        url: '/api/course/' + $scope.course.code
       })
       .success(function(data) {
         console.log(data);
@@ -58,18 +55,9 @@ module.exports = function(app) {
     };
 
     $scope.updateCourse = function() {
-      $http({
-        method: 'GET',
-        url: '/api/courses',
-        data: {
-          code: $scope.code
-        }
-      })
-      .then(function(data) {
-        console.log(data);
         $http({
           method: 'PUT',
-          url: '/api/courses/' + $scope.code,
+          url: '/api/courses/' + $scope.course.code,
           data:{
             name: $scope.course.name,
             schedule: $scope.course.schedule,
@@ -77,12 +65,12 @@ module.exports = function(app) {
           } 
         })
         .success(function(data) {
-        console.log(data);
+          console.log(data);
+          console.log($scope.course.code);
         })
         .error(function(data) {
           console.log(data);
         });
-      });  
     };
 
     $scope.deleteCourse = function() {

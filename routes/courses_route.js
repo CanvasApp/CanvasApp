@@ -58,8 +58,8 @@ module.exports = function(app, jwtauth) {
   });
 
   //gets just one course
-  app.get('/api/course', jwtauth, function(req, res) {
-    Course.findOne({code: req.body.code}, function(err, data) {
+  app.get('/api/course/:code', jwtauth, function(req, res) {
+    Course.findOne({code: req.params.code}, function(err, data) {
       console.log('coursing it up');
       if (err) return res.status(500).send('error.');
       if (!data) return res.send({msg:'course not found'});
