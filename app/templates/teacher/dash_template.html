@@ -1,8 +1,30 @@
-<div data-ng-controller='teacherCtrl'>
+<!DOCTYPE html>
+<html ng-app="generator">
+<head>
+  <meta charset='utf-8'>
+  <title>Code Fellows</title>
+  <link rel="stylesheet" href="../../scss/layout.css">
+</head>
+
+<header><img class="logo" src="../../images/logo.png"> </header>
+<body>
+
+  <article>
+    <section>Classes</section>
+  <div data-ng-controller='teacherCtrl'>
   <header> <img src="images/logo.png"> </header>
-  <form name='confirmteacher'>
-    <input type='text' data-ng-model='teacher'>Enter Email</input>
-    <button data-ng-click='confirmTeacher()'>Confirm Teacher</button>
-    <button data-ng-click='unconfirmTeacher()'>Unconfirm Teacher</button>
-  </form>
+    <form name='confirmteacher'>
+      <input type='text' data-ng-model='teacher'>Enter Email</input>
+      <button data-ng-click='confirmTeacher()'>Confirm Teacher</button>
+      <button data-ng-click='unconfirmTeacher()'>Unconfirm Teacher</button>
+    </form>
+  </div>
+    <ul>
+      <li>SOME Class</li>
+      <li>SOME Class</li>
+    <ul>
+
+    <button class="create">Submit</button>
+>>>>>>> dev
 </body>
+</html>
