@@ -72,7 +72,8 @@ describe('the courses test', function() {
     .send({
       name: 'Javascript Foundations 2',
       schedule: 'Fall 2015',
-      description: 'the step before the dev accelator'
+      description: 'the step before the dev accelator',
+      code: regcode
     })
     .end(function(err, res) {
       expect(err).to.eql(null);
@@ -83,8 +84,9 @@ describe('the courses test', function() {
 
   it('should be able to get a course', function(done) {
     chai.request(localhost)
-    .get('/api/course/' + regcode)
+    .get('/api/course')
     .set({jwt: jwtToken})
+    .send({code: regcode})
     .end(function(err, res) {
       expect(err).to.eql(null);
       expect(res.body).to.have.property('name');
@@ -94,7 +96,7 @@ describe('the courses test', function() {
 
   it('should be able to delete a course', function(done) {
     chai.request(localhost)
-    .delete('/api/course/' + regcode)
+    .delete('/api/course')
     .set({jwt: jwtToken})
     .send({code: regcode})
     .end(function(err, res) {
