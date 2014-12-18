@@ -32,12 +32,14 @@ module.exports = function(app) {
       };
 
       $scope.getQuestions = function() {
+        console.log('getting questions');
         $http({
           method: 'GET',
           url: '/api/quizzes'
         })
         .success(function(data) {
-          $scope.data = data;
+          console.log(data);
+          $scope.quizquestions = data;
         })
         .error(function(data) {
           console.log(data);
@@ -45,12 +47,14 @@ module.exports = function(app) {
       };
 
       $scope.getOneQuestion = function() {
+        console.log('get one question');
         $http({
           method: 'GET',
-          url: '/api/quiz/' + $scope.quiz.code
+          url: '/api/quiz/' + $scope.quizquestion.code
         })
         .success(function(data) {
-          $scope.data = data;
+          console.log(data);
+          $scope.quizquestion = data;
         })
         .error(function(data) {
           console.log(data);
@@ -82,10 +86,10 @@ module.exports = function(app) {
         });
       };
 
-      $scope.deleteQustion = function() {
+      $scope.deleteQuestion = function() {
         $http({
           method: 'DELETE',
-          url: '/api/quiz/' + $scope.code
+          url: '/api/quiz/' + $scope.quizquestion.code
         })
         .success(function(data) {
           console.log(data);
