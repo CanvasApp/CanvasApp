@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="generator">
 <head>
-  <meta charset="UTF-8">
-  <title>CodeFellows</title>
+  <meta charset='utf-8'>
+  <title>CanvasApp(change?)</title>
+  <link rel="stylesheet" href="scss/layout.css">
 </head>
-<body>
-  <div data-ng-app="codeApp">
-    <div data-ng-view>
 
-    </div>
-  </div>
+<header><img class="logo" src="images/logo.png"> </header>
+
+<body>
+  <article data-ng-app="codeApp">
+    <section data-ng-view>
+
+    </section>
+  </article>
 
   <script src="client_bundle.js"></script>
 </body>
 </html>
+

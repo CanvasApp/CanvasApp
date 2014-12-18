@@ -1,27 +1,35 @@
-<div data-ng-controller="messagesCtrl">
-  <article>
+<!DOCTYPE html>
+<html ng-app="generator">
+<head>
+  <meta charset='utf-8'>
+  <title>Code Fellows</title>
+  <link rel="stylesheet" href="../../scss/layout.css">
+</head>
+
+<header><img class="logo" src="../../images/logo.png"> </header>
+<body>
+<article data-ng-controller="messagesCtrl">
     <section>
-      <div>
       <p><label for="from">From</label>
-        <div class='msg'>
+        <section class='msg'>
           {{message.from}}
-        </div>
+        </section>
       </p>
 
-      <p><label for="subject">subject</label>
-        <div class='msg'>
+      <p><label for="subject">Subject</label>
+        <section class='msg'>
           {{message.subject}}
-        </div>
+        </section>
       </p>
 
       <p><label for="body">Message</label>
-        <div class='msg'>
+        <section class='msg'>
           {{message.body}}
-        </div>
+        </section>
       </p>
-    </div>
-
-      <button> Reply </button>
     </section>
+
+      <button class="create"> Reply </button>
   </article>
-</div>
+</body>
+</html>

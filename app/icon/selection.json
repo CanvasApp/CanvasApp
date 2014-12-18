@@ -1,0 +1,96 @@
+{
+	"IcoMoonType": "selection",
+	"icons": [
+		{
+			"icon": {
+				"paths": [
+					"M1024 608l-192-192v-288h-128v160l-192-192-512 512v32h128v320h320v-192h128v192h320v-320h128z"
+				],
+				"tags": [
+					"home",
+					"house",
+					"building"
+				],
+				"grid": 16
+			},
+			"properties": {
+				"id": 1,
+				"order": 6,
+				"prevSize": 32,
+				"code": 58881,
+				"name": "home2"
+			},
+			"setIdx": 0,
+			"iconIdx": 1
+		},
+		{
+			"icon": {
+				"paths": [
+					"M1024 358.156c0 86.362-37.218 164.030-96.49 217.844h0.49l-320 320c-32 32-64 64-96 64s-64-32-96-64l-319.51-320c-59.272-53.814-96.49-131.482-96.49-217.844 0-162.458 131.698-294.156 294.156-294.156 86.362 0 164.030 37.218 217.844 96.49 53.814-59.272 131.482-96.49 217.844-96.49 162.456 0 294.156 131.698 294.156 294.156z"
+				],
+				"tags": [
+					"heart",
+					"like",
+					"love",
+					"favorite"
+				],
+				"grid": 16
+			},
+			"properties": {
+				"id": 209,
+				"order": 7,
+				"prevSize": 32,
+				"code": 59089,
+				"name": "heart"
+			},
+			"setIdx": 0,
+			"iconIdx": 209
+		}
+	],
+	"height": 1024,
+	"metadata": {
+		"name": "icomoon"
+	},
+	"preferences": {
+		"fontPref": {
+			"prefix": "icon-",
+			"metadata": {
+				"fontFamily": "icomoon"
+			},
+			"showGlyphs": true,
+			"metrics": {
+				"emSize": 1024,
+				"baseline": 6.25,
+				"whitespace": 50
+			},
+			"resetPoint": 1114107,
+			"showQuickUse": true,
+			"quickUsageToken": false,
+			"showMetrics": true,
+			"showMetadata": false,
+			"autoHost": true
+		},
+		"imagePref": {
+			"color": 0,
+			"height": 32,
+			"columns": 16,
+			"margin": 16,
+			"png": false,
+			"sprites": true,
+			"prefix": "icon-"
+		},
+		"historySize": 100,
+		"showCodes": true,
+		"gridSize": 16,
+		"showLiga": true,
+		"showGrid": true,
+		"showGlyphs": true,
+		"showQuickUse": true,
+		"showQuickUse2": true,
+		"showSVGs": true,
+		"search": "",
+		"quickUsageToken": {
+			"UntitledProject1": "OGRjMDUwYjMxOWZhYjQ3MjdlNGNiMTAxYzY5ZGUxMWIjMSMxNDE4NzY1OTQ3IyMj"
+		}
+	}
+}
