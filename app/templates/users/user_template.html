@@ -6,7 +6,9 @@
     <input type='text' data-ng-model='user.userinfo.phone'>Phone Number</input>
     <button data-ng-click='changeUserInfo()'>Save User Info</button>
         <div>{{user.basic.email}}</div>
-        <div>{{user.userinfo}}</div>
+        <div>{{user.userinfo.name.first}}</div>
+        <div>{{user.userinfo.name.last}}</div>
+        <div>{{user.userinfo.phone}}</div>
   </form>
   <form name='deleteuser'>
     <input type='text' data-ng-model='deleteuser.email'>enter user email to delete account</input>

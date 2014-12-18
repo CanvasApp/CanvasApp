@@ -35,15 +35,25 @@ module.exports = function(app) {
       });
     };
 
-    $scope.changeUserInfo = function(user) {
+    $scope.changeUserInfo = function() {
       console.log('you tried to change user info');
       $http({
         method: 'PUT',
         url: '/api/user',
-        data: user
+        data: {
+          email: $scope.user.basic.email,
+          first: $scope.user.userinfo.name.first,
+          last: $scope.user.userinfo.name.last,
+          phone: $scope.user.userinfo.phone
+        }
       })
       .success(function(data) {
         console.log(data);
+        console.log($scope.user.basic.email);
+        console.log($scope.user.userinfo.name.first);
+        console.log($scope.user.userinfo.name.last);
+        console.log($scope.user.userinfo.phone);
+        console.log($scope);
       })
       .error(function(data) {
         console.log(data);
@@ -52,15 +62,14 @@ module.exports = function(app) {
 
     $scope.deleteUser = function() {
       console.log('you tried to delete user');
-      if ($scope.deleteuser.demail !== $scope.deleteuser.emailConfirmation) 
+      if ($scope.deleteuser.email !== $scope.deleteuser.emailConfirmation) 
         $scope.errors.push({msg: 'email and confirmation did not match'});
       $http({
         method: 'DELETE',
-        url: '/api/user',
-        data: $scope.user
+        url: '/api/user'
       })
-      .success(function () {
-        $scope.user.remove();
+      .success(function(data) {
+        console.log(data);
       });
     };
   }]);
