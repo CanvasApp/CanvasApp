@@ -12,9 +12,10 @@ module.exports = function(app) {
       $http({
         method: 'POST',
         url: ('api/sendmessage'),
-        data: $scope.email
+        data: $scope.newMessage
       })
-      .success(function() {
+      .success(function(data) {
+        console.log(data);
         $location.path('/inbox');
       })
       .error(function(data) {
@@ -27,12 +28,12 @@ module.exports = function(app) {
         url: '/api/user'
       })
       .then(function(data) {
-        console.log(data);
         $http({
           method: 'GET',
           url: '/api/inbox/' + data.data.basic.email
         }).success(function(data) {
-          console.log(data.usermessages);
+          console.log(1);
+          console.log(data.usermessages[(data.usermessages.length - 1)]);
         });
       });
     };

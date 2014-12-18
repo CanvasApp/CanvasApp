@@ -69,6 +69,7 @@ module.exports = function(app) {
         url: '/api/user'
       })
       .success(function(data) {
+        console.log('user was deleted');
         console.log(data);
       });
     };
