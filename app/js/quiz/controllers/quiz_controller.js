@@ -64,7 +64,7 @@ module.exports = function(app) {
       $scope.changeQuestion = function() {
         $http({
           method: 'PUT',
-          url: '/api/quiz/' + $scope.quiz.code,
+          url: '/api/quiz/' + $scope.quizquestion.code,
           data: {
             quizQuestion: {
               question: $scope.quiz.quizQuestion.question,
