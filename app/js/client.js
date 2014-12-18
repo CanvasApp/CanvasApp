@@ -50,7 +50,8 @@ codeApp.config(['$routeProvider', function($routeProvider) {
     controller: 'courseCtrl'
   })
   .when('/admin', {
-    templateUrl: 'templates/admin/admin_template.html'
+    templateUrl: 'templates/admin/admin_template.html',
+    controller: 'adminCtrl'
   })
   .otherwise({
     redirectTo: '/'

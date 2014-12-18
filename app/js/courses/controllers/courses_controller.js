@@ -31,6 +31,7 @@ module.exports = function(app) {
       })
       .success(function(data) {
         console.log(data);
+        $scope.courses = data;
       })
       .error(function(data) {
         console.log(data);
@@ -40,13 +41,14 @@ module.exports = function(app) {
     $scope.getCourse = function() {
       $http({
         method: 'GET',
-        url: '/api/courses',
+        url: '/api/course',
         data: {
           code: $scope.code
         }
       })
       .success(function(data) {
-        $scope.course = data;
+        console.log(data);
+        $scope.code = data;
       })
       .error(function(data) {
         console.log(data);
