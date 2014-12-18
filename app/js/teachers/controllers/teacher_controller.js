@@ -10,10 +10,14 @@ module.exports = function(app) {
       $http({
         method: 'PUT',
         url: '/api/confirmteacher',
-        data: $scope.email
+        data: {
+          'basic.email': $scope.email
+        }
       })
       .success(function(data) {
-        $scope.user = data;
+        $scope.email = data;
+        console.log($scope.email);
+        console.log(data);
       })
       .error(function(data) {
         console.log(data);
@@ -24,10 +28,13 @@ module.exports = function(app) {
       $http({
         method: 'PUT',
         url: '/api/unconfirmTeacher',
-        data: $scope.email
+        data: {
+          'basic.email': $scope.email
+        }
       })
       .success(function(data) {
-        $scope.user = data;
+        console.log(data);
+        console.log($scope.email);
       })
       .error(function(data) {
         console.log(data);

@@ -1,13 +1,8 @@
-<body >
+<div data-ng-controller='teacherCtrl'>
   <header> <img src="images/logo.png"> </header>
-
-  <article>
-    <section>Classes</section>
-
-    <ul>
-      <li>SOME Class</li>
-      <li>SOME Class</li>
-    <ul>
-
-      <button>submit</button>
+  <form name='confirmteacher'>
+    <input type='text' data-ng-model='teacher'>Enter Email</input>
+    <button data-ng-click='confirmTeacher()'>Confirm Teacher</button>
+    <button data-ng-click='unconfirmTeacher()'>Unconfirm Teacher</button>
+  </form>
 </body>
