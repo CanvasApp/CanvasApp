@@ -20,7 +20,8 @@ module.exports = function(app) {
                 ruby: $scope.quiz.quizQuestion.questionValue.ruby,
                 objectiveC: $scope.quiz.quizQuestion.questionValue.objectiveC
               }
-            } 
+            }
+          } 
         })
         .success(function(data) {
           console.log(data);
@@ -91,7 +92,7 @@ module.exports = function(app) {
         })
         .error(function(data) {
           console.log(data);
-        })
+        });
       };
     }]);
 };
