@@ -7,8 +7,7 @@
 </head>
 
 <header><img class="logo" src="../../images/logo.png"> </header>
-<body>
-  <div data-ng-controller="usersCtrl">
+  <body data-ng-controller="usersCtrl">
     <img ng-src="{{images/logo.png}}"class="logo">
     <h1>Create Account</h1>
     <form name='newUser'>
@@ -26,9 +25,8 @@
 
       <p><label for="password-confirm">Confirm Password</label>
         <input id="password-confirm" name="password-confirm" type="password" data-ng-model="newUser.confirm"></p>
-      <button class="create" data-ng-click='signUp()'>Create User</button></br>
+      <button class="create" data-ng-click='signUp()'>Create User</button>
     </form>
-  </div>
 </body>
 </html>
 

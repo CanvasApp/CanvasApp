@@ -1,103 +1,101 @@
 /*note: fix padding around the quiz button*/
+
 body {
-	background: #E1DED2; 
+  background: #E1DED2;
 }
 
 .logo {
-	margin-top: 20px;
-	height: 63px;
+  margin-top: 20px;
+  height: 63px;
 }
 
 /*Dash*/
 
 nav {
-	margin-left: 300px;
-	margin-top: -50px;
-	font-family: "Forza";
-	font-size: 20px;
+  margin-left: 300px;
+  margin-top: -50px;
+  font-family: "Forza";
+  font-size: 20px;
 }
 
 .navigation {
-	display: inline-block;
+  display: inline-block;
 }
 
 li {
-	font-family: "Forza";
-	font-size: 22px;
+  font-family: "Forza";
+  font-size: 22px;
 }
 
-ul ul { /*dropdown part*/
-	display: none;
+ul {
+  ul {
+    /*dropdown part*/
+    display: none;
+  }
+  li:hover > ul {
+    display: block;
+  }
 }
 
-ul li:hover > ul {
-	display: block;
-}
-
-a:link {
+a {
+  &:link, &:visited {
     color: black;
     text-decoration: none;
     font-family: "Forza";
-}
-
-a:visited {
-    color: black;
-    text-decoration: none;
-    font-family: "Forza";
+  }
 }
 
 /*Frontpage*/
 
 button:hover {
-	background: #5C5E5C;
+  background: #5C5E5C;
 }
 
-.quiz { /*make this button sexy*/
-	font-family: "Forza";
-	font-size: 40px;
-	padding: 25px; 
-	position: relative;
+.quiz {
+  /*make this button sexy*/
+  font-family: "Forza";
+  font-size: 40px;
+  padding: 25px;
+  position: relative;
 }
 
 .signin {
-	font-family: "Forza";
-	text-align: center;
+  font-family: "Forza";
+  text-align: center;
 }
 
 p {
-	font-family: "Forza";
-	font-size: 24px;
+  font-family: "Forza";
+  font-size: 24px;
 }
 
 .interest {
-	text-align: center;
+  text-align: center;
 }
 
 /*button create account*/
+
 .create {
-	font-family: "Forza";
-	padding: 10px;
-	font-size: 16px;
-	display: inline-block;
+  font-family: "Forza";
+  padding: 10px;
+  font-size: 16px;
+  display: inline-block;
 }
 
 /*quiz page*/
-.classes {
-	font-size: 20px;
+
+.classes { 
+  font-size: 20px;
 }
 
 /*message*/
+
 .message {
-	height: 150px;
-	width: 300px;
-	font-family: "Forza";
+  height: 150px;
+  width: 300px;
+  font-family: "Forza";
 }
 
-.from {
-	font-family: "Forza";
+.from, h1 {
+  font-family: "Forza";
 }
-
-h1 {
-	font-family: "Forza";
-}
-

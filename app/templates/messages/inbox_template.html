@@ -8,7 +8,7 @@
 
 <header> <img class="logo" src="../../images/logo.png"> </header>
 <body>
-  <div data-ng-controller="messagesCtrl">
+  <section data-ng-controller="messagesCtrl">
     <ul class="inbox-window">
       <li class="subject-display" ng-repeat="message in messages">
         From: {{message.from}} Subject: {{message.subject}}
@@ -19,7 +19,7 @@
     </ul>
     <button class="create" data-ng-click="newMessage()">Compose New Message</button>
     <button class="create" data-ng-click="getMail()">Get Mail</button>
-  </div>
+  </section>
 </body>
 </html>
 

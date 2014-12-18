@@ -8,32 +8,28 @@
 
 <header><img class="logo" src="../../images/logo.png"> </header>
 <body>
-<div data-ng-controller="messagesCtrl">
-  <article>
+<article data-ng-controller="messagesCtrl">
     <section>
-      <div>
       <p><label for="from">From</label>
-        <div class='msg'>
+        <section class='msg'>
           {{message.from}}
-        </div>
+        </section>
       </p>
 
       <p><label for="subject">Subject</label>
-        <div class='msg'>
+        <section class='msg'>
           {{message.subject}}
-        </div>
+        </section>
       </p>
 
       <p><label for="body">Message</label>
-        <div class='msg'>
+        <section class='msg'>
           {{message.body}}
-        </div>
+        </section>
       </p>
-    </div>
+    </section>
 
       <button class="create"> Reply </button>
-    </section>
   </article>
-</div>
 </body>
 </html>

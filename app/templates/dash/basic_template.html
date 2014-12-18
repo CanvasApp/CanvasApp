@@ -8,12 +8,12 @@
 
 <header> <img class="logo" src="../../images/logo.png"> </header>
 <body>
-	<div data-ng-controller='usersCtrl'>
+	<section data-ng-controller='usersCtrl'>
 		<ul class="tabs">
 		    <li class="tab" ng-repeat="message in messages">
 		      From: {{message.from}} Subject: {{message.subject}}
 		    </li>
 		</ul>
-	</div>
+	</section>
 </body>
 </html>

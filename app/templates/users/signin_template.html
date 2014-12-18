@@ -7,13 +7,11 @@
 </head>
 
 <header> <img class="logo" src="../../images/logo.png"> </header>
-<body>
-<div data-ng-controller='usersCtrl'>
+<body data-ng-controller='usersCtrl'>
   <form name='userForm'>
     <p>Email</p><input type='text' data-ng-model='user.email'></input>
     <p>Password</p><input type='password' data-ng-model='user.password'></input>
     <button class="create" data-ng-click='signIn()'>Sign In</button>
   </form>
-</div>
 </body>
 </html>
