@@ -96,9 +96,9 @@ describe('the courses test', function() {
 
   it('should be able to delete a course', function(done) {
     chai.request(localhost)
-    .delete('/api/course')
+    .delete('/api/course/' + regcode)
     .set({jwt: jwtToken})
-    .send({code: regcode})
+    //.send({code: regcode})
     .end(function(err, res) {
       expect(err).to.eql(null);
       expect(res.body.msg).to.equal('course removed');

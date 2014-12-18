@@ -94,12 +94,12 @@ module.exports = function(app, jwtauth) {
   });
 
   //deletes a course
-  app.delete('/api/course', jwtauth, function(req, res) {
+  app.delete('/api/course/:code', jwtauth, function(req, res) {
     User.findOne({_id: req.user._id}, function(err, user) {
       if (err) res.status(500).send('error');
       if (!user) return res.status(500).send('error');
       if (user.userStatus.admin === true) {
-        Course.remove({code: req.body.code}, function(err, data) {
+        Course.remove({code: req.params.code}, function(err, data) {
           if (err) return res.status(500).send('error');
           if (!data) return res.send({msg:'error. not deleted'});
           res.json({ msg: 'course removed'});

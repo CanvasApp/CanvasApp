@@ -76,10 +76,7 @@ module.exports = function(app) {
     $scope.deleteCourse = function() {
       $http({
         method: 'DELETE',
-        url: '/api/course',
-        data: {
-          code: $scope.code
-        }
+        url: '/api/course/' + $scope.course.code
       })
       .success(function(data) {
         console.log(data);

@@ -16,8 +16,8 @@
     <button data-ng-click='getCourse()'>Get Course</button>
     <div>{{course}}</div>
   </form>
-  <form name='delete' data-ng-model='deletecourse'>
-    <input type='text'>Enter Course Code</input>
+  <form name='delete'>
+    <input type='text' data-ng-model='course.code'>Enter Course Code</input>
     <button data-ng-click='deleteCourse()'>Delete Course</button>
   </form>
 </div>
