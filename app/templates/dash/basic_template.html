@@ -1,26 +1,15 @@
-<!DOCTYPE html>
-<html ng-app="generator">
-<head>
-  <meta charset='utf-8'>
-  <title>Code Fellows</title>
-  <link rel="stylesheet" href="../../scss/layout.css">
-</head>
+<section data-ng-controller='usersCtrl'>
+	<ul class="tabs">
+	    <li class="tab" ng-repeat="message in messages">
+	      From: {{message.from}} Subject: {{message.subject}}
+	    </li>
+	</ul>
+</section>
 
-<header> <img class="logo" src="../../images/logo.png"> </header>
-<body>
-	<section data-ng-controller='usersCtrl'>
-		<ul class="tabs">
-		    <li class="tab" ng-repeat="message in messages">
-		      From: {{message.from}} Subject: {{message.subject}}
-		    </li>
-		</ul>
-	</section>
-
-<div data-ng-controller='usersCtrl'>
-<ul class="tabs">
-    <li class="tab" ng-repeat="message in messages">
-      from: {{message.from}} subject: {{message.subject}} main: {{message.main}}
-    </li>
-</div>
-</body>
-</html>
+<section data-ng-controller='usersCtrl'>
+	<ul class="tabs">
+	    <li class="tab" ng-repeat="message in messages">
+	      from: {{message.from}} subject: {{message.subject}} main: {{message.main}}
+	    </li>
+	</ul>
+</section>
