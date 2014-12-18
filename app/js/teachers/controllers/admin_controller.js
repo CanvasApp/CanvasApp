@@ -9,11 +9,10 @@ module.exports = function(app) {
     $scope.confirmAdmin = function() {
       $http({
         method: 'PUT',
-        url: '/api/confirmadmin',
-        data: $scope._id
+        url: '/api/confirmadmin'
       })
       .success(function(data) {
-        $scope.user = data;
+        console.log(data);
       })
       .error(function(data) {
         console.log(data);

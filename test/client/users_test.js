@@ -48,7 +48,7 @@ describe('Users Controller', function() {
   });
 
   it('should get a user', function() {
-    $httpBackend.expectGET('/api/user').respond(200, $cookies.jwt);
+    $httpBackend.expectGET('/api/users').respond(200, $cookies.jwt);
 
     $scope.user = {
       email: 'test@example.com',
