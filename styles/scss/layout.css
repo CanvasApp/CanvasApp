@@ -86,4 +86,15 @@ p {
 	font-size: 20px;
 }
 
+/*message*/
+.message {
+	height: 150px;
+	width: 300px;
+	font-family: "Forza";
+}
+
+.from {
+	font-family: "Forza";
+}
+
 
