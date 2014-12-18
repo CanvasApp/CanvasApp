@@ -35,6 +35,14 @@ codeApp.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'templates/messages/inbox_template.html',
     controller: 'messagesCtrl'
   })
+  .when('/new', {
+    templateUrl: 'templates/messages/new_template.html',
+    controller: 'messagesCtrl'
+  })
+  .when('/message', {
+    templateUrl: 'templates/messages/message_template.html',
+    controller: 'messagesCtrl'
+  })
   .otherwise({
     redirectTo: '/'
   });
