@@ -30,7 +30,7 @@ module.exports = function(app) {
         url: '/api/courses'
       })
       .success(function(data) {
-        $scope.course = data;
+        console.log(data)
       })
       .error(function(data) {
         console.log(data);
@@ -40,8 +40,10 @@ module.exports = function(app) {
     $scope.getCourse = function() {
       $http({
         method: 'GET',
-        url: '/api/courses' + $scope.code,
-        data: $scope.code
+        url: '/api/courses'
+        data: {
+          code: $scope.code
+        }
       })
       .success(function(data) {
         $scope.course = data;
@@ -53,23 +55,38 @@ module.exports = function(app) {
 
     $scope.updateCourse = function() {
       $http({
-        method: 'PUT',
-        url: '/api/courses/' + $scope.code,
-        data: $scope.code
+        method: 'GET',
+        url: '/api/courses'
+        data: {
+          code: $scope.code
+        }
       })
-      .success(function() {
-        $scope.edit = false;
-      })
-      .error(function(data) {
+      .then(function(data) {
+        $http)({
+          method: 'PUT',
+          url: '/api/courses/' + $scope.code
+          data:{
+            name: $scope.course.name,
+            schedule: $scope.course.schedule,
+            description: $scope.course.description
+          } 
+        })
+        .success(function(data) {
         console.log(data);
-      });
+        })
+        .error(function(data) {
+          console.log(data);
+        });
+      });  
     };
 
     $scope.deleteCourse = function() {
       $http({
         method: 'DELETE',
-        url: '/api/course/' + code,
-        data: code
+        url: '/api/course'
+        data: {
+          code: $scope.code
+        }
       })
       .success(function(data) {
         console.log(data);
