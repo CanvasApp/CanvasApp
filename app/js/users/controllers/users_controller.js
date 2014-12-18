@@ -6,11 +6,13 @@ module.exports = function(app) {
 
     $scope.signIn = function() {
       $scope.errors = [];
+      console.log($scope.user.email);
+      console.log($scope.user.password);
       $http.defaults.headers.common['Authorization'] = 'Basic ' + $base64.encode($scope.user.email + ':' + $scope.user.password);
       console.log('get in signin');
       $http({
         method: 'GET',
-        url: '/api/user'
+        url: '/api/users'
       })
       .success(function(data) {
         console.log('worked');
@@ -55,5 +57,9 @@ module.exports = function(app) {
       });
     };
 
+    $scope.signOut = function() {
+      delete $cookies['jwt'];
+      location.path('/signIn');
+    };
   }]);
 };

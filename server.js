@@ -31,11 +31,6 @@ require('./routes/admin_routes.js')(app, jwtauth);
 require('./routes/messages_route.js')(app, jwtauth);
 require('./routes/student_route.js')(app,jwtauth);
 
-
-app.get('*', function(req, res) {
-  res.sendfile('./build/index.html');
-});
-
 app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'), function() {
   console.log('server running on port: ' + app.get('port'));

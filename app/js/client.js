@@ -13,6 +13,7 @@ var codeApp = angular.module('codeApp', ['ngRoute', 'ngCookies', 'base64']);
 
 //controllers
 require('./users/controllers/users_controller')(codeApp);
+require('./users/controllers/user_index_controller')(codeApp);
 
 //routes
 
