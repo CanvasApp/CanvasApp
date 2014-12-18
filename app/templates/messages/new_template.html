@@ -5,17 +5,17 @@
     </section>
 
     <section>
-      <form>
+      <form name="newMessage">
       <p><label for="name">To</label>
-        <input id="name" class="to" name="name" type="text" placeholder="email"></p>
+        <input id="name" name="name" type="text" placeholder="email" data-ng-model="newMessage.to"></p>
 
-      <p><label for="message">Subject</label>
-        <input id="message" class="message" name="message" type="text" placeholder="Subject"></p>
+      <p><label for="subject">Subject</label>
+        <input id="message"  name="message" type="text" placeholder="Subject" data-ng-model="newMessage.subject"></p>
 
       <p><label for="message">Message</label>
-        <input id="message" class="message" name="message" type="text" placeholder="Type your message"></p>
+        <input id="message" name="message" type="text" data-ng-model="newMessage.message"></p>
 
-      <button> Send </button>
+      <button data-ng-click="send()"> Send </button>
     </section>
   </article>
 </div>

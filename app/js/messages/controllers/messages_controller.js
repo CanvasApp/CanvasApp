@@ -24,14 +24,32 @@ module.exports = function(app) {
     $scope.getMail = function() {
       $http({
         method: 'GET',
-        url: '/api/inbox'
+        url: '/api/user'
       })
-      .success(function(data) {
+      .then(function(data) {
         console.log(data);
+        $http({
+          method: 'GET',
+          url: '/api/inbox/' + data.data.basic.email
+        }).success(function(data) {
+          console.log(data.usermessages);
+        });
       });
     };
   }]);
 };
 
-
+    // $scope.User = function() {
+    //   console.log('find user');
+    //   $http({
+    //     method: 'GET',
+    //     url: '/api/user'
+    //   })
+    //   .success(function(data) {
+    //     $scope.user = data;
+    //   })
+    //   .error(function(data) {
+    //     console.log(data);
+    //   });
+    // };
 
