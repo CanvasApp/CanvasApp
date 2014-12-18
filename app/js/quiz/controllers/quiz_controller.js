@@ -59,11 +59,11 @@ module.exports = function(app) {
           data: $scope.quiz
         })
         .success(function(data) {
-          $scope.quiz.quizQuestion.question = $data.quiz.question;
-          $scope.quiz.quizQuestion.questionValue.javascript = $data.quiz.questionValue.javascript;
-          $scope.quiz.quizQuestion.questionValue.python = $data.quiz.questionValue.python;
-          $scope.quiz.quizQuestion.questionValue.ruby = $data.quiz.questionValue.ruby;
-          $scope.quiz.quizQuestion.questionValue.objectiveC = $data.quiz.questionValue.objectiveC;
+          $scope.quiz.quizQuestion.question = data.quiz.question;
+          $scope.quiz.quizQuestion.questionValue.javascript = data.quiz.questionValue.javascript;
+          $scope.quiz.quizQuestion.questionValue.python = data.quiz.questionValue.python;
+          $scope.quiz.quizQuestion.questionValue.ruby = data.quiz.questionValue.ruby;
+          $scope.quiz.quizQuestion.questionValue.objectiveC = data.quiz.questionValue.objectiveC;
           console.log(data);
         })
         .error(function(data) {
@@ -79,6 +79,7 @@ module.exports = function(app) {
         })
         .success(function(data) {
           $scope.quiz.remove();
+          console.log(data);
         });
       };
     }]);
