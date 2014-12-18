@@ -17,8 +17,8 @@
    </form>
    <form name='getallusers'>
     <button data-ng-click='allUsers()'>Get All Users</button>
-    <div data-ng-repeat='basic.email in allusers'>
-    {{allusers}}
+    <div data-ng-repeat='user in users'>
+    email: {{user.basic.email}} admin: {{user.userStatus.admin}} teacher: {{user.userStatus.teacher}} userinfo: First: {{user.userinfo.name.first}} Last: {{user.userinfo.name.last}} Phone: {{user.userinfo.phone}}
     </div>
    </form> 
 </div>
