@@ -11,12 +11,12 @@
     <div>{{courses}}</div>
   </form>
   <form name='getcourse'>
-    <input type='text' data-ng-model='code'>Enter Course Code</input>
+    <input type='text' data-ng-model='course.code'>Enter Course Code</input>
     <button data-ng-click='getCourse()'>Get Course</button>
-    <div>{{code}}</div>
+    <div>{{course.code}}</div>
   </form>
-  <form name='deletecourse'>
-    <input type='text' data-ng-model='deletecourse'>Enter Course Code</input>
+  <form name='delete' data-ng-model='deletecourse'>
+    <input type='text'>Enter Course Code</input>
     <button data-ng-click='deleteCourse()'>Delete Course</button>
   </form>
 </div>

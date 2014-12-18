@@ -43,12 +43,14 @@ module.exports = function(app) {
         method: 'GET',
         url: '/api/course',
         data: {
-          code: $scope.code
+          code: $scope.course.code
         }
       })
       .success(function(data) {
         console.log(data);
-        $scope.code = data;
+        console.log($scope.course);
+        console.log($scope.course.code);
+        $scope.course = data;
       })
       .error(function(data) {
         console.log(data);
