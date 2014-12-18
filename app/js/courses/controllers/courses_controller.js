@@ -10,10 +10,14 @@ module.exports = function(app) {
       $http({
         method: 'POST',
         url: '/api/courseenrollment',
-        data: $scope.newCourse
+        data: {
+          name: $scope.course.name,
+          schedule: $scope.course.schedule,
+          description: $scope.course.description
+        }
       })
       .success(function(data) {
-        $scope.newCourse = data;
+        console.log(data);
       })
       .error(function(data) {
         console.log(data);
@@ -26,7 +30,8 @@ module.exports = function(app) {
         url: '/api/courses'
       })
       .success(function(data) {
-        $scope.course = data;
+        console.log(data);
+        $scope.courses = data;
       })
       .error(function(data) {
         console.log(data);
@@ -36,10 +41,12 @@ module.exports = function(app) {
     $scope.getCourse = function() {
       $http({
         method: 'GET',
-        url: '/api/courses' + $scope.code,
-        data: $scope.code
+        url: '/api/course/' + $scope.course.code
       })
       .success(function(data) {
+        console.log(data);
+        console.log($scope.course);
+        console.log($scope.course.code);
         $scope.course = data;
       })
       .error(function(data) {
@@ -47,28 +54,35 @@ module.exports = function(app) {
       });
     };
 
-    $scope.updatedCourse = function() {
-      $http({
-        method: 'PUT',
-        url: '/api/courses/' + $scope.code,
-        data: $scope.code
-      })
-      .success(function() {
-        $scope.edit = false;
-      })
-      .error(function(data) {
-        console.log(data);
-      });
+    $scope.updateCourse = function() {
+        $http({
+          method: 'PUT',
+          url: '/api/courses/' + $scope.course.code,
+          data:{
+            name: $scope.course.name,
+            schedule: $scope.course.schedule,
+            description: $scope.course.description
+          } 
+        })
+        .success(function(data) {
+          console.log(data);
+          console.log($scope.course.code);
+        })
+        .error(function(data) {
+          console.log(data);
+        });
     };
 
     $scope.deleteCourse = function() {
       $http({
         method: 'DELETE',
-        url: '/api/course/' + $scope.code,
-        data: $scope.code
+        url: '/api/course/' + $scope.course.code
       })
-      .success(function() {
-        $scope.course.remove();
+      .success(function(data) {
+        console.log(data);
+      })
+      .error(function(data) {
+        console.log(data);
       });
     };
   }]);
