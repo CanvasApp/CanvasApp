@@ -22,6 +22,10 @@ codeApp.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'templates/users/signup_template.html',
     controller: 'usersCtrl'
   })
+  .when('/userprofile', {
+    templateUrl: 'templates/users/user_template.html',
+    controller: 'userIndexCtrl'
+  })
   .otherwise({
     redirectTo: '/'
   });
