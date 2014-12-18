@@ -1,13 +1,16 @@
 <div data-ng-controller="messagesCtrl">
   <article>
     <section>
-      <p>Messages</p>
+      <p>New Message</p>
     </section>
 
     <section>
       <form>
-      <p><label for="name">From</label>
-        <input id="name" class="from" name="name" type="text" placeholder="Full Name"></p>
+      <p><label for="name">To</label>
+        <input id="name" class="to" name="name" type="text" placeholder="email"></p>
+
+      <p><label for="message">Subject</label>
+        <input id="message" class="message" name="message" type="text" placeholder="Subject"></p>
 
       <p><label for="message">Message</label>
         <input id="message" class="message" name="message" type="text" placeholder="Type your message"></p>
