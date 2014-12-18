@@ -7,7 +7,7 @@ describe('Users Index Controller', function() {
   var $controllerConstructor;
   var $httpBackend;
   var $scope;
-  var $cookies = {jwt:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1N…4NDV9.5dr6hQ2rJr9972-LuyxcL6xnVVRRwdbJ7CDNHKDgcrQ'};
+  var $cookies = {jwt: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1N…4NDV9.5dr6hQ2rJr9972-LuyxcL6xnVVRRwdbJ7CDNHKDgcrQ'};
 
   beforeEach(angular.mock.module('codeApp'));
 
@@ -17,7 +17,7 @@ describe('Users Index Controller', function() {
   }));
 
   it('should be able to create a controller', function() {
-    var usersIndexController = $controllerConstructor('userIndexCtrl', {$scope: $scope});
+    var usersIndexController = $controllerConstructor('userIndexCtrl', {$scope: $scope}, {$cookies: $cookies});
     expect(typeof usersIndexController).toBe('object');
   });
 
@@ -66,13 +66,14 @@ describe('Users Index Controller', function() {
     });
 
     it('should be able to delete a user', function() {
-      $httpBackend.expectDELETE('/api/user').respond(200);
-      var user = {'basic' : { 'email' : 'test@example.com' }};
-      $scope.users = [user];
-
-      $scope.deleteUser(user);
-
-      expect($scope.users.length).toBe(0);
+      $httpBackend.expectDELETE('/api/user').respond(200, {msg: 'user has been sent to the phantom zone'});
+      
+      $scope.deleteuser.email = 'test@example.com';
+      $scope.deleteuser.emailConfirmation = 'test@example.com';
+      $scope.deleteUser();
+      $httpBackend.flush();
+      
+      expect($scope.user.basic.email).toBe(null);
     });
   });
 });
