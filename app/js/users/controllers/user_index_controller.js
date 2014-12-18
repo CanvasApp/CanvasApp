@@ -7,6 +7,7 @@ module.exports = function(app) {
     $http.defaults.headers.common['jwt'] = $cookies.jwt;
 
     $scope.allUsers = function() {
+      console.log('find all users');
       $http({
         method: 'GET',
         url: '/api/allusers'
@@ -19,11 +20,12 @@ module.exports = function(app) {
       });
     };
 
+    //loads the info of the currently logged in user
     $scope.User = function() {
+      console.log('find user');
       $http({
         method: 'GET',
-        url: '/api/user',
-        data: $scope.user
+        url: '/api/user'
       })
       .success(function(data) {
         $scope.user = data;
@@ -34,17 +36,24 @@ module.exports = function(app) {
     };
 
     $scope.changeUserInfo = function() {
+      console.log('you tried to change user info');
       $http({
         method: 'PUT',
         url: '/api/user',
-        data: $scope.user
+        data: {
+          email: $scope.user.basic.email,
+          first: $scope.user.userinfo.name.first,
+          last: $scope.user.userinfo.name.last,
+          phone: $scope.user.userinfo.phone
+        }
       })
       .success(function(data) {
-        $scope.user.email = data.email;
-        $scope.user.phonenumber = data.phonenumber;
-        $scope.user.firstname = data.firstname;
-        $scope.user.lastname = data.lastname;
         console.log(data);
+        console.log($scope.user.basic.email);
+        console.log($scope.user.userinfo.name.first);
+        console.log($scope.user.userinfo.name.last);
+        console.log($scope.user.userinfo.phone);
+        console.log($scope);
       })
       .error(function(data) {
         console.log(data);
@@ -52,15 +61,15 @@ module.exports = function(app) {
     };
 
     $scope.deleteUser = function() {
-      if ($scope.user.email !== $scope.user.emailConfirmation) 
+      console.log('you tried to delete user');
+      if ($scope.deleteuser.email !== $scope.deleteuser.emailConfirmation) 
         $scope.errors.push({msg: 'email and confirmation did not match'});
       $http({
         method: 'DELETE',
-        url: '/api/user',
-        data: $scope.user
+        url: '/api/user'
       })
-      .success(function () {
-        $scope.user.remove();
+      .success(function(data) {
+        console.log(data);
       });
     };
   }]);
