@@ -14,4 +14,11 @@
     <input type='text' data-ng-model='deleteuser.email'>enter user email to delete account</input>
     <input type='text' data-ng-model='deleteuser.emailConfirmation'>Confirm email</input>
     <button data-ng-click='deleteUser()'>Delete User</button>
+   </form>
+   <form name='getallusers'>
+    <button data-ng-click='allUsers()'>Get All Users</button>
+    <div data-ng-repeat='basic.email in allusers'>
+    {{allusers}}
+    </div>
+   </form> 
 </div>
