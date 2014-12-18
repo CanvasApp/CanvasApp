@@ -6,7 +6,7 @@ module.exports = function(app) {
 
     $http.defaults.headers.common['jwt'] = $cookies.jwt;
 
-    $scope.courseEnrollment = function() {
+    $scope.createCourse = function() {
       $http({
         method: 'POST',
         url: '/api/courseenrollment',
