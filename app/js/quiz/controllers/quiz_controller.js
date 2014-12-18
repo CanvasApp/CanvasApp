@@ -11,14 +11,18 @@ module.exports = function(app) {
         $http({
           method: 'POST',
           url: '/api/quiz',
-          data: $scope.quizQuestion
+          data: {
+            quizQuestion: {
+              question: $scope.quiz.quizQuestion.question,
+              questionValue: {
+                javascript: $scope.quiz.quizQuestion.questionValue.javascript,
+                python: $scope.quiz.quizQuestion.questionValue.python,
+                ruby: $scope.quiz.quizQuestion.questionValue.ruby,
+                objectiveC: $scope.quiz.quizQuestion.questionValue.objectiveC
+              }
+            } 
         })
         .success(function(data) {
-          $scope.question = data.question;
-          $scope.questionValue.javascript = data.questionValue.javascript;
-          $scope.questionValue.python = data.questionValue.python;
-          $scope.questionValue.ruby = data.questionValue.ruby;
-          $scope.questionValue.objectiveC = data.questionValue.objectiveC;
           console.log(data);
         })
         .error(function(data) {
@@ -42,7 +46,7 @@ module.exports = function(app) {
       $scope.getOneQuestion = function() {
         $http({
           method: 'GET',
-          url: '/api/quiz/' + $scope.code
+          url: '/api/quiz/' + $scope.quiz.code
         })
         .success(function(data) {
           $scope.data = data;
@@ -55,15 +59,21 @@ module.exports = function(app) {
       $scope.changeQuestion = function() {
         $http({
           method: 'PUT',
-          url: '/api/quiz/' + $scope.code,
-          data: $scope.quiz
+          url: '/api/quiz/' + $scope.quiz.code,
+          data: {
+            quizQuestion: {
+              question: $scope.quiz.quizQuestion.question,
+              questionValue: {
+                javascript: $scope.quiz.quizQuestion.questionValue.javascript,
+                python: $scope.quiz.quizQuestion.questionValue.python,
+                ruby: $scope.quiz.quizQuestion.questionValue.ruby,
+                objectiveC: $scope.quiz.quizQuestion.questionValue.objectiveC
+              }
+            } 
+          }
         })
         .success(function(data) {
-          $scope.quiz.quizQuestion.question = data.quiz.question;
-          $scope.quiz.quizQuestion.questionValue.javascript = data.quiz.questionValue.javascript;
-          $scope.quiz.quizQuestion.questionValue.python = data.quiz.questionValue.python;
-          $scope.quiz.quizQuestion.questionValue.ruby = data.quiz.questionValue.ruby;
-          $scope.quiz.quizQuestion.questionValue.objectiveC = data.quiz.questionValue.objectiveC;
+          console.log($scope.code);
           console.log(data);
         })
         .error(function(data) {
@@ -74,13 +84,14 @@ module.exports = function(app) {
       $scope.deleteQustion = function() {
         $http({
           method: 'DELETE',
-          url: '/api/quiz/' + $scope.code,
-          data: $scope.code
+          url: '/api/quiz/' + $scope.code
         })
         .success(function(data) {
-          $scope.quiz.remove();
           console.log(data);
-        });
+        })
+        .error(function(data) {
+          console.log(data);
+        })
       };
     }]);
 };
