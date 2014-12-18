@@ -23,7 +23,8 @@ codeApp.config(['$routeProvider', function($routeProvider) {
     controller: 'usersCtrl'
   })
   .when('/signin', {
-    templateUrl: 'templates/users/signin_template.html'
+    templateUrl: 'templates/users/signin_template.html',
+    controller: 'usersCtrl'
   })
   .when('/userprofile', {
     templateUrl: 'templates/users/user_template.html',
