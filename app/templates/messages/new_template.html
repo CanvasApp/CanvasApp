@@ -10,10 +10,10 @@
         <input id="name" name="name" type="text" placeholder="email" data-ng-model="newMessage.to"></p>
 
       <p><label for="subject">Subject</label>
-        <input id="message"  name="message" type="text" placeholder="Subject" data-ng-model="newMessage.subject"></p>
+        <input id="message"  name="message" type="text" placeholder="Subject" data-ng-model="newMessage.message.subject"></p>
 
-      <p><label for="message">Message</label>
-        <input id="message" name="message" type="text" data-ng-model="newMessage.message"></p>
+      <p><label for="main">Message</label>
+        <input id="message" name="message" type="text" placeholder="Main" data-ng-model="newMessage.main"></p>
 
       <button data-ng-click="send()"> Send </button>
     </section>

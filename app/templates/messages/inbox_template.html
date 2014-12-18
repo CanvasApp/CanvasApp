@@ -1,7 +1,7 @@
 <div data-ng-controller="messagesCtrl">
   <ul class="inbox-window">
     <li class="subject-display" ng-repeat="message in messages">
-      from: {{message.from}} subject: {{message.subject}}
+      {{scope.usermessages}}
     </li>
     <li class="subject-display" ng-if="results.length == 0">
       <strong>No results found...</strong>
