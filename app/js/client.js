@@ -16,6 +16,7 @@ require('./users/controllers/users_controller')(codeApp);
 require('./users/controllers/user_index_controller')(codeApp);
 require('./messages/controllers/messages_controller')(codeApp);
 require('./teachers/controllers/admin_controller')(codeApp);
+require('./teachers/controllers/teacher_controller.js')(codeApp);
 require('./courses/controllers/courses_controller')(codeApp);
 require('./quiz/controllers/quiz_controller')(codeApp);
 //routes
@@ -45,6 +46,10 @@ codeApp.config(['$routeProvider', function($routeProvider) {
   .when('/message', {
     templateUrl: 'templates/messages/message_template.html',
     controller: 'messagesCtrl'
+  })
+  .when('/teacher', {
+    templateUrl: 'templates/teacher/dash_template.html',
+    controller: 'teacherCtrl'
   })
   .when('/courses', {
     templateUrl: 'templates/course/course_template.html',
