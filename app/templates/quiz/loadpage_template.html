@@ -1,27 +1,41 @@
-<div data-ng-controller="quizCtrl">
-  <header> <img class="logo" src="images/logo.png"> </header>
-  <form name='createquizquestion'>
-    <input type='text' data-ng-model='quiz.quizQuestion.question'>Question</input>
-    <input type='text' data-ng-model='quiz.quizQuestion.questionValue.javascript'>JavaScript True/False</input>
-    <input type='text' data-ng-model='quiz.quizQuestion.questionValue.python'>Python True/False</input>
-    <input type='text' data-ng-model='quiz.quizQuestion.questionValue.ruby'>Ruby True/False</input>
-    <input type='text' data-ng-model='quiz.quizQuestion.questionValue.objectiveC'>objectiveC True/False</input>
-    <input type='text' data-ng-model='quiz.quizQuestion.code'>Enter Code</input>
-    <button data-ng-click='createQuestion()'>Submit Quiz Question</button>
-    <button data-ng-click='changeQuestion()'>Update Quiz Question</button>
-  </form>
-  <form name='getquestions'>
-    <button data-ng-model='quizquestions' data-ng-click='getQuestions()'>Get All Questions</button>
-    <div>{{quizquestions}}</div>
-  </form>
-  <form name='getquestion'>
-    <input type='text' data-ng-model='quizquestion.code'>Quiz Code Here</input>
-    <button  data-ng-click='getOneQuestion()'>Get A Question</button>
-    <div>{{quizquestion}}</div>
-  </form>
-  <form name='deletequestion'>
-    <input type='text' data-ng-model='quizquestion.code'>Quiz Code Here</input>
-    <button data-ng-click='deleteQuestion()'>Delete Question</button>
-    <div>{{quizquestion}}</div>
-  </form>
-</div>
+<body data-ng-controller="quizCtrl">
+  <article>
+    <section class="interest">
+      <p>"What are you interested in?"</p>
+      <button class="quiz">Take the Quiz</button>
+    </section>
+
+    <section class="signin">
+      <h1>Already have an account?</h1>
+      <button class="create">Sign In</button>
+    </section>
+
+    <section data-ng-controller="quizCtrl">
+      <header> <img class="logo" src="images/logo.png"> </header>
+      <form name='createquizquestion'>
+        <input type='text' data-ng-model='quiz.quizQuestion.question'>Question</input>
+        <input type='text' data-ng-model='quiz.quizQuestion.questionValue.javascript'>JavaScript True/False</input>
+        <input type='text' data-ng-model='quiz.quizQuestion.questionValue.python'>Python True/False</input>
+        <input type='text' data-ng-model='quiz.quizQuestion.questionValue.ruby'>Ruby True/False</input>
+        <input type='text' data-ng-model='quiz.quizQuestion.questionValue.objectiveC'>objectiveC True/False</input>
+        <input type='text' data-ng-model='quiz.quizQuestion.code'>Enter Code</input>
+        <button data-ng-click='createQuestion()'>Submit Quiz Question</button>
+        <button data-ng-click='changeQuestion()'>Update Quiz Question</button>
+      </form>
+      <form name='getquestions'>
+        <button data-ng-model='quizquestions' data-ng-click='getQuestions()'>Get All Questions</button>
+        <div>{{quizquestions}}</div>
+      </form>
+      <form name='getquestion'>
+        <input type='text' data-ng-model='quizquestion.code'>Quiz Code Here</input>
+        <button  data-ng-click='getOneQuestion()'>Get A Question</button>
+        <div>{{quizquestion}}</div>
+      </form>
+      <form name='deletequestion'>
+        <input type='text' data-ng-model='quizquestion.code'>Quiz Code Here</input>
+        <button data-ng-click='deleteQuestion()'>Delete Question</button>
+        <div>{{quizquestion}}</div>
+      </form>
+    </section>
+  </article>
+</body>

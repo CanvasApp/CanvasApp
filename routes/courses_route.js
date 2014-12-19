@@ -81,11 +81,11 @@ module.exports = function(app, jwtauth) {
           course.schedule = req.body.schedule;
           course.description = req.body.description;
           course.save(function(err, data) {
-          if (err) return res.status(500).send('error');
-          if (!data) return res.status({msg:'error.  not updated'});
-          console.log(data);
-          res.json({msg: 'course updated'});
-        });
+            if (err) return res.status(500).send('error');
+            if (!data) return res.status({msg:'error.  not updated'});
+            console.log(data);
+            res.json({msg: 'course updated'});
+          });
         });
       } else {
         res.json({msg: 'not a teacher'});
