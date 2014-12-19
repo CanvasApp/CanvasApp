@@ -32,7 +32,7 @@ module.exports = function(app) {
           method: 'GET',
           url: '/api/inbox/' + data.data.basic.email
         }).success(function(data) {
-          console.log(1);
+          console.log(2);
           console.log(data.usermessages[(data.usermessages.length - 1)]);
         });
       });
