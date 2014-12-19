@@ -7,7 +7,7 @@ describe('Users Index Controller', function() {
   var $controllerConstructor;
   var $httpBackend;
   var $scope;
-  var $cookies = {jwt: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1N…4NDV9.5dr6hQ2rJr9972-LuyxcL6xnVVRRwdbJ7CDNHKDgcrQ'};
+  var $cookies = {jwt:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1N…4NDV9.5dr6hQ2rJr9972-LuyxcL6xnVVRRwdbJ7CDNHKDgcrQ'};
 
   beforeEach(angular.mock.module('codeApp'));
 
@@ -47,17 +47,17 @@ describe('Users Index Controller', function() {
       $scope.User();
       $httpBackend.flush();
 
-      expect($scope.user).toBeDefined
+      expect($scope.user).toBeDefined();
     });
 
     it('should be able to change the user info', function() {
       $httpBackend.expectPUT('/api/user').respond(200, {msg: 'user updated'});
 
       $scope.user = {
-          email: $scope.user.basic.email,
-          first: $scope.user.userinfo.name.first,
-          last: $scope.user.userinfo.name.last,
-          phone: $scope.user.userinfo.phone
+          email: 'test@example.com',
+          first: 'test',
+          last: 'example',
+          phone: '454-473-7474'
         };
       
       $scope.changeUserInfo();
