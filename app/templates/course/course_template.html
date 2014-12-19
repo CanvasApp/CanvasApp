@@ -29,7 +29,9 @@
     <section>{{enrollment.teachers[0].email}}</section>
   </br>
   </form>
-  <form>
+  <!--teacher only-->
+  <form name='passcourse'>
+    <input type='text' data-ng-model='course.code'>
   </form>
   <!--admin only-->
   <form name='delete'>

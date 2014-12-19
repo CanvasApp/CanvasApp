@@ -73,6 +73,28 @@ module.exports = function(app) {
         });
     };
 
+    //for teachers only
+    $scope.markPass = function() {
+      console.log('mark as pass');
+      $http({
+        method: 'PUT',
+        url: '/api/studentenrollmentpass/' + $scope.course.code
+        data: {
+          email: $scope.user.email
+        }
+      })
+      .success(function(data) {
+        console.log(data);
+        console.log($scope.user);
+        console.log($scope.course);
+        console.log($scope.course.code);
+        console.log($scope.user.email);
+      })
+      .error(function(data) {
+        console.log(data);
+      });
+    };
+
     $scope.deleteCourse = function() {
       $http({
         method: 'DELETE',
