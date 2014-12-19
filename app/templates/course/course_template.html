@@ -21,4 +21,10 @@
     <button data-ng-click='deleteCourse()'>Delete Course</button>
   </form>
 </article>
-
+<article data-ng-controller='adminCtrl'>
+  <!--for admins only-->
+  <form name='addteachertocourse'>
+    <input type='text' data-ng-model='course.code'>Enter Course Code</input>
+    <button data-ng-click='addTeacher()'></button>
+  </form>
+</article>
