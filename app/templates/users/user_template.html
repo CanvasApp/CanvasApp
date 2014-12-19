@@ -13,11 +13,16 @@
       <input type='text' data-ng-model='user.userinfo.name.first'>First Name</input>
       <input type='text' data-ng-model='user.userinfo.name.last'>Last Name</input>
       <input type='text' data-ng-model='user.userinfo.phone'>Phone Number</input>
-      <button class="create" qdata-ng-click='changeUserInfo()'>Save User Info</button>
+      <button class="create" data-ng-click='changeUserInfo()'>Save User Info</button>
           <p>{{user.basic.email}}</p>
           <p>{{user.userinfo.name.first}}</p>
           <p>{{user.userinfo.name.last}}</p>
           <p>{{user.userinfo.phone}}</p>
+    </form>
+    <form>
+      <input type='text' data-ng-model='course.code'>Enter Class Code</input>
+      <button class="create" data-ng-click='addStudent()'>Add Student To Class</button>
+      <article>Course Name:{{course.coursename}}</article>
     </form>
     <form name='deleteuser'>
       <input type='text' data-ng-model='deleteuser.email'>enter user email to delete account</input>
