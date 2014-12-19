@@ -17,14 +17,14 @@ describe('Users Index Controller', function() {
   }));
 
   it('should be able to create a controller', function() {
-    var usersIndexController = $controllerConstructor('userIndexCtrl', {$scope: $scope}, {$cookies: $cookies});
+    var usersIndexController = $controllerConstructor('userIndexCtrl', {$scope: $scope});
     expect(typeof usersIndexController).toBe('object');
   });
 
   describe('users index tests', function() {
     beforeEach(angular.mock.inject(function(_$httpBackend_) {
       $httpBackend = _$httpBackend_;
-      $controllerConstructor('userIndexCtrl', {$scope: $scope}, {$cookies: $cookies});
+      $controllerConstructor('userIndexCtrl', {$scope: $scope, $cookies: $cookies});
     }));
 
     afterEach(function() {
@@ -33,36 +33,37 @@ describe('Users Index Controller', function() {
     });
 
     it('should get all users', function() {
-      $httpBackend.expectGET('/api/allusers').respond(200);
+      $httpBackend.expectGET('/api/allusers').respond(304);
 
       $scope.allUsers();
       $httpBackend.flush();
-
-      expect($scope.basic.email).toEqual('test@example.com');
+      
+      expect($scope.users).toBeDefined();
     });
 
     it('should get one users by jwt', function() {
-      $httpBackend.expectGET('/api/user').respond(200);
+      $httpBackend.expectGET('/api/user').respond(304);
 
       $scope.User();
       $httpBackend.flush();
 
-      expect($scope.basic.email).toEqual('test@example.com');
+      expect($scope.user).toBeDefined
     });
 
     it('should be able to change the user info', function() {
-      $httpBackend.expectPUT('/api/user').respond(200);
-      var user = {userinfo: {name: {first: 'test', last: 'example'}, phone: '5556667777'}};
-      user.userinfo.name.first = 'joe';
-      user.userinfo.name.last = 'test';
-      user.userinfo.phone = '2342342344';
+      $httpBackend.expectPUT('/api/user').respond(200, {msg: 'user updated'});
+
+      $scope.user = {
+          email: $scope.user.basic.email,
+          first: $scope.user.userinfo.name.first,
+          last: $scope.user.userinfo.name.last,
+          phone: $scope.user.userinfo.phone
+        };
       
       $scope.changeUserInfo();
       $httpBackend.flush();
 
-      expect($scope.user.userinfo.name.first).toBe('joe');
-      expect($scope.user.userinfo.name.last).toBe('test');
-      expect($scope.user.userinfo.phone).toBe('2342342344');
+      expect($scope.user).toBeDefined();
     });
 
     it('should be able to delete a user', function() {
@@ -70,10 +71,11 @@ describe('Users Index Controller', function() {
       
       $scope.deleteuser.email = 'test@example.com';
       $scope.deleteuser.emailConfirmation = 'test@example.com';
+
       $scope.deleteUser();
       $httpBackend.flush();
       
-      expect($scope.user.basic.email).toBe(null);
+      expect($scope.data).toBe(null);
     });
   });
 });

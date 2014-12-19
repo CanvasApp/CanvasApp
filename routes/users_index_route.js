@@ -36,8 +36,7 @@ module.exports = function(app, jwtauth) {
         if (err) return res.status(500).send('error');
         if (!data) return res.send({msg: 'did not save'});
         console.log(data);
-        res.json({msg: 'user updated', email: user.basic.email, 
-          name: user.userinfo.name.first});
+        res.json({msg: 'user updated'});
       });
     });
   });
