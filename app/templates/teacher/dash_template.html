@@ -1,14 +1,26 @@
 <body>
   <article>
-    <section>Classes</section>
+    <h2>Teacher Page</h2>
   <div data-ng-controller='teacherCtrl'>
   <header> <img src="images/logo.png"> </header>
-    <form name='confirmteacher'>
-      <input type='text' data-ng-model='user'>Enter Email</input>
-      <button data-ng-click='confirmTeacher()'>Confirm Teacher</button>
-      <button data-ng-click='unconfirmTeacher()'>Unconfirm Teacher</button>
-    </form>
+
+      <form name='passcourse'>
+    <h3>Pass A Student in a Course</h3>
+    <div>Enter course code
+    <input type='text' data-ng-model='course.code'></input>
   </div>
+    <div>enter user email
+    <input type='text' data-ng-model='user.email'></input>
+    </div>
+    <button data-ng-click='markPass()'>Confirm Student Pass</button>
+    <article>
+      Student: {{enrollment.enrollment.students[0].email}}
+      Pass: {{enrollment.enrollment.students[0].pass}}
+     </br>
+    </article>
+  </form>
+  </div>
+    <h3>Your Classes</h3>
     <ul>
       <li>SOME Class</li>
       <li>SOME Class</li>

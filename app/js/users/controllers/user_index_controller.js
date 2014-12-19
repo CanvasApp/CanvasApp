@@ -79,7 +79,7 @@ module.exports = function(app) {
 
     $scope.deleteUser = function() {
       console.log('you tried to delete user');
-      if ($scope.deleteuser.email !== $scope.deleteuser.emailConfirmation) 
+      if ($scope.deleteuser.email !== $scope.deleteuser.emailConfirmation)
         $scope.errors.push({msg: 'email and confirmation did not match'});
       $http({
         method: 'DELETE',
@@ -89,6 +89,16 @@ module.exports = function(app) {
         console.log('user was deleted');
         console.log(data);
       });
+    };
+
+    $scope.teacher = function() {
+      console.log('click');
+      $location.path('/courses');
+    };
+
+    $scope.adPage = function() {
+      console.log('click');
+      $location.path('/courses');
     };
   }]);
 };
