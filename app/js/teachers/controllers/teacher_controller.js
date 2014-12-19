@@ -11,15 +11,15 @@ module.exports = function(app) {
         method: 'PUT',
         url: '/api/confirmteacher',
         data: {
-          'basic.email': $scope.email
+          email: $scope.user
         }
       })
       .success(function(data) {
-        $scope.email = data;
-        console.log($scope.email);
+        console.log($scope.user);
         console.log(data);
       })
       .error(function(data) {
+        console.log($scope.user);
         console.log(data);
       });
     };
@@ -29,12 +29,12 @@ module.exports = function(app) {
         method: 'PUT',
         url: '/api/unconfirmTeacher',
         data: {
-          'basic.email': $scope.email
+          email: $scope.user
         }
       })
       .success(function(data) {
+        console.log($scope.user);
         console.log(data);
-        console.log($scope.email);
       })
       .error(function(data) {
         console.log(data);
