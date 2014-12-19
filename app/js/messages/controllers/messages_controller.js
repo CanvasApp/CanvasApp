@@ -5,7 +5,7 @@ module.exports = function(app) {
     $http.defaults.headers.common['jwt'] = $cookies.jwt;
 
     $scope.newMessage = function() {
-      $location.path('/composemessage');
+      $location.path('/new');
     };
 
     $scope.send = function () {

@@ -30,7 +30,7 @@ module.exports = function(app, jwtauth) {
            function(err, data) {
             if (err) res.status(500);
             res.json(data);
-            Message.find({'to': req.params.to}).remove().exec();
+            // Message.find({'to': req.params.to}).remove().exec();
           });
         }
       });

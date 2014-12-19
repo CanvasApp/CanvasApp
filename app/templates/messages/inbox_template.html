@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html ng-app="generator">
-<head>
-  <meta charset='utf-8'>
-  <title>Code Fellows</title>
-  <link rel="stylesheet" href="../../scss/layout.css">
-</head>
-
-<header> <img class="logo" src="../../images/logo.png"> </header>
-<body>
   <section data-ng-controller="messagesCtrl">
     <ul class="inbox-window">
       <li class="subject-display" ng-repeat="message in messages">
@@ -20,8 +10,6 @@
     <button class="create" data-ng-click="newMessage()">Compose New Message</button>
     <button class="create" data-ng-click="getMail()">Get Mail</button>
   </section>
-</body>
-</html>
 
 
 <!--access these files form the message tab
