@@ -1,4 +1,5 @@
 <article data-ng-controller='courseCtrl'>
+  <!--admin only-->
   <form name='createcourse'>
     <input type='text' data-ng-model='course.name'>Name</input>
     <input type='text' data-ng-model='course.schedule'>Schedule</input>
@@ -7,6 +8,7 @@
     <button data-ng-click='createCourse()'>Create Course</button>
     <button data-ng-click='updateCourse()'>Update Course</button>
   </form>
+  <!--student stuff-->
   <form name='getcourses' data-ng-model='courses'>
     <button data-ng-click='getCourses()'>Get All Courses</button>
     <section data-ng-repeat='course in courses'>
@@ -26,6 +28,8 @@
     <section>{{course.description}}</section>
     <section>{{enrollment.teachers[0].email}}</section>
   </br>
+  </form>
+  <form>
   </form>
   <!--admin only-->
   <form name='delete'>
