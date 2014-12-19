@@ -31,7 +31,13 @@
   </form>
   <!--teacher only-->
   <form name='passcourse'>
-    <input type='text' data-ng-model='course.code'>
+    <article>Pass A Student in a Course</article>
+    <input type='text' data-ng-model='course.code'>Enter Course Code</input>
+    <input type='text' data-ng-model='user.email'>Enter User Email</input>
+    <button data-ng-click='markPass()'>Confirm Student Pass</button>
+    <article>
+      {{enrollment}}
+    </article>
   </form>
   <!--admin only-->
   <form name='delete'>

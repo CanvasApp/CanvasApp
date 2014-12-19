@@ -89,6 +89,7 @@ module.exports = function(app) {
         console.log($scope.course);
         console.log($scope.course.code);
         console.log($scope.user.email);
+        $scope.enrollment = data;
       })
       .error(function(data) {
         console.log(data);
