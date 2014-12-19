@@ -1,4 +1,4 @@
-<div data-ng-controller='courseCtrl'>
+<article data-ng-controller='courseCtrl'>
   <form name='createcourse'>
     <input type='text' data-ng-model='course.name'>Name</input>
     <input type='text' data-ng-model='course.schedule'>Schedule</input>
@@ -9,12 +9,12 @@
   </form>
   <form name='getcourses' data-ng-model='courses'>
     <button data-ng-click='getCourses()'>Get All Courses</button>
-    <div>{{courses}}</div>
+    <section>{{courses}}</section>
   </form>
   <form name='getcourse'>
     <input type='text' data-ng-model='course.code'>Enter Course Code</input>
     <button data-ng-click='getCourse()'>Get Course</button>
-    <div>{{course}}</div>
+    <section>{{course}}</section>
   </form>
   <form name='delete'>
     <input type='text' data-ng-model='course.code'>Enter Course Code</input>
@@ -27,3 +27,5 @@
     <button data-ng-click=''
   </form>
 </div>
+</article>
+
