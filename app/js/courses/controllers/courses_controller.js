@@ -78,7 +78,7 @@ module.exports = function(app) {
       console.log('mark as pass');
       $http({
         method: 'PUT',
-        url: '/api/studentenrollmentpass/' + $scope.course.code
+        url: '/api/studentenrollmentpass/' + $scope.course.code,
         data: {
           email: $scope.user.email
         }

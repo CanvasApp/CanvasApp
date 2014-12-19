@@ -36,7 +36,9 @@
     <input type='text' data-ng-model='user.email'>Enter User Email</input>
     <button data-ng-click='markPass()'>Confirm Student Pass</button>
     <article>
-      {{enrollment}}
+      Student: {{enrollment.enrollment.students[0].email}}
+      Pass: {{enrollment.enrollment.students[0].pass}}
+     </br>
     </article>
   </form>
   <!--admin only-->
