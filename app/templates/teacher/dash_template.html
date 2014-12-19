@@ -1,13 +1,17 @@
 <body>
   <article>
-    <section>Classes</section>
+    <h2>Teacher Page</h2>
   <div data-ng-controller='teacherCtrl'>
   <header> <img src="images/logo.png"> </header>
 
       <form name='passcourse'>
-    <article>Pass A Student in a Course</article>
-    <input type='text' data-ng-model='course.code'>Enter Course Code</input>
-    <input type='text' data-ng-model='user.email'>Enter User Email</input>
+    <h3>Pass A Student in a Course</h3>
+    <div>Enter course code
+    <input type='text' data-ng-model='course.code'></input>
+  </div>
+    <div>enter user email
+    <input type='text' data-ng-model='user.email'></input>
+    </div
     <button data-ng-click='markPass()'>Confirm Student Pass</button>
     <article>
       Student: {{enrollment.enrollment.students[0].email}}
@@ -16,6 +20,7 @@
     </article>
   </form>
   </div>
+    <h3>Your Classes</h3>
     <ul>
       <li>SOME Class</li>
       <li>SOME Class</li>

@@ -1,11 +1,15 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('quizCtrl', ['$scope', '$http', '$cookies', '$location', 
+  app.controller('quizCtrl', ['$scope', '$http', '$cookies', '$location',
     function($scope, $http, $cookies, $location) {
       if(!$cookies.jwt || !$cookies.jwt.length) return $location.path('/users');
 
       $http.defaults.headers.common['jwt'] = $cookies.jwt;
+
+      $scope.inPage = function() {
+        $location.path('/signin');
+      };
 
       $scope.createQuestion = function() {
         $http({
@@ -21,7 +25,7 @@ module.exports = function(app) {
                 objectiveC: $scope.quiz.quizQuestion.questionValue.objectiveC
               }
             }
-          } 
+          }
         })
         .success(function(data) {
           console.log(data);
@@ -74,7 +78,7 @@ module.exports = function(app) {
                 ruby: $scope.quiz.quizQuestion.questionValue.ruby,
                 objectiveC: $scope.quiz.quizQuestion.questionValue.objectiveC
               }
-            } 
+            }
           }
         })
         .success(function(data) {

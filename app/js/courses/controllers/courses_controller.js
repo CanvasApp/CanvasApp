@@ -62,7 +62,7 @@ module.exports = function(app) {
             name: $scope.course.name,
             schedule: $scope.course.schedule,
             description: $scope.course.description
-          } 
+          }
         })
         .success(function(data) {
           console.log(data);
@@ -71,7 +71,7 @@ module.exports = function(app) {
         .error(function(data) {
           console.log(data);
         });
-    };
+      };
 
     //for teachers only
     $scope.markPass = function() {
@@ -102,6 +102,40 @@ module.exports = function(app) {
         url: '/api/course/' + $scope.course.code
       })
       .success(function(data) {
+        console.log(data);
+      })
+      .error(function(data) {
+        console.log(data);
+      });
+    };
+        $scope.confirmTeacher = function() {
+      $http({
+        method: 'PUT',
+        url: '/api/confirmteacher',
+        data: {
+          email: $scope.user
+        }
+      })
+      .success(function(data) {
+        console.log($scope.user);
+        console.log(data);
+      })
+      .error(function(data) {
+        console.log($scope.user);
+        console.log(data);
+      });
+    };
+
+    $scope.unconfirmTeacher = function() {
+      $http({
+        method: 'PUT',
+        url: '/api/unconfirmTeacher',
+        data: {
+          email: $scope.user
+        }
+      })
+      .success(function(data) {
+        console.log($scope.user);
         console.log(data);
       })
       .error(function(data) {
