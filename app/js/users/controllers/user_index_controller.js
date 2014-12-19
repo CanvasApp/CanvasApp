@@ -70,6 +70,7 @@ module.exports = function(app) {
       .success(function(data) {
         console.log(data);
         console.log($scope.course.code);
+        $scope.course.coursename = data.enrollment.coursename;
       })
       .error(function(data) {
         console.log(data);

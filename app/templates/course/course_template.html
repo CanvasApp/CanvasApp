@@ -44,7 +44,7 @@
     <button data-ng-click='addTeacher()'>Add Teacher</button>
     <article data-ng-model='enrollments'>
       <article data-ng-repeat='enrollment in enrollments'>
-        {{enrollment.teachers[0].email}}
+        Course Name: {{enrollment.coursename}} Teacher:{{enrollment.teachers[0].email}}
       </article>
     </article>
   </form>
