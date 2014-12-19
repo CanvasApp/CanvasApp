@@ -59,6 +59,10 @@ codeApp.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'templates/quiz/loadpage_template.html',
     controller: 'quizCtrl'
   })
+  .when('/', {
+    templateUrl: 'templates/quiz/loadpage_template.html',
+    controller: 'quizCtrl'
+  })
   .when('/admin', {
     templateUrl: 'templates/admin/admin_template.html',
     controller: 'adminCtrl'

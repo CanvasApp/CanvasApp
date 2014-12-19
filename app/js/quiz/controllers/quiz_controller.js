@@ -7,6 +7,10 @@ module.exports = function(app) {
 
       $http.defaults.headers.common['jwt'] = $cookies.jwt;
 
+      $scope.logs = function() {
+        $location.path('/signup');
+      };
+
       $scope.inPage = function() {
         $location.path('/signin');
       };
