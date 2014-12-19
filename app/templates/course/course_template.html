@@ -1,4 +1,5 @@
 <article data-ng-controller='courseCtrl'>
+  <!--admin only-->
   <form name='createcourse'>
     <input type='text' data-ng-model='course.name'>Name</input>
     <input type='text' data-ng-model='course.schedule'>Schedule</input>
@@ -7,17 +8,44 @@
     <button data-ng-click='createCourse()'>Create Course</button>
     <button data-ng-click='updateCourse()'>Update Course</button>
   </form>
+  <!--student stuff-->
   <form name='getcourses' data-ng-model='courses'>
     <button data-ng-click='getCourses()'>Get All Courses</button>
-    <section>{{courses}}</section>
+    <section data-ng-repeat='course in courses'>
+    </br>
+      <section>Course Name: {{course.name}}</section>
+      <section>Course Schedule: {{course.schedule}}</section>
+      <section>Course Summary: {{course.summary}}</section>
+      <section>Course Code: {{course.code}}</section>
+    </br>
+    </section>
   </form>
   <form name='getcourse'>
     <input type='text' data-ng-model='course.code'>Enter Course Code</input>
     <button data-ng-click='getCourse()'>Get Course</button>
-    <section>{{course}}</section>
+    <section>{{course.name}}</section>
+    <section>{{course.schedule}}</section>
+    <section>{{course.description}}</section>
+    <section>{{enrollment.teachers[0].email}}</section>
+  </br>
   </form>
+  <form>
+  </form>
+  <!--admin only-->
   <form name='delete'>
     <input type='text' data-ng-model='course.code'>Enter Course Code</input>
     <button data-ng-click='deleteCourse()'>Delete Course</button>
+  </form>
+</article>
+<article data-ng-controller='adminCtrl'>
+  <!--for admins & teachers only-->
+  <form name='addteachertocourse'>
+    <input type='text' data-ng-model='course.code'>Enter Course Code</input>
+    <button data-ng-click='addTeacher()'>Add Teacher</button>
+    <article data-ng-model='enrollments'>
+      <article data-ng-repeat='enrollment in enrollments'>
+        Course Name: {{enrollment.coursename}} Teacher:{{enrollment.teachers[0].email}}
+      </article>
+    </article>
   </form>
 </article>

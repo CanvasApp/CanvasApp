@@ -20,7 +20,7 @@ module.exports = function(app, jwtauth) {
           code: UniqueId()
         });
         var enrollment = new Enrollment({
-          enrollment:{code: course.code}
+          enrollment:{code: course.code, coursename: req.body.name}
         });
         enrollment.save(function(err, data) {
           if (err) return res.status(500).send('error');
