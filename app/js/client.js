@@ -18,7 +18,6 @@ require('./messages/controllers/messages_controller')(codeApp);
 require('./teachers/controllers/admin_controller')(codeApp);
 require('./teachers/controllers/teacher_controller.js')(codeApp);
 require('./courses/controllers/courses_controller')(codeApp);
-require('./users/controllers/enrollment_controller.js')(codeApp);
 require('./quiz/controllers/quiz_controller')(codeApp);
 //routes
 

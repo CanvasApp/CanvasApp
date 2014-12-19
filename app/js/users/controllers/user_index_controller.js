@@ -60,6 +60,22 @@ module.exports = function(app) {
       });
     };
 
+    //for students only
+    $scope.addStudent = function() {
+      console.log('enroll student');
+      $http({
+        method: 'PUT',
+        url: '/api/studentenrollment/' + $scope.course.code
+      })
+      .success(function(data) {
+        console.log(data);
+        console.log($scope.course.code);
+      })
+      .error(function(data) {
+        console.log(data);
+      });
+    };
+
     $scope.deleteUser = function() {
       console.log('you tried to delete user');
       if ($scope.deleteuser.email !== $scope.deleteuser.emailConfirmation) 

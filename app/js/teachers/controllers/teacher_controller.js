@@ -40,5 +40,21 @@ module.exports = function(app) {
         console.log(data);
       });
     };
+
+     //for teachers only
+    $scope.markPass = function() {
+      console.log('mark as pass');
+      $http({
+        method: 'PUT',
+        url: '/api/studentenrollmentpass/' + $scope.course.code
+      })
+      .success(function(data) {
+        console.log(data);
+        console.log($scope.course.code);
+      })
+      .error(function(data) {
+        console.log(data);
+      });
+    };
   }]);
 };

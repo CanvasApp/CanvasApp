@@ -18,5 +18,21 @@ module.exports = function(app) {
         console.log(data);
       });
     };
+
+    //for admins only
+    $scope.addTeacher = function() {
+      console.log('enroll teacher');
+      $http({
+        method: 'PUT',
+        url: '/api/teacherenrollment/' + $scope.course.code
+      })
+      .success(function(data) {
+        console.log(data);
+        console.log($scope.course.code);
+      })
+      .error(function(data) {
+        console.log(data);
+      });
+    };
   }]);
 };
