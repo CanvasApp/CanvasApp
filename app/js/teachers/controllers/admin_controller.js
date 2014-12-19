@@ -29,6 +29,7 @@ module.exports = function(app) {
       .success(function(data) {
         console.log(data);
         console.log($scope.course.code);
+        $scope.enrollments = data;
       })
       .error(function(data) {
         console.log(data);

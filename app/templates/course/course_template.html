@@ -24,6 +24,7 @@
     <section>{{course.name}}</section>
     <section>{{course.schedule}}</section>
     <section>{{course.description}}</section>
+    <section>{{enrollment.teachers[0].email}}</section>
   </br>
   </form>
   <!--admin only-->
@@ -37,5 +38,10 @@
   <form name='addteachertocourse'>
     <input type='text' data-ng-model='course.code'>Enter Course Code</input>
     <button data-ng-click='addTeacher()'>Add Teacher</button>
+    <article data-ng-model='enrollments'>
+      <article data-ng-repeat='enrollment in enrollments'>
+        {{enrollment.teachers[0].email}}
+      </article>
+    </article>
   </form>
 </article>

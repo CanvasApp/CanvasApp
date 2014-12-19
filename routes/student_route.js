@@ -10,7 +10,7 @@ module.exports = function(app, jwtauth) {
       if (err) return res.status(500).send('error');
       if (!user) return res.send({msg: 'user not found'});
       console.log('user found');
-        Enrollment.findOneAndUpdate({'enrollment.code': req.params.code}, {$push:{'enrollment.students':{email: req.user.basic.email, pass:false}}},
+        Enrollment.findOneAndUpdate({'enrollment.code': req.params.code}, {$addToSet:{'enrollment.students':{email: req.user.basic.email, pass:false}}},
           function(err, enrollment) {
         if (err) return res.status(500).send('error');
         if (!enrollment) return res.send({msg: 'class not found'});
@@ -26,7 +26,7 @@ module.exports = function(app, jwtauth) {
       if (err) return res.status(500).send('error');
       if (!user) return res.send({msg: 'user not found'});
       if (user.userStatus.teacher === true) {
-        Enrollment.findOneAndUpdate({'enrollment.code': req.params.code}, {$push:{'enrollment.teachers':{email: req.user.basic.email}}},
+        Enrollment.findOneAndUpdate({'enrollment.code': req.params.code}, {$addToSet:{'enrollment.teachers':{email: req.user.basic.email}}},
         function(err, enrollment) {
           if (err) return res.status(500).send('error');
           if (!enrollment) return res.send({msg: 'teacher not enrolled in class'});
