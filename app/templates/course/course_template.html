@@ -8,6 +8,11 @@
     <button data-ng-click='createCourse()'>Create Course</button>
     <button data-ng-click='updateCourse()'>Update Course</button>
   </form>
+      <form name='confirmteacher'>
+      <input type='text' data-ng-model='user'>Enter Email</input>
+      <button data-ng-click='confirmTeacher()'>Confirm Teacher</button>
+      <button data-ng-click='unconfirmTeacher()'>Unconfirm Teacher</button>
+    </form>
   <!--student stuff-->
   <form name='getcourses' data-ng-model='courses'>
     <button data-ng-click='getCourses()'>Get All Courses</button>
@@ -30,17 +35,7 @@
   </br>
   </form>
   <!--teacher only-->
-  <form name='passcourse'>
-    <article>Pass A Student in a Course</article>
-    <input type='text' data-ng-model='course.code'>Enter Course Code</input>
-    <input type='text' data-ng-model='user.email'>Enter User Email</input>
-    <button data-ng-click='markPass()'>Confirm Student Pass</button>
-    <article>
-      Student: {{enrollment.enrollment.students[0].email}}
-      Pass: {{enrollment.enrollment.students[0].pass}}
-     </br>
-    </article>
-  </form>
+
   <!--admin only-->
   <form name='delete'>
     <input type='text' data-ng-model='course.code'>Enter Course Code</input>
