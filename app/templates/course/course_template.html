@@ -1,25 +1,50 @@
+<h1>Admin Page</h1>
+
 <article data-ng-controller='courseCtrl'>
-  <!--admin only-->
   <form name='createcourse'>
-    <input type='text' data-ng-model='course.name'>Name</input>
-    <input type='text' data-ng-model='course.schedule'>Schedule</input>
-    <input type='text' data-ng-model='course.description'>Description</input>
-    <input type='text' data-ng-model='course.code'>Course Code</input>
+    <h2>Create/Edit Course Description</h2>
+    <div>
+      <h4>Name</h4>
+    <input type='text' data-ng-model='course.name'></input>
+    <h4>Schedule</h4>
+    <input type='text' data-ng-model='course.schedule'></input>
+    <h4>Description</h4>
+    <input type='text' data-ng-model='course.description'></input>
+    <h4>Course Code</h4>
+    <input type='text' data-ng-model='course.code'></input>
+  </div>
     <button data-ng-click='createCourse()'>Create Course</button>
     <button data-ng-click='updateCourse()'>Update Course</button>
   </form>
+      <form name='confirmteacher'>
+    <h2>Add/Remove Teacher</h2>
+    <input type='text' data-ng-model='user'>Enter Email</input>
+      <button data-ng-click='confirmTeacher()'>Confirm Teacher</button>
+      <button data-ng-click='unconfirmTeacher()'>Unconfirm Teacher</button>
+    </form>
   <!--student stuff-->
+
+<h2>Course Info</h2>
   <form name='getcourses' data-ng-model='courses'>
     <button data-ng-click='getCourses()'>Get All Courses</button>
     <section data-ng-repeat='course in courses'>
     </br>
+    <div>
       <section>Course Name: {{course.name}}</section>
+    </div>
+    <div>
       <section>Course Schedule: {{course.schedule}}</section>
+    </div>
+    <div>
       <section>Course Summary: {{course.summary}}</section>
+    </div>
+    <div>
       <section>Course Code: {{course.code}}</section>
+    </div>
     </br>
     </section>
   </form>
+  <h2>Find a course</h2>
   <form name='getcourse'>
     <input type='text' data-ng-model='course.code'>Enter Course Code</input>
     <button data-ng-click='getCourse()'>Get Course</button>
@@ -30,18 +55,8 @@
   </br>
   </form>
   <!--teacher only-->
-  <form name='passcourse'>
-    <article>Pass A Student in a Course</article>
-    <input type='text' data-ng-model='course.code'>Enter Course Code</input>
-    <input type='text' data-ng-model='user.email'>Enter User Email</input>
-    <button data-ng-click='markPass()'>Confirm Student Pass</button>
-    <article>
-      Student: {{enrollment.enrollment.students[0].email}}
-      Pass: {{enrollment.enrollment.students[0].pass}}
-     </br>
-    </article>
-  </form>
-  <!--admin only-->
+
+<h2>Delete Course</h2>
   <form name='delete'>
     <input type='text' data-ng-model='course.code'>Enter Course Code</input>
     <button data-ng-click='deleteCourse()'>Delete Course</button>
@@ -49,6 +64,7 @@
 </article>
 <article data-ng-controller='adminCtrl'>
   <!--for admins & teachers only-->
+  <h2>Assign a teacher</h2>
   <form name='addteachertocourse'>
     <input type='text' data-ng-model='course.code'>Enter Course Code</input>
     <button data-ng-click='addTeacher()'>Add Teacher</button>

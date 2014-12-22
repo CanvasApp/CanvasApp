@@ -49,7 +49,7 @@ module.exports = function(app) {
         console.log(data);
         $scope.msg = 'success!';
         $cookies.jwt = data.jwt;
-        $location.path('/classtree');
+        $location.path('/userprofile');
       })
       .error(function(data) {
         console.log(data);
@@ -59,7 +59,7 @@ module.exports = function(app) {
 
     $scope.signOut = function() {
       delete $cookies['jwt'];
-      location.path('/signIn');
+      $location.path('/signIn');
     };
   }]);
 };

@@ -1,27 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset='utf-8'>
-  <title>Code Fellows</title>
-  <link rel="stylesheet" href="../../scss/layout.css">
-</head>
-
-<header> <img class="logo" src="../../images/logo.png"> </header>
-<body>
   <section data-ng-controller="messagesCtrl">
     <ul class="inbox-window">
-      <li class="subject-display" ng-repeat="message in messages">
-        From: {{message.from}} Subject: {{message.subject}}
+      <li class="subject-display" ng-repeat="newMessage in newMessages">
+        <!-- {{usermessages}} -->
       </li>
       <li class="subject-display" ng-if="results.length == 0">
         <strong>No results found...</strong>
       </li>
     </ul>
-    <button class="create" data-ng-click="newMessage()">Compose New Message</button>
-    <button class="create" data-ng-click="getMail()">Get Mail</button>
+    <button class="create" data-ng-click="compose()">Compose New Message</button>
+    <button class="create" data-ng-model="usermessages" data-ng-click="getMail()">Get Mail</button>
+      <ul data-ng-repeat="message in usermessages">
+        <li style="list-style-type: none">
+            Subject: {{message.message.subject}}
+        </li>
+        <li style="list-style-type: none" >
+            Message: {{message.message.main}}
+        </li>
+      </ul>
   </section>
-</body>
-</html>
 
 
 <!--access these files form the message tab
@@ -30,13 +26,13 @@ style everything
 <div data-ng-controller="messagesCtrl">
   <ul class="inbox-window">
     <li class="subject-display" ng-repeat="message in messages">
-      {{scope.usermessages}}
+      {{usermessages}}
     </li>
     <li class="subject-display" ng-if="results.length == 0">
       <strong>No results found...</strong>
     </li>
   </ul>
-  <button data-ng-click="newMessage()">Write new message</button>
+  <button data-ng-click="composeMessage()">Write new message</button>
   <button data-ng-click="getMail()">Get mail</button>
 </div>
 

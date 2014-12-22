@@ -1,19 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset='utf-8'>
-  <title>Code Fellows</title>
-  <link rel="stylesheet" href="../../scss/layout.css">
-</head>
-<!--Major restyling...-->
-<header><img class="logo" src="../../images/logo.png"> </header>
   <body data-ng-controller='userIndexCtrl'>
+    <div ng-show="user.userStatus.teacher === true">
+      <button data-ng-click='teacher()'>Teacher Actions</button>
+    </div>
+    <div ng-show="user.userStatus.teacher === true">
+      <button data-ng-click='adPage()'>Admin Actions</button>
+    </div>
     <form name='userinfo' data-ng-init='User()'>
       <input type='text' data-ng-model='user.basic.email'>Email</input>
       <input type='text' data-ng-model='user.userinfo.name.first'>First Name</input>
       <input type='text' data-ng-model='user.userinfo.name.last'>Last Name</input>
       <input type='text' data-ng-model='user.userinfo.phone'>Phone Number</input>
       <button class="create" data-ng-click='changeUserInfo()'>Save User Info</button>
+          <div ng-show="user.userStatus.admin === true">You are an admin </div>
+          <div ng-show="user.userStatus.teacher === true">You are a teacher.</div>
           <p>{{user.basic.email}}</p>
           <p>{{user.userinfo.name.first}}</p>
           <p>{{user.userinfo.name.last}}</p>
@@ -31,9 +30,17 @@
      </form>
      <form name='getallusers'>
       <button class="create"data-ng-click='allUsers()'>Get All Users</button>
-      <section data-ng-repeat='user in users'>
-      email: {{user.basic.email}} admin: {{user.userStatus.admin}} teacher: {{user.userStatus.teacher}} userinfo: First: {{user.userinfo.name.first}} Last: {{user.userinfo.name.last}} Phone: {{user.userinfo.phone}}
-      </section>
-     </form> 
+
+     </form>
+     <div>
+      <ul data-ng-repeat='user in users'>
+      <li>email: {{user.basic.email}}
+        <div ng-show="user.userStatus.admin === true">Is an admin. </div>
+        <div ng-show="user.userStatus.teacher === true">Is a teacher.</div>
+        <div>First Name: {{user.userinfo.name.first}} </div>
+        <div>Last Name: {{user.userinfo.name.last}} </div>
+        <div>Phone Number: {{user.userinfo.phone}}</div>
+      </li>
+      <ul>
+      </div>
 </body>
-</html>

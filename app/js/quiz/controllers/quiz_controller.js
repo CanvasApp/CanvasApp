@@ -1,11 +1,19 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('quizCtrl', ['$scope', '$http', '$cookies', '$location', 
+  app.controller('quizCtrl', ['$scope', '$http', '$cookies', '$location',
     function($scope, $http, $cookies, $location) {
       if(!$cookies.jwt || !$cookies.jwt.length) return $location.path('/users');
 
       $http.defaults.headers.common['jwt'] = $cookies.jwt;
+
+      $scope.logs = function() {
+        $location.path('/signup');
+      };
+
+      $scope.inPage = function() {
+        $location.path('/signin');
+      };
 
       $scope.createQuestion = function() {
         $http({
@@ -21,7 +29,7 @@ module.exports = function(app) {
                 objectiveC: $scope.quiz.quizQuestion.questionValue.objectiveC
               }
             }
-          } 
+          }
         })
         .success(function(data) {
           console.log(data);
@@ -64,7 +72,7 @@ module.exports = function(app) {
       $scope.changeQuestion = function() {
         $http({
           method: 'PUT',
-          url: '/api/quiz/' + $scope.quizquestion.code,
+          url: '/api/quiz/' + $scope.quiz.code,
           data: {
             quizQuestion: {
               question: $scope.quiz.quizQuestion.question,
@@ -74,11 +82,11 @@ module.exports = function(app) {
                 ruby: $scope.quiz.quizQuestion.questionValue.ruby,
                 objectiveC: $scope.quiz.quizQuestion.questionValue.objectiveC
               }
-            } 
+            }
           }
         })
         .success(function(data) {
-          console.log($scope.code);
+          console.log($scope.quiz.code);
           console.log(data);
         })
         .error(function(data) {
