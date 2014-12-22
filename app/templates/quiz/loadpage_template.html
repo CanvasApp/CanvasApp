@@ -13,21 +13,23 @@
     <section data-ng-controller="quizCtrl">
       <header> <img class="logo" src="images/logo.png"> </header>
       <form name='createquizquestion'>
+        <button data-ng-click='createQuestion()'>Submit Quiz Question</button>
+        <button data-ng-click='changeQuestion()'>Update Quiz Question</button>
+      </br>
         <input type='text' data-ng-model='quiz.quizQuestion.question'>Question</input>
         <input type='text' data-ng-model='quiz.quizQuestion.questionValue.javascript'>JavaScript True/False</input>
         <input type='text' data-ng-model='quiz.quizQuestion.questionValue.python'>Python True/False</input>
         <input type='text' data-ng-model='quiz.quizQuestion.questionValue.ruby'>Ruby True/False</input>
         <input type='text' data-ng-model='quiz.quizQuestion.questionValue.objectiveC'>objectiveC True/False</input>
         <input type='text' data-ng-model='quiz.code'>Enter Code</input>
-        <button data-ng-click='createQuestion()'>Submit Quiz Question</button>
-        <button data-ng-click='changeQuestion()'>Update Quiz Question</button>
         <article>
-          {{}}
+          Question: {{quiz.quizQuestion.question}} Value: JS: {{quiz.quizQuestion.questionValue.javascript}} ObjC: {{quiz.quizQuestion.questionValue.objectiveC}} Python: {{quiz.quizQuestion.questionValue.python}} Ruby: {{quiz.quizQuestion.questionValue.ruby}} Code: {{quiz.code}}
         </article>
       </form>
     </br>
       <form name='getquestions'>
         <button data-ng-model='quizquestions' data-ng-click='getQuestions()'>Get All Questions</button>
+      </br>
         <article data-ng-repeat='quizquestion in quizquestions'>
           <div>Question: {{quizquestion.quizQuestion.question}} Value: JS: {{quizquestion.quizQuestion.questionValue.javascript}} ObjC: {{quizquestion.quizQuestion.questionValue.objectiveC}} Python: {{quizquestion.quizQuestion.questionValue.python}} Ruby: {{quizquestion.quizQuestion.questionValue.ruby}} Code: {{quizquestion.code}}</div>
         </br>
