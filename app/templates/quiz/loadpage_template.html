@@ -39,7 +39,7 @@
       <form name='getquestion'>
         <input type='text' data-ng-model='quizquestion.code'>Quiz Code Here</input>
         <button  data-ng-click='getOneQuestion()'>Get A Question</button>
-        <div>{{quizquestion.code}}</div>
+        <div>Question: {{quizquestion.quizQuestion.question}} Value: JS: {{quizquestion.quizQuestion.questionValue.javascript}} ObjC: {{quizquestion.quizQuestion.questionValue.objectiveC}} Python: {{quizquestion.quizQuestion.questionValue.python}} Ruby: {{quizquestion.quizQuestion.questionValue.ruby}} Code: {{quizquestion.code}}</div>
       </br>
       </form>
     </br>
