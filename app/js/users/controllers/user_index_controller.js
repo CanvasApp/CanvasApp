@@ -53,7 +53,6 @@ module.exports = function(app) {
         console.log($scope.user.userinfo.name.first);
         console.log($scope.user.userinfo.name.last);
         console.log($scope.user.userinfo.phone);
-        console.log($scope);
       })
       .error(function(data) {
         console.log(data);

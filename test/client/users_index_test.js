@@ -33,7 +33,7 @@ describe('Users Index Controller', function() {
     });
 
     it('should get all users', function() {
-      $httpBackend.expectGET('/api/allusers').respond(304);
+      $httpBackend.expectGET('/api/allusers').respond(200);
 
       $scope.allUsers();
       $httpBackend.flush();
@@ -42,10 +42,12 @@ describe('Users Index Controller', function() {
     });
 
     it('should get one users by jwt', function() {
-      $httpBackend.expectGET('/api/user').respond(304);
+      $httpBackend.expectGET('/api/user').respond(200);
 
       $scope.User();
       $httpBackend.flush();
+
+      console.log($scope.user);
 
       expect($scope.user).toBeDefined();
     });
@@ -54,11 +56,17 @@ describe('Users Index Controller', function() {
       $httpBackend.expectPUT('/api/user').respond(200, {msg: 'user updated'});
 
       $scope.user = {
-          email: 'test@example.com',
-          first: 'test',
-          last: 'example',
-          phone: '454-473-7474'
+          basic: {
+            email: 'test@example.com'
+          },
+          userinfo: {
+            first: 'test',
+            last: 'example',
+            phone: '454-473-7474'
+          }
         };
+
+      console.log($scope.user);
       
       $scope.changeUserInfo();
       $httpBackend.flush();
