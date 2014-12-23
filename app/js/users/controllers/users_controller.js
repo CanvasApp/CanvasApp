@@ -15,7 +15,7 @@ module.exports = function(app) {
         url: '/api/users'
       })
       .success(function(data) {
-        console.log('worked');
+        console.log('sign in worked');
         $scope.msg = 'success!';
         $cookies.jwt = data.jwt;
         $location.path('/dash');
@@ -28,7 +28,7 @@ module.exports = function(app) {
     };
 
     $scope.signUp = function() {
-      console.log('get in signin');
+      console.log('get in signup');
       $scope.errors = [];
       $http.defaults.headers.common['Authorization'] = 'Basic ' + $base64.encode($scope.newUser.email + ':' + $scope.newUser.password);
 
@@ -45,7 +45,7 @@ module.exports = function(app) {
         data: $scope.newUser,
       })
       .success(function(data) {
-        console.log('please');
+        console.log('sign up worked');
         console.log(data);
         $scope.msg = 'success!';
         $cookies.jwt = data.jwt;

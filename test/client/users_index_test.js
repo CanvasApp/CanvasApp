@@ -8,6 +8,8 @@ describe('Users Index Controller', function() {
   var $httpBackend;
   var $scope;
   var $cookies = {jwt:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1N…4NDV9.5dr6hQ2rJr9972-LuyxcL6xnVVRRwdbJ7CDNHKDgcrQ'};
+  var testuser = {basic: {email: 'test@example.com', password: 'Foobar123'},
+                  userinfo: {name: {first: 'test', last: 'example'}, phone: '111-222-3333'}};
 
   beforeEach(angular.mock.module('codeApp'));
 
@@ -33,27 +35,28 @@ describe('Users Index Controller', function() {
     });
 
     it('should get all users', function() {
-      $httpBackend.expectGET('/api/allusers').respond(200);
+      $httpBackend.expectGET('/api/allusers').respond(304, testuser);
 
+      var ctrl = $controllerConstructor('userIndexCtrl', {$scope: $scope, $cookies: $cookies});
       $scope.allUsers();
+      debugger;
       $httpBackend.flush();
       
       expect($scope.users).toBeDefined();
     });
 
-    it('should get one users by jwt', function() {
-      $httpBackend.expectGET('/api/user').respond(200);
+    it('should get one user by jwt', function() {
+      $httpBackend.expectGET('/api/user').respond(304, testuser);
 
       $scope.User();
+      debugger;
       $httpBackend.flush();
-
-      console.log($scope.user);
 
       expect($scope.user).toBeDefined();
     });
 
     it('should be able to change the user info', function() {
-      $httpBackend.expectPUT('/api/user').respond(200, {msg: 'user updated'});
+      $httpBackend.expectPUT('/api/user').respond(200, testuser);
 
       $scope.user = {
           basic: {
@@ -69,6 +72,7 @@ describe('Users Index Controller', function() {
       console.log($scope.user);
       
       $scope.changeUserInfo();
+      debugger;
       $httpBackend.flush();
 
       expect($scope.user).toBeDefined();
@@ -81,6 +85,7 @@ describe('Users Index Controller', function() {
       $scope.deleteuser.emailConfirmation = 'test@example.com';
 
       $scope.deleteUser();
+      debugger;
       $httpBackend.flush();
       
       expect($scope.data).toBe(null);

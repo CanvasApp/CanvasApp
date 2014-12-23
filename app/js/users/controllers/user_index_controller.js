@@ -59,7 +59,7 @@ module.exports = function(app) {
       });
     };
 
-    //for students only
+    //for students.  can be used by teachers and admins.
     $scope.addStudent = function() {
       console.log('enroll student');
       $http({
