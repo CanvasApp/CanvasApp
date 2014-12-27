@@ -35,36 +35,35 @@ describe('Users Index Controller', function() {
     });
 
     it('should get all users', function() {
-      $httpBackend.expectGET('/api/allusers').respond(304, testuser);
+      $httpBackend.expectGET('/api/allusers').respond(200, 'find all users');
 
-      var ctrl = $controllerConstructor('userIndexCtrl', {$scope: $scope, $cookies: $cookies});
       $scope.allUsers();
-      debugger;
       $httpBackend.flush();
       
-      expect($scope.users).toBeDefined();
+      expect($scope.msg).toEqual('success!');
     });
 
     it('should get one user by jwt', function() {
-      $httpBackend.expectGET('/api/user').respond(304, testuser);
+      $httpBackend.expectGET('/api/user').respond(200, 'find user');
 
       $scope.User();
-      debugger;
       $httpBackend.flush();
 
-      expect($scope.user).toBeDefined();
+      expect($scope.msg).toEqual('success!');
     });
 
     it('should be able to change the user info', function() {
-      $httpBackend.expectPUT('/api/user').respond(200, testuser);
+      $httpBackend.expectPUT('/api/user').respond(200);
 
       $scope.user = {
           basic: {
             email: 'test@example.com'
           },
           userinfo: {
-            first: 'test',
-            last: 'example',
+            name: {
+              first: 'test',
+              last: 'example'
+            },
             phone: '454-473-7474'
           }
         };
@@ -72,23 +71,23 @@ describe('Users Index Controller', function() {
       console.log($scope.user);
       
       $scope.changeUserInfo();
-      debugger;
       $httpBackend.flush();
 
-      expect($scope.user).toBeDefined();
+      expect($scope.msg).toEqual('success!');
     });
 
     it('should be able to delete a user', function() {
-      $httpBackend.expectDELETE('/api/user').respond(200, {msg: 'user has been sent to the phantom zone'});
-      
-      $scope.deleteuser.email = 'test@example.com';
-      $scope.deleteuser.emailConfirmation = 'test@example.com';
+      $httpBackend.expectDELETE('/api/user').respond(200, 'user was deleted');
+
+      $scope.deleteuser = {
+        email: 'test@example.com',
+        emailConfirmation: 'test@example.com'
+      };
 
       $scope.deleteUser();
-      debugger;
       $httpBackend.flush();
       
-      expect($scope.data).toBe(null);
+      expect($scope.data).toBeDefined;
     });
   });
 });
