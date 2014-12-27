@@ -8,8 +8,6 @@ describe('Users Index Controller', function() {
   var $httpBackend;
   var $scope;
   var $cookies = {jwt:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1N…4NDV9.5dr6hQ2rJr9972-LuyxcL6xnVVRRwdbJ7CDNHKDgcrQ'};
-  var testuser = {basic: {email: 'test@example.com', password: 'Foobar123'},
-                  userinfo: {name: {first: 'test', last: 'example'}, phone: '111-222-3333'}};
 
   beforeEach(angular.mock.module('codeApp'));
 
@@ -87,7 +85,7 @@ describe('Users Index Controller', function() {
       $scope.deleteUser();
       $httpBackend.flush();
       
-      expect($scope.data).toBeDefined;
+      expect($scope.msg).toEqual('success!');
     });
   });
 });
