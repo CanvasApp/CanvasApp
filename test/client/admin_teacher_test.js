@@ -46,6 +46,6 @@ describe('The admin and teacher controllers', function() {
 
       expect($scope.data).toBeDefined();
       expect($scope.data).toEqual({msg: 'user is now an admin'});
-    })
-  })
+    });
+  });
 });
