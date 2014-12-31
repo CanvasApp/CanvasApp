@@ -8,6 +8,14 @@ describe('The admin and teacher controllers', function() {
   var $httpBackend;
   var $scope;
   var $cookies = {jwt:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1N…4NDV9.5dr6hQ2rJr9972-LuyxcL6xnVVRRwdbJ7CDNHKDgcrQ'};
+  var personInfo = { userinfo: 
+                       { phone: '847-777-7777',
+                         name: { first: 'test', last: 'user' } },
+                      usermessages: [],
+                      userStatus: { admin: true, teacher: true },
+                      basic: 
+                       { password: 'Foobar123',
+                         email: 'test@example.com' } };
 
   beforeEach(angular.mock.module('codeApp'));
 
@@ -27,7 +35,6 @@ describe('The admin and teacher controllers', function() {
   });
 
   describe('the admin tests', function() {
-    beforeEach(angular.mock.module('codeApp'));
     beforeEach(angular.mock.inject(function(_$httpBackend_) {
       $httpBackend = _$httpBackend_;
       $controllerConstructor('adminCtrl', {$scope: $scope, $cookies: $cookies});
@@ -35,17 +42,16 @@ describe('The admin and teacher controllers', function() {
 
     afterEach(function() {
       $httpBackend.verifyNoOutstandingExpectation();
-      $httpBackend.veryfyNoOutstandingRequest();
+      $httpBackend.verifyNoOutstandingRequest();
     });
 
     it('should make a user into an admin', function() {
-      $httpBackend.expectPUT('/api/confirmadmin').respond(200, {msg: 'user is now an admin'});
+      $httpBackend.expectPUT('/api/confirmadmin').respond(200, personInfo);
 
       $scope.confirmAdmin();
       $httpBackend.flush();
 
-      expect($scope.data).toBeDefined();
-      expect($scope.data).toEqual({msg: 'user is now an admin'});
+      expect(personInfo.userStatus.admin).toBe(true);
     });
   });
 });

@@ -8,6 +8,14 @@ describe('Users Index Controller', function() {
   var $httpBackend;
   var $scope;
   var $cookies = {jwt:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1N…4NDV9.5dr6hQ2rJr9972-LuyxcL6xnVVRRwdbJ7CDNHKDgcrQ'};
+  var personInfo = { userinfo: 
+                       { phone: '847-777-7777',
+                         name: { first: 'test', last: 'user' } },
+                      usermessages: [],
+                      userStatus: { admin: true, teacher: true },
+                      basic: 
+                       { password: 'Foobar123',
+                         email: 'test@example.com' } };
 
   beforeEach(angular.mock.module('codeApp'));
 
@@ -33,16 +41,17 @@ describe('Users Index Controller', function() {
     });
 
     it('should get all users', function() {
-      $httpBackend.expectGET('/api/allusers').respond(200, 'find all users');
+      $httpBackend.expectGET('/api/allusers').respond(200, personInfo);
 
       $scope.allUsers();
       $httpBackend.flush();
-      
+
+      expect(personInfo.userinfo.name.first).toEqual('test');
       expect($scope.msg).toEqual('success!');
     });
 
     it('should get one user by jwt', function() {
-      $httpBackend.expectGET('/api/user').respond(200, 'find user');
+      $httpBackend.expectGET('/api/user').respond(200, personInfo);
 
       $scope.User();
       $httpBackend.flush();
@@ -51,7 +60,7 @@ describe('Users Index Controller', function() {
     });
 
     it('should be able to change the user info', function() {
-      $httpBackend.expectPUT('/api/user').respond(200);
+      $httpBackend.expectPUT('/api/user').respond(200, personInfo);
 
       $scope.user = {
           basic: {

@@ -13,6 +13,7 @@ module.exports = function(app) {
       })
       .success(function(data) {
         console.log(data);
+        $scope.msg = 'success!';
       })
       .error(function(data) {
         console.log(data);
