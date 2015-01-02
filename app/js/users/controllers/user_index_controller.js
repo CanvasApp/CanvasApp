@@ -55,7 +55,7 @@ module.exports = function(app) {
         console.log($scope.user.userinfo.name.first);
         console.log($scope.user.userinfo.name.last);
         console.log($scope.user.userinfo.phone);
-        $scope.user = data.msg;
+        $scope.user = data;
       })
       .error(function(data) {
         console.log(data);
@@ -89,7 +89,6 @@ module.exports = function(app) {
         url: '/api/user'
       })
       .success(function(data) {
-        $scope.msg = 'success!';
         console.log('user was deleted');
         console.log(data);
       })

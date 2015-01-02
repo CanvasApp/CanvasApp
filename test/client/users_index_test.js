@@ -16,14 +16,6 @@ describe('Users Index Controller', function() {
                       basic: 
                        { password: 'Foobar123',
                          email: 'test@example.com' } };
-  // var updatedPersonInfo = { userinfo: 
-  //                      { phone: '777-777-7777',
-  //                        name: { first: 'tester', last: 'users' } },
-  //                     usermessages: [],
-  //                     userStatus: { admin: true, teacher: true },
-  //                     basic: 
-  //                      { password: 'Foobar123',
-  //                        email: 'test1@example.com' } };
 
   beforeEach(angular.mock.module('codeApp'));
 
@@ -68,15 +60,20 @@ describe('Users Index Controller', function() {
 
     it('should be able to change the user info', function() {
       $httpBackend.expectPUT('/api/user').respond(200, {msg: 'user updated'});
+
+      $scope.user = {
+        basic: {email: 'test1@example.com'},
+        userinfo:{name:{first: 'test', last: 'tester'},phone: '555-555-5555'}
+      };
       
       $scope.changeUserInfo();
       $httpBackend.flush();
 
-      expect($scope.user.msg).toEqual('user updated');
+      expect($scope.user).toBeDefined();
     });
 
     it('should be able to delete a user', function() {
-      $httpBackend.expectDELETE('/api/user').respond(200, 'user was deleted');
+      $httpBackend.expectDELETE('/api/user').respond(200, {msg: 'user has been sent to the phantom zone'});
 
       $scope.deleteuser = {
         email: 'test@example.com',
