@@ -83,7 +83,7 @@ describe('Users Index Controller', function() {
       $scope.deleteUser();
       $httpBackend.flush();
       
-      expect($scope.msg).toEqual('success!');
+      expect($scope.deleteuser.msg).toEqual('user has been sent to the phantom zone');
     });
   });
 });

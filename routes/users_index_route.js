@@ -33,7 +33,7 @@ module.exports = function(app, jwtauth) {
       user.userinfo.name.first = req.body.first;
       user.userinfo.name.last = req.body.last;
       user.userinfo.phone = req.body.phone;
-      if (!req.body.email) return res.send({msg: user.basic.email});
+      if (!req.body.email) return res.send({msg: 'email address required'});
       user.save(function(err, data) {
         if (err) return res.status(500).send('error');
         if (!data) return res.send({msg: 'did not save'});

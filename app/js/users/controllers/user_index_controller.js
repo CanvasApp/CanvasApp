@@ -91,6 +91,7 @@ module.exports = function(app) {
       .success(function(data) {
         console.log('user was deleted');
         console.log(data);
+        $scope.deleteuser = data;
       })
       .error(function(data){
         console.log(data);
