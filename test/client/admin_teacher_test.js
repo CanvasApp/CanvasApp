@@ -51,7 +51,16 @@ describe('The admin and teacher controllers', function() {
       $scope.confirmAdmin();
       $httpBackend.flush();
 
-      expect(personInfo.userStatus.admin).toBe(true);
+      expect($scope.user).toBeDefined();
     });
+
+    it('should make assing a teacher to a class', function() {
+      $httpBackend.expectPUT('/api/teacherenrollment' + code).respond(200, {msg: 'user is now a teacher'});
+
+      $scope.addTeacher();
+      $httpBackend.flush();
+
+      expect($scope.enrollment)
+    })
   });
 });
