@@ -14,7 +14,6 @@ module.exports = function(app) {
         url: '/api/allusers'
       })
       .success(function(data) {
-        $scope.msg = 'success!';
         $scope.users = data;
       })
       .error(function(data) {
@@ -30,7 +29,6 @@ module.exports = function(app) {
         url: '/api/user'
       })
       .success(function(data) {
-        $scope.msg = 'success!';
         $scope.user = data;
       })
       .error(function(data) {
@@ -52,11 +50,12 @@ module.exports = function(app) {
       })
       .success(function(data) {
         console.log(data);
+        console.log(data.msg);
         console.log($scope.user.basic.email);
         console.log($scope.user.userinfo.name.first);
         console.log($scope.user.userinfo.name.last);
         console.log($scope.user.userinfo.phone);
-        $scope.msg = 'success!';
+        $scope.user = data.msg;
       })
       .error(function(data) {
         console.log(data);

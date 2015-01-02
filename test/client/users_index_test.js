@@ -16,6 +16,14 @@ describe('Users Index Controller', function() {
                       basic: 
                        { password: 'Foobar123',
                          email: 'test@example.com' } };
+  // var updatedPersonInfo = { userinfo: 
+  //                      { phone: '777-777-7777',
+  //                        name: { first: 'tester', last: 'users' } },
+  //                     usermessages: [],
+  //                     userStatus: { admin: true, teacher: true },
+  //                     basic: 
+  //                      { password: 'Foobar123',
+  //                        email: 'test1@example.com' } };
 
   beforeEach(angular.mock.module('codeApp'));
 
@@ -46,41 +54,25 @@ describe('Users Index Controller', function() {
       $scope.allUsers();
       $httpBackend.flush();
 
-      expect(personInfo.userinfo.name.first).toEqual('test');
-      expect($scope.msg).toEqual('success!');
+      expect($scope.users.userinfo.name.first).toEqual('test');
     });
 
-    it('should get one user by jwt', function() {
+    it('should get one user', function() {
       $httpBackend.expectGET('/api/user').respond(200, personInfo);
 
       $scope.User();
       $httpBackend.flush();
 
-      expect($scope.msg).toEqual('success!');
+      expect($scope.user.userinfo.name.first).toEqual('test');
     });
 
     it('should be able to change the user info', function() {
-      $httpBackend.expectPUT('/api/user').respond(200, personInfo);
-
-      $scope.user = {
-          basic: {
-            email: 'test@example.com'
-          },
-          userinfo: {
-            name: {
-              first: 'test',
-              last: 'example'
-            },
-            phone: '454-473-7474'
-          }
-        };
-
-      console.log($scope.user);
+      $httpBackend.expectPUT('/api/user').respond(200, {msg: 'user updated'});
       
       $scope.changeUserInfo();
       $httpBackend.flush();
 
-      expect($scope.msg).toEqual('success!');
+      expect($scope.user.msg).toEqual('user updated');
     });
 
     it('should be able to delete a user', function() {
