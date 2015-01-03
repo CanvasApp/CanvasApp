@@ -17,10 +17,19 @@ describe('The admin and teacher controllers', function() {
                        { password: 'Foobar123',
                          email: 'test@example.com' } };
 
+  // var student = { userinfo: 
+  //                      { phone: '847-777-7777',
+  //                        name: { first: 'test', last: 'user' } },
+  //                     usermessages: [],
+  //                     userStatus: { admin: false, teacher: false },
+  //                     basic: 
+  //                      { password: 'Foobar123',
+  //                        email: 'test@example.com' } };
+
   var enroll = { enrollment:
                 { code: 'dcabb',
                   coursename: 'Javascript Dev 1', 
-                  students: [{email: 'test@example.com', pass: false}], 
+                  students: [{email: 'test@example.com', pass: true}], 
                   teachers: [{email: 'test1@example.com'}] }};
 
   beforeEach(angular.mock.module('codeApp'));
@@ -70,6 +79,33 @@ describe('The admin and teacher controllers', function() {
 
       expect($scope.enrollments).toBeDefined();
       expect($scope.enrollments.enrollment.teachers[0].email).toEqual('test1@example.com');
+    });
+  });
+
+  describe('the teacher tests', function() {
+    beforeEach(angular.mock.inject(function(_$httpBackend_) {
+      $httpBackend = _$httpBackend_;
+      $controllerConstructor('teacherCtrl', {$scope: $scope, $cookies: $cookies});
+    }));
+
+    afterEach(function() {
+      $httpBackend.verifyNoOutstandingExpectation();
+      $httpBackend.verifyNoOutstandingRequest();
+    });
+
+    it('should mark a student as passed', function() {
+      $scope.course = {code: 'dcabb'};
+      $httpBackend.expectPUT('/api/studentenrollmentpass/' + $scope.course.code).respond(200, enroll);
+
+      $scope.user = {
+        email: 'test@example.com'
+      };
+
+      $scope.markPass();
+      $httpBackend.flush();
+
+      expect($scope.enrollment).toBeDefined();
+      expect($scope.enrollment.enrollment.students[0].pass).toEqual(true);
     });
   });
 });
