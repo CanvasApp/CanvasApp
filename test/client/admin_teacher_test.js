@@ -66,13 +66,13 @@ describe('The admin and teacher controllers', function() {
       expect($scope.user).toBeDefined();
     });
 
-    it('should make assing a teacher to a class', function() {
+    it('should enroll a teacher in  to a class', function() {
       $httpBackend.expectPUT('/api/teacherenrollment' + course.code).respond(200, enroll);
 
       $scope.addTeacher();
       $httpBackend.flush();
 
-      expect($scope.enrollment).toBeDefined();
+      expect($scope.enrollments).toBeDefined();
     });
   });
 });
