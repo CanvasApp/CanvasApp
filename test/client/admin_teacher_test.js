@@ -17,12 +17,6 @@ describe('The admin and teacher controllers', function() {
                        { password: 'Foobar123',
                          email: 'test@example.com' } };
 
-  // var course = { code: '6a02d',
-  //                 description: 'This is the big folkds',
-  //                 name: 'JavaScript Dev Accel',
-  //                 schedule: 'Summer 2016',
-  //                 summary: 'This is the big...' };
-
   var enroll = { enrollment:
                 { code: 'dcabb',
                   coursename: 'Javascript Dev 1', 
@@ -64,6 +58,7 @@ describe('The admin and teacher controllers', function() {
       $httpBackend.flush();
 
       expect($scope.user).toBeDefined();
+      expect($scope.user.userStatus.admin).toEqual(true);
     });
 
     it('should enroll a teacher in  to a class', function() {
