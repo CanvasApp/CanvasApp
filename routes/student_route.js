@@ -31,7 +31,7 @@ module.exports = function(app, jwtauth) {
           if (err) return res.status(500).send('error');
           if (!enrollment) return res.send({msg: 'teacher not enrolled in class'});
           console.log(enrollment);
-          res.json({msg: 'Teacher added to course'});
+          res.json(enrollment);
         });
       } else {
         res.json({msg: 'if you could teach the class then you wouldnt need to take it'});

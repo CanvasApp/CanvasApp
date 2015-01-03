@@ -17,18 +17,17 @@ describe('The admin and teacher controllers', function() {
                        { password: 'Foobar123',
                          email: 'test@example.com' } };
 
-  var course = { code: '6a02d',
-                  description: 'This is the big folkds',
-                  name: 'JavaScript Dev Accel',
-                  schedule: 'Summer 2016',
-                  summary: 'This is the big...' };
+  // var course = { code: '6a02d',
+  //                 description: 'This is the big folkds',
+  //                 name: 'JavaScript Dev Accel',
+  //                 schedule: 'Summer 2016',
+  //                 summary: 'This is the big...' };
 
   var enroll = { enrollment:
                 { code: 'dcabb',
                   coursename: 'Javascript Dev 1', 
                   students: [{email: 'test@example.com', pass: false}], 
                   teachers: [{email: 'test1@example.com'}] }};
-  var param;
 
   beforeEach(angular.mock.module('codeApp'));
 
@@ -69,12 +68,13 @@ describe('The admin and teacher controllers', function() {
 
     it('should enroll a teacher in  to a class', function() {
       $scope.course = {code: 'dcabb'};
-      $httpBackend.expectPUT('/api/teacherenrollment/' + $scope.course.code).respond(200, {msg: 'Teacher added to course'});
+      $httpBackend.expectPUT('/api/teacherenrollment/' + $scope.course.code).respond(200, enroll);
 
       $scope.addTeacher();
       $httpBackend.flush();
 
       expect($scope.enrollments).toBeDefined();
+      expect($scope.enrollments.enrollment.teachers[0].email).toEqual('test1@example.com');
     });
   });
 });
