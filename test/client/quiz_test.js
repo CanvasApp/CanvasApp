@@ -48,7 +48,7 @@ describe('the quiz controller test', function() {
             javascript: true, python: false, ruby: false, objectiveC: false
           }
         }
-      }
+      };
 
       $scope.createQuestion();
       $httpBackend.flush();
