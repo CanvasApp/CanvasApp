@@ -17,6 +17,18 @@ describe('The admin and teacher controllers', function() {
                        { password: 'Foobar123',
                          email: 'test@example.com' } };
 
+  var course = { code: '6a02d',
+                  description: 'This is the big folkds',
+                  name: 'JavaScript Dev Accel',
+                  schedule: 'Summer 2016',
+                  summary: 'This is the big...' };
+
+  var enroll = { enrollment:
+                { code: 'dcabb',
+                  coursename: 'Javascript Dev 1', 
+                  students: [{email: 'test@example.com', pass: false}], 
+                  teachers: [{email: 'test1@example.com'}] }};
+
   beforeEach(angular.mock.module('codeApp'));
 
   beforeEach(angular.mock.inject(function($rootScope, $controller) {
@@ -55,12 +67,12 @@ describe('The admin and teacher controllers', function() {
     });
 
     it('should make assing a teacher to a class', function() {
-      $httpBackend.expectPUT('/api/teacherenrollment' + code).respond(200, {msg: 'user is now a teacher'});
+      $httpBackend.expectPUT('/api/teacherenrollment' + course.code).respond(200, enroll);
 
       $scope.addTeacher();
       $httpBackend.flush();
 
-      expect($scope.enrollment)
-    })
+      expect($scope.enrollment).toBeDefined();
+    });
   });
 });

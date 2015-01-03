@@ -66,7 +66,7 @@
   <!--for admins & teachers only-->
   <h2>Assign a teacher</h2>
   <form name='addteachertocourse'>
-    <input type='text' data-ng-model='course.code'>Enter Course Code</input>
+    <input type='text' data-ng-model='course.code' required>Enter Course Code</input>
     <button data-ng-click='addTeacher()'>Add Teacher</button>
     <article data-ng-model='enrollments'>
       <article data-ng-repeat='enrollment in enrollments'>

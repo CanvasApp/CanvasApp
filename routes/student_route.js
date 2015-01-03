@@ -30,6 +30,7 @@ module.exports = function(app, jwtauth) {
         function(err, enrollment) {
           if (err) return res.status(500).send('error');
           if (!enrollment) return res.send({msg: 'teacher not enrolled in class'});
+          console.log(enrollment);
           res.json(enrollment);
         });
       } else {
