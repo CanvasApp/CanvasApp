@@ -84,17 +84,29 @@ describe('The course controller tests', function() {
       $scope.course = {code: '4badd'};
       $httpBackend.expectPUT('/api/courses/' + $scope.course.code).respond(200, courseChanged);
 
-      $scope.course = {
-        name: 'Python 2',
-        schedule: 'Winter 2015',
-        description: 'I changed the description of the course'
-      };
-
       $scope.updateCourse();
       $httpBackend.flush();
 
       expect($scope.course).toBeDefined();
-      //expect($scope.course.description).toEqual('I changed the description of the course');
+      expect($scope.course.description).toEqual('I changed the description of the course.');
     });
+
+    it('should delete a course', function() {
+      $scope.course = {code: '4badd'};
+      $httpBackend.expectDELETE('/api/course/' + $scope.course.code).respond(200, { msg: 'course removed'});
+
+      $scope.deleteCourse();
+      $httpBackend.flush();
+
+      expect($scope.msg.msg).toEqual('course removed');
+    });
+
+    it('should confirm a teacher', function() {
+      $httpBackend.expectPUT('/api/confirmteacher').respond(200, )
+    })
+
+    it('should unconfirm a teacher', function() {
+
+    })
   });
 });

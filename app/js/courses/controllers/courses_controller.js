@@ -105,12 +105,13 @@ module.exports = function(app) {
       })
       .success(function(data) {
         console.log(data);
+        $scope.msg = data;
       })
       .error(function(data) {
         console.log(data);
       });
     };
-    
+
     $scope.confirmTeacher = function() {
       $http({
         method: 'PUT',
@@ -122,6 +123,7 @@ module.exports = function(app) {
       .success(function(data) {
         console.log($scope.user);
         console.log(data);
+        $scope.user = data;
       })
       .error(function(data) {
         console.log($scope.user);
@@ -140,6 +142,7 @@ module.exports = function(app) {
       .success(function(data) {
         console.log($scope.user);
         console.log(data);
+        $scope.user = data;
       })
       .error(function(data) {
         console.log(data);
