@@ -17,15 +17,6 @@ describe('The admin and teacher controllers', function() {
                        { password: 'Foobar123',
                          email: 'test@example.com' } };
 
-  // var student = { userinfo: 
-  //                      { phone: '847-777-7777',
-  //                        name: { first: 'test', last: 'user' } },
-  //                     usermessages: [],
-  //                     userStatus: { admin: false, teacher: false },
-  //                     basic: 
-  //                      { password: 'Foobar123',
-  //                        email: 'test@example.com' } };
-
   var enroll = { enrollment:
                 { code: 'dcabb',
                   coursename: 'Javascript Dev 1', 
