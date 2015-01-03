@@ -28,6 +28,7 @@ describe('The admin and teacher controllers', function() {
                   coursename: 'Javascript Dev 1', 
                   students: [{email: 'test@example.com', pass: false}], 
                   teachers: [{email: 'test1@example.com'}] }};
+  var param;
 
   beforeEach(angular.mock.module('codeApp'));
 
@@ -67,7 +68,8 @@ describe('The admin and teacher controllers', function() {
     });
 
     it('should enroll a teacher in  to a class', function() {
-      $httpBackend.expectPUT('/api/teacherenrollment' + course.code).respond(200, enroll);
+      $scope.course = {code: 'dcabb'};
+      $httpBackend.expectPUT('/api/teacherenrollment/' + $scope.course.code).respond(200, {msg: 'Teacher added to course'});
 
       $scope.addTeacher();
       $httpBackend.flush();
