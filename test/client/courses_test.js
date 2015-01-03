@@ -19,6 +19,23 @@ describe('The course controller tests', function() {
                         schedule: 'Winter 2015',
                         description: 'I changed the description of the course.',
                         code: '4badd' };
+
+  var teacherInfo = { userinfo: 
+                       { phone: '847-777-7777',
+                         name: { first: 'test', last: 'user' } },
+                      usermessages: [],
+                      userStatus: { admin: true, teacher: true },
+                      basic: 
+                       { password: 'Foobar123',
+                         email: 'test@example.com' } };
+  var notTeacherInfo = { userinfo: 
+                       { phone: '847-777-7777',
+                         name: { first: 'test', last: 'user' } },
+                      usermessages: [],
+                      userStatus: { admin: true, teacher: false },
+                      basic: 
+                       { password: 'Foobar123',
+                         email: 'test@example.com' } };
                 
   beforeEach(angular.mock.module('codeApp'));
 
@@ -102,11 +119,31 @@ describe('The course controller tests', function() {
     });
 
     it('should confirm a teacher', function() {
-      $httpBackend.expectPUT('/api/confirmteacher').respond(200, )
-    })
+      $httpBackend.expectPUT('/api/confirmteacher').respond(200, teacherInfo);
+
+      $scope.user = {
+        email: 'test@example.com'
+      };
+
+      $scope.confirmTeacher();
+      $httpBackend.flush();
+
+      expect($scope.user).toBeDefined();
+      expect($scope.user.userStatus.teacher).toBe(true);
+    });
 
     it('should unconfirm a teacher', function() {
+      $httpBackend.expectPUT('/api/unconfirmteacher').respond(200, notTeacherInfo);
 
-    })
+      $scope.user = {
+        email: 'test@example.com'
+      };
+
+      $scope.unconfirmTeacher();
+      $httpBackend.flush();
+
+      expect($scope.user).toBeDefined();
+      expect($scope.user.userStatus.teacher).toBe(false);
+    });
   });
 });

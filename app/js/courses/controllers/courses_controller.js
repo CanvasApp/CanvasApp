@@ -134,7 +134,7 @@ module.exports = function(app) {
     $scope.unconfirmTeacher = function() {
       $http({
         method: 'PUT',
-        url: '/api/unconfirmTeacher',
+        url: '/api/unconfirmteacher',
         data: {
           email: $scope.user
         }
