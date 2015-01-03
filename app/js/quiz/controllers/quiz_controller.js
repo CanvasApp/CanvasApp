@@ -33,6 +33,7 @@ module.exports = function(app) {
         })
         .success(function(data) {
           console.log(data);
+          $scope.quiz = data;
         })
         .error(function(data) {
           console.log(data);
