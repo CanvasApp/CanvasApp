@@ -18,6 +18,7 @@ module.exports = function(app) {
       })
       .success(function(data) {
         console.log(data);
+        $scope.course = data;
       })
       .error(function(data) {
         console.log(data);
@@ -67,6 +68,7 @@ module.exports = function(app) {
         .success(function(data) {
           console.log(data);
           console.log($scope.course.code);
+          $scope.course = data;
         })
         .error(function(data) {
           console.log(data);
@@ -103,12 +105,14 @@ module.exports = function(app) {
       })
       .success(function(data) {
         console.log(data);
+        $scope.msg = data;
       })
       .error(function(data) {
         console.log(data);
       });
     };
-        $scope.confirmTeacher = function() {
+
+    $scope.confirmTeacher = function() {
       $http({
         method: 'PUT',
         url: '/api/confirmteacher',
@@ -119,6 +123,7 @@ module.exports = function(app) {
       .success(function(data) {
         console.log($scope.user);
         console.log(data);
+        $scope.user = data;
       })
       .error(function(data) {
         console.log($scope.user);
@@ -129,7 +134,7 @@ module.exports = function(app) {
     $scope.unconfirmTeacher = function() {
       $http({
         method: 'PUT',
-        url: '/api/unconfirmTeacher',
+        url: '/api/unconfirmteacher',
         data: {
           email: $scope.user
         }
@@ -137,6 +142,7 @@ module.exports = function(app) {
       .success(function(data) {
         console.log($scope.user);
         console.log(data);
+        $scope.user = data;
       })
       .error(function(data) {
         console.log(data);
