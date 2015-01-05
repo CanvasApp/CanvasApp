@@ -11,7 +11,7 @@ module.exports = function(app) {
     $scope.send = function () {
       $http({
         method: 'POST',
-        url: 'api/sendmessage',
+        url: '/api/sendmessage',
         data: {
           to: $scope.newMessage.to,
           message: {
@@ -26,6 +26,7 @@ module.exports = function(app) {
         console.log($scope.newMessage.message.main);
         console.log($scope.newMessage.message.subject);
         console.log($scope.newMessage.message.from);
+        $scope.messagedata = data;
         $location.path('/inbox');
       })
       .error(function(data) {
@@ -43,6 +44,8 @@ module.exports = function(app) {
           url: '/api/inbox/' + data.data.basic.email
         }).success(function(data) {
           console.log(2);
+          console.log(data.data);
+          console.log(data.data.basic.email);
           console.log(data.usermessages[(data.usermessages.length - 1)]);
           //var arr = (data.usermessages.length - 1);
           $scope.usermessages = data.usermessages[data.usermessages.length - 1];
