@@ -18,7 +18,7 @@ module.exports = function(app, jwtauth) {
     });
   });
 
-
+  //gets messages from database
   app.get('/api/inbox/:to', jwtauth, function(req, res) {
     User.findOne({_id: req.user._id}, function(err, user) {
       if (err) res.status(500).send('error');
@@ -26,7 +26,7 @@ module.exports = function(app, jwtauth) {
       Message.find({'to': req.params.to}, function(err, message) {
         if (err) res.status(500).send('error');
         if (!message) {res.send('No new Mail');} else {
-          User.findOneAndUpdate({_id: req.user._id}, {$push:{usermessages: message}},
+          User.findOneAndUpdate({_id: req.user._id}, {$addToSet:{usermessages: message}},
            function(err, data) {
             if (err) res.status(500);
             res.json(data);

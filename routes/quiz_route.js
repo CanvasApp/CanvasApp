@@ -89,7 +89,8 @@ module.exports = function(app, jwtauth) {
           quiz.save(function(err, data) {
             if (err) res.status(500).send('error');
             if (!data) res.send({msg: 'could not save quiz question'});
-            res.json({msg: 'quiz question updated', data: data});
+            console.log(data);
+            res.json({msg: 'quiz question updated'});
           });
         });
       } else {
