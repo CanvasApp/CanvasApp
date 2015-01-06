@@ -74,9 +74,9 @@ describe('The message controller test', function() {
       data = {data: personInfo};
       //var url = '/api/inbox/' + data.data.basic.email;
       console.log(data.data.basic.email + '<-----email!');
-      $httpBackend.expectGET('/api/user').respond(200, data);
+      $httpBackend.expectGET('/api/user').respond(200, data);      
       $httpBackend.expectGET('/api/inbox/' + data.data.basic.email).respond(200, testmessage);
-      
+
       $scope.getMail();
       $httpBackend.flush();
 

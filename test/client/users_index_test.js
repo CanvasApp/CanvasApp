@@ -17,6 +17,18 @@ describe('Users Index Controller', function() {
                        { password: 'Foobar123',
                          email: 'test@example.com' } };
 
+  var course = {  name: 'Python 2',
+                  summary: 'This is a great...',
+                  schedule: 'Summer 2015',
+                  description: 'This is a great course to take if you want to learn python.',
+                  code: '4badd' };
+
+  var enroll = { enrollment:
+                { code: 'dcabb',
+                  coursename: 'Javascript Dev 1', 
+                  students: [{email: 'test@example.com', pass: false}], 
+                  teachers: [{email: 'test1@example.com'}] }};
+
   beforeEach(angular.mock.module('codeApp'));
 
   beforeEach(angular.mock.inject(function($rootScope, $controller){
@@ -71,6 +83,16 @@ describe('Users Index Controller', function() {
 
       expect($scope.user).toBeDefined();
     });
+
+    it('should add a student to a course', function() {
+      $scope.course = {code: '4badd'};
+      $httpBackend.expectPUT('/api/studentenrollment/' + $scope.course.code).respond(200, enroll);
+
+      $scope.addStudent();
+      $httpBackend.flush();
+
+      expect($scope.course.coursename).toBeDefined();
+    })
 
     it('should be able to delete a user', function() {
       $httpBackend.expectDELETE('/api/user').respond(200, {msg: 'user has been sent to the phantom zone'});
