@@ -7,6 +7,8 @@ describe('The message controller test', function() {
   var $controllerContstructor;
   var $httpBackend;
   var $scope;
+  var data;
+  var $http;
   var $cookies = {jwt: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1N…4NDV9.5dr6hQ2rJr9972-LuyxcL6xnVVRRwdbJ7CDNHKDgcrQ'};
   var testmessage = {
     to: 'test@example.com',
@@ -69,11 +71,17 @@ describe('The message controller test', function() {
     });
 
     it('should be able to get a message', function() {
-      
-      $httpBackend.expectGET('/api/user').respond(200, personInfo);
-      $httpBackend.expectGET('/api/inbox/' + data.data.basic.email).respond(200, personInfo.usermessages[0]);
+      data = {data: personInfo};
+      var url = '/api/inbox/' + data.data.basic.email;
+      console.log(data.data.basic.email + '<-----email!');
+      $httpBackend.whenGET('/api/user').respond(200, data);
+      console.log('start second url get request');
+      $httpBackend.whenGET(url).respond(200, testmessage);
 
+      $scope.getMail();
+      $httpBackend.flush();
 
+      expect($scope.usermessages).toBeDefined();
     });
   });
 });

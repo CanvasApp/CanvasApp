@@ -33,23 +33,27 @@ module.exports = function(app) {
         console.log(data);
       });
     };
+    
     $scope.getMail = function() {
       $http({
         method: 'GET',
         url: '/api/user'
       })
       .then(function(data) {
+        console.log(data);
+        console.log(data.data.basic.email);
         $http({
           method: 'GET',
           url: '/api/inbox/' + data.data.basic.email
         }).success(function(data) {
-          console.log(2);
-          console.log(data.data);
-          console.log(data.data.basic.email);
+          console.log(data);
           console.log(data.usermessages[(data.usermessages.length - 1)]);
-          //var arr = (data.usermessages.length - 1);
+          $scope.msg = data;
           $scope.usermessages = data.usermessages[data.usermessages.length - 1];
-        });
+        })
+          .error(function(data) {
+            console.log(data);
+          });
       });
     };
   }]);
