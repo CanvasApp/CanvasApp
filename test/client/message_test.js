@@ -6,6 +6,7 @@ require('angular-mocks');
 describe('The message controller test', function() {
   var $controllerContstructor;
   var $httpBackend;
+  var $rootScope;
   var $scope;
   var data;
   //var $http;
@@ -41,8 +42,9 @@ describe('The message controller test', function() {
   });
 
   describe('the messages test', function() {
-    beforeEach(angular.mock.inject(function(_$httpBackend_) {
+    beforeEach(angular.mock.inject(function(_$rootScope_, _$httpBackend_) {
       $httpBackend = _$httpBackend_;
+      $rootScope = _$rootScope_;
       $controllerContstructor('messagesCtrl', {$scope: $scope, $cookies: $cookies});
     }));
 
@@ -74,9 +76,9 @@ describe('The message controller test', function() {
       data = {data: personInfo};
       //var url = '/api/inbox/' + data.data.basic.email;
       console.log(data.data.basic.email + '<-----email!');
-      $httpBackend.expectGET('/api/user').respond(200, data);
+      $httpBackend.expectGET('/api/user').respond(200, data);      
       $httpBackend.expectGET('/api/inbox/' + data.data.basic.email).respond(200, testmessage);
-      
+
       $scope.getMail();
       $httpBackend.flush();
 
