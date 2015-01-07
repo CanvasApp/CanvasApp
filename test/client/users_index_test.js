@@ -17,11 +17,11 @@ describe('Users Index Controller', function() {
                        { password: 'Foobar123',
                          email: 'test@example.com' } };
 
-  var course = {  name: 'Python 2',
-                  summary: 'This is a great...',
-                  schedule: 'Summer 2015',
-                  description: 'This is a great course to take if you want to learn python.',
-                  code: '4badd' };
+  // var course = {  name: 'Python 2',
+  //                 summary: 'This is a great...',
+  //                 schedule: 'Summer 2015',
+  //                 description: 'This is a great course to take if you want to learn python.',
+  //                 code: '4badd' };
 
   var enroll = { enrollment:
                 { code: 'dcabb',
@@ -92,7 +92,7 @@ describe('Users Index Controller', function() {
       $httpBackend.flush();
 
       expect($scope.course.coursename).toBeDefined();
-    })
+    });
 
     it('should be able to delete a user', function() {
       $httpBackend.expectDELETE('/api/user').respond(200, {msg: 'user has been sent to the phantom zone'});
