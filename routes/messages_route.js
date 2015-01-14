@@ -21,14 +21,15 @@ module.exports = function(app, jwtauth) {
   //gets messages from database
   app.get('/api/inbox/:to', jwtauth, function(req, res) {
     User.findOne({_id: req.user._id}, function(err, user) {
-      if (err) res.status(500).send('error');
+      if (err) return res.status(500).send('error');
       if (!user) return res.send({msg:'you are not logged in'});
       Message.find({'to': req.params.to}, function(err, message) {
         if (err) res.status(500).send('error');
         if (!message) {res.send('No new Mail');} else {
           User.findOneAndUpdate({_id: req.user._id}, {$addToSet:{usermessages: message}},
            function(err, data) {
-            if (err) res.status(500);
+            if (err) return res.status(500);
+            if (!data) return res.send({msg: 'data was not updated'});
             res.json(data);
             // Message.find({'to': req.params.to}).remove().exec();
           });
