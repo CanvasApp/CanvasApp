@@ -8,68 +8,65 @@ module.exports = function(app) {
       $location.path('/new');
     };
 
-    $scope.send = function () {
+    //sends a message to a user by email
+    $scope.send = function() {
       $http({
-        method: 'POST',
-        url: '/api/sendmessage',
-        data: {
-          to: $scope.newMessage.to,
-          message: {
-            from: $scope.newMessage.message.from,
-            subject: $scope.newMessage.message.subject,
-            main: $scope.newMessage.message.main
+          method: 'POST',
+          url: '/api/sendmessage',
+          data: {
+            to: $scope.newMessage.to,
+            message: {
+              from: $scope.newMessage.message.from,
+              subject: $scope.newMessage.message.subject,
+              main: $scope.newMessage.message.main
+            }
           }
-        }
+        })
+        .success(function(data) {
+          console.log(data);
+          console.log($scope.newMessage.message.main);
+          console.log($scope.newMessage.message.subject);
+          console.log($scope.newMessage.message.from);
+          $scope.messagedata = data;
+          $location.path('/inbox');
+        })
+        .error(function(data) {
+          console.log(data);
+        });
+    };
+
+    //retrieves all of the messages of the logged in user.
+    $scope.getMail = function() {
+      $http({
+        method: 'GET',
+        url: '/api/inbox/' + $scope.user.basic.email
       })
       .success(function(data) {
         console.log(data);
-        console.log($scope.newMessage.message.main);
-        console.log($scope.newMessage.message.subject);
-        console.log($scope.newMessage.message.from);
-        $scope.messagedata = data;
-        $location.path('/inbox');
+        console.log(data.basic.email);
+        console.log(data.usermessages[(data.usermessages.length - 1)]);
+        $scope.usermessages = data.usermessages[data.usermessages.length - 1];
       })
       .error(function(data) {
         console.log(data);
       });
     };
-    $scope.getMail = function() {
+
+    //loads the info of the currently logged in user
+    $scope.User = function() {
+      console.log('find user');
       $http({
         method: 'GET',
         url: '/api/user'
       })
-      .then(function(data) {
+      .success(function(data) {
+        $scope.user = data;
+        console.log($scope.user.basic.email);
+      })
+      .error(function(data) {
         console.log(data);
-        console.log(data.data.basic.email);
-        return $http({
-          method: 'GET',
-          url: '/api/inbox/' + data.data.basic.email
-        }).success(function(data) {
-          console.log(data.basic.email);
-          console.log(data.usermessages[(data.usermessages.length - 1)]);
-          //var arr = (data.usermessages.length - 1);
-          $scope.msg = data;
-          $scope.usermessages = data.usermessages[data.usermessages.length - 1];
-        })
-          .error(function(data) {
-            console.log(data);
-          });
       });
     };
   }]);
 };
-
-    // $scope.User = function() {
-    //   console.log('find user');
-    //   $http({
-    //     method: 'GET',
-    //     url: '/api/user'
-    //   })
-    //   .success(function(data) {
-    //     $scope.user = data;
-    //   })
-    //   .error(function(data) {
-    //     console.log(data);
-    //   });
-    // };
 

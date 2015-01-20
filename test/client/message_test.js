@@ -8,8 +8,6 @@ describe('The message controller test', function() {
   var $httpBackend;
   var $rootScope;
   var $scope;
-  var data;
-  //var $http;
   var $cookies = {jwt: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1N…4NDV9.5dr6hQ2rJr9972-LuyxcL6xnVVRRwdbJ7CDNHKDgcrQ'};
   var testmessage = {
     to: 'test@example.com',
@@ -73,16 +71,14 @@ describe('The message controller test', function() {
     });
 
     it('should be able to get a message', function() {
-      data = {data: personInfo};
-      //var url = '/api/inbox/' + data.data.basic.email;
-      console.log(data.data.basic.email + '<-----email!');
-      $httpBackend.expectGET('/api/user').respond(200, data);      
-      $httpBackend.expectGET('/api/inbox/' + data.data.basic.email).respond(200, testmessage);
+      $scope.user = {basic: {email: 'test@example.com'}};
+      $httpBackend.expectGET('/api/inbox/' + $scope.user.basic.email).respond(200, personInfo);
 
       $scope.getMail();
       $httpBackend.flush();
 
       expect($scope.usermessages).toBeDefined();
+      expect($scope.usermessages.message.main).toEqual('This is a karma front end test');
     });
   });
 });

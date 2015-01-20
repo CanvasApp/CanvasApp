@@ -1,5 +1,6 @@
   <section data-ng-controller="messagesCtrl">
-    <ul class="inbox-window">
+    <form data-ng-model='user' data-ng-init='User()'>
+      <ul class="inbox-window">
       <li class="subject-display" ng-repeat="newMessage in newMessages">
         <!-- {{usermessages}} -->
       </li>
@@ -17,6 +18,7 @@
             Message: {{message.message.main}}
         </li>
       </ul>
+    </form>
   </section>
 
 

@@ -35,7 +35,7 @@ module.exports = function(app) {
         console.log(data);
       });
     };
-
+    
     $scope.changeUserInfo = function() {
       console.log('you tried to change user info');
       $http({
