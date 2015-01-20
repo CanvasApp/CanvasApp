@@ -16,4 +16,12 @@ var quizSchema = mongoose.Schema({
   answerArray: []
 });
 
+// quizSchema.methods.Answer = function() {
+//   return answerArray.push(quizSchema.quizQuestion.questionValue);
+// };
+
+// quizSchema.methods.AnswerTally = function() {
+//   for()
+// };
+
 module.exports = mongoose.model('Quiz', quizSchema);

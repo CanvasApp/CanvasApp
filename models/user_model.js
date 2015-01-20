@@ -18,6 +18,7 @@ var userSchema = mongoose.Schema({
     admin: false
   },
   usermessages: [],
+  answerarray: [],
   userinfo: {
     name: {first:String, last:String},
     phone: String
