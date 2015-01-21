@@ -1,0 +1,10 @@
+<body data-ng-controller='quizCtrl'>
+    <article>
+      <form name='getquestion' data-ng-model='quizquestion.code' data-ng-init='getOneQuestion()'>
+        <div>Question: {{quizquestion.quizQuestion.question}}</div>
+      </br>
+      <input type='radio' data-ng-model='answer' value='true'>True</br>
+      <input type='radio' data-ng-model='answer' value='false'>False</br>
+      </form>
+    </article>
+</body>

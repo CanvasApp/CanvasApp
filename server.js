@@ -13,7 +13,7 @@ app.set('jwtSecret', process.env.JWT_SECRET || 'changethisordie');
 
 app.use(passport.initialize());
 
-//app.use(express.static(__dirname + '/build'));
+app.use(express.static(__dirname + '/build'));
 
 require('./lib/passport')(passport);
 var jwtauth = require('./lib/jwt_auth')(app.get('jwtSecret'));
