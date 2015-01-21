@@ -12,8 +12,7 @@ var quizSchema = mongoose.Schema({
       objectiveC: {type: Boolean, default:false}
     }
   },
-  code: String,
-  answerArray: []
+  code: String
 });
 
 module.exports = mongoose.model('Quiz', quizSchema);

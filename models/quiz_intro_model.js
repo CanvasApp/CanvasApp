@@ -4,8 +4,7 @@ var mongoose = require('mongoose');
 
 var introSchema = mongoose.Schema({
   quiz: {
-    questions: [],
-    answers: []
+    questions: []
   }
 });
 

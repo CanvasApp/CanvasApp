@@ -105,7 +105,7 @@ module.exports = function(app, jwtauth) {
         if (err) return res.status(500).send('error');
         if (!question) return res.send({msg: 'quiz not found'});
         console.log(question);
-        Intro.update({_id: req.user._id}, {$addToSet: {'quiz.questions': question}}, function(err, newdata) {
+        Intro.update({$addToSet: {'quiz.questions': question}}, function(err, newdata) {
           if (err) return res.status(500).send('error');
           if (!newdata) return res.send('something went wrong');
           console.log(newdata);
