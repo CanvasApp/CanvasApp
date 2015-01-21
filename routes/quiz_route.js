@@ -3,7 +3,32 @@
 module.exports = function(app, jwtauth) {
   var Quiz = require('../models/quiz_model');
   var User = require('../models/user_model');
+  var Intro = require('../models/quiz_intro_model');
   var UniqueId = require('../lib/uid');
+
+  //creates a database to hold published quiz questions
+  app.post('/api/quizdb', jwtauth, function(req, res) {
+    User.findOne({_id: req.user._id}, function(err, user) {
+      if (err) return res.status(500).send('error');
+      if (!user) return res.send({msg: 'user not found'});
+      if(user.userStatus.admin === true) {
+        var intro = new Intro({
+          quiz: {
+            questions: [],
+            answers: []
+          }
+        });
+        intro.save(function(err, data) {
+          if (err) res.status(500).send('error');
+          if (!data) res.send({msg: 'something went wrong'});
+          console.log(data);
+          res.json(data);
+        });
+      } else {
+        res.json({msg: 'not an admin'});
+      }
+    });
+  });
 
   //creates a quiz question
   app.post('/api/quiz', jwtauth, function(req, res) {
@@ -67,6 +92,26 @@ module.exports = function(app, jwtauth) {
       } else {
         res.json({msg: 'you do not have permission'});
       }
+    });
+  });
+
+  //pushes a quiz question into the publish array
+  app.put('/api/introquiz/:code', jwtauth, function(req, res) {
+    User.findOne({_id: req.user._id}, function(err, user) {
+      if (err) return res.status(500).send('error');
+      if (!user) return res.send({msg: 'user not found'});
+      console.log(user);
+      Quiz.findOne({code: req.params.code}, function(err, question) {
+        if (err) return res.status(500).send('error');
+        if (!question) return res.send({msg: 'quiz not found'});
+        console.log(question);
+        Intro.update({_id: req.user._id}, {$addToSet: {'quiz.questions': question}}, function(err, newdata) {
+          if (err) return res.status(500).send('error');
+          if (!newdata) return res.send('something went wrong');
+          console.log(newdata);
+          res.json(newdata);
+        });
+      });
     });
   });
 
