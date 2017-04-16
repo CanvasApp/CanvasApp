@@ -1,0 +1,12 @@
+<div data-ng-controller="messagesCtrl">
+  <ul class="inbox-window">
+    <li class="subject-display" ng-repeat="message in messages">
+      from: {{message.from}} subject: {{message.subject}}
+    </li>
+    <li class="subject-display" ng-if="results.length == 0">
+      <strong>No results found...</strong>
+    </li>
+  </ul>
+  <button data-ng-click="newMessage()">Write new message</button>
+  <button data-ng-click="getMail()">Get mail</button>
+</div>
