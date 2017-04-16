@@ -1,0 +1,23 @@
+<article data-ng-controller='courseCtrl'>
+  <form name='createcourse'>
+    <input type='text' data-ng-model='course.name'>Name</input>
+    <input type='text' data-ng-model='course.schedule'>Schedule</input>
+    <input type='text' data-ng-model='course.description'>Description</input>
+    <input type='text' data-ng-model='course.code'>Course Code</input>
+    <button data-ng-click='createCourse()'>Create Course</button>
+    <button data-ng-click='updateCourse()'>Update Course</button>
+  </form>
+  <form name='getcourses' data-ng-model='courses'>
+    <button data-ng-click='getCourses()'>Get All Courses</button>
+    <section>{{courses}}</section>
+  </form>
+  <form name='getcourse'>
+    <input type='text' data-ng-model='course.code'>Enter Course Code</input>
+    <button data-ng-click='getCourse()'>Get Course</button>
+    <section>{{course}}</section>
+  </form>
+  <form name='delete'>
+    <input type='text' data-ng-model='course.code'>Enter Course Code</input>
+    <button data-ng-click='deleteCourse()'>Delete Course</button>
+  </form>
+</article>

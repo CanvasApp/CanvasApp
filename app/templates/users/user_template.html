@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="generator">
+<head>
+  <meta charset='utf-8'>
+  <title>Code Fellows</title>
+  <link rel="stylesheet" href="../../scss/layout.css">
+</head>
+<!--Major restyling...-->
+<header><img class="logo" src="../../images/logo.png"> </header>
+  <body data-ng-controller='userIndexCtrl'>
+    <form name='userinfo' data-ng-init='User()'>
+      <input type='text' data-ng-model='user.basic.email'>Email</input>
+      <input type='text' data-ng-model='user.userinfo.name.first'>First Name</input>
+      <input type='text' data-ng-model='user.userinfo.name.last'>Last Name</input>
+      <input type='text' data-ng-model='user.userinfo.phone'>Phone Number</input>
+      <button class="create" qdata-ng-click='changeUserInfo()'>Save User Info</button>
+          <p>{{user.basic.email}}</p>
+          <p>{{user.userinfo.name.first}}</p>
+          <p>{{user.userinfo.name.last}}</p>
+          <p>{{user.userinfo.phone}}</p>
+    </form>
+    <form name='deleteuser'>
+      <input type='text' data-ng-model='deleteuser.email'>enter user email to delete account</input>
+      <input type='text' data-ng-model='deleteuser.emailConfirmation'>Confirm email</input>
+      <button class="create" data-ng-click='deleteUser()'>Delete User</button>
+     </form>
+     <form name='getallusers'>
+      <button class="create"data-ng-click='allUsers()'>Get All Users</button>
+      <section data-ng-repeat='user in users'>
+      email: {{user.basic.email}} admin: {{user.userStatus.admin}} teacher: {{user.userStatus.teacher}} userinfo: First: {{user.userinfo.name.first}} Last: {{user.userinfo.name.last}} Phone: {{user.userinfo.phone}}
+      </section>
+     </form> 
+</body>
+</html>

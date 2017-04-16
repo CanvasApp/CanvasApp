@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="generator">
+<head>
+  <meta charset='utf-8'>
+  <title>Code Fellows</title>
+  <link rel="stylesheet" href="../../scss/layout.css">
+</head>
+
+<header><img class="logo" src="../../images/logo.png"> </header>
+  <body data-ng-controller="usersCtrl">
+    <img ng-src="{{images/logo.png}}"class="logo">
+    <h1>Create Account</h1>
+    <form name='newUser'>
+      <p><label for="first-name">First Name </label>
+        <input id="first-name" name="first-name" type="text" data-ng-model="newUser.firstName" placeholder="First Name"></p>
+
+      <p><label for="last-name">Last Name</label>
+        <input id="last-name" name="last-name" type="text" data-ng-model="newUser.lastName" placeholder="Last Name"></p>
+
+      <p><label for="email">Email (username)</label>
+        <input id="email" name="email" type="text" data-ng-model="newUser.email" placeholder="Email"></p>
+
+      <p><label for="password">Create Password</label>
+        <input id="password" name="password" type="password" data-ng-model="newUser.password" ></p>
+
+      <p><label for="password-confirm">Confirm Password</label>
+        <input id="password-confirm" name="password-confirm" type="password" data-ng-model="newUser.confirm"></p>
+      <button class="create" data-ng-click='signUp()'>Create User</button>
+    </form>
+</body>
+</html>
+
