@@ -1,0 +1,38 @@
+  <section data-ng-controller="messagesCtrl">
+    <ul class="inbox-window">
+      <li class="subject-display" ng-repeat="newMessage in newMessages">
+        <!-- {{usermessages}} -->
+      </li>
+      <li class="subject-display" ng-if="results.length == 0">
+        <strong>No results found...</strong>
+      </li>
+    </ul>
+    <button class="create" data-ng-click="compose()">Compose New Message</button>
+    <button class="create" data-ng-model="usermessages" data-ng-click="getMail()">Get Mail</button>
+      <ul data-ng-repeat="message in usermessages">
+        <li style="list-style-type: none">
+            Subject: {{message.message.subject}}
+        </li>
+        <li style="list-style-type: none" >
+            Message: {{message.message.main}}
+        </li>
+      </ul>
+  </section>
+
+
+<!--access these files form the message tab
+style everything
+
+<div data-ng-controller="messagesCtrl">
+  <ul class="inbox-window">
+    <li class="subject-display" ng-repeat="message in messages">
+      {{usermessages}}
+    </li>
+    <li class="subject-display" ng-if="results.length == 0">
+      <strong>No results found...</strong>
+    </li>
+  </ul>
+  <button data-ng-click="composeMessage()">Write new message</button>
+  <button data-ng-click="getMail()">Get mail</button>
+</div>
+

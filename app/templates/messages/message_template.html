@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Code Fellows</title>
+  <link rel="stylesheet" href="../../scss/layout.css">
+</head>
+
+<header><img class="logo" src="../../images/logo.png"> </header>
+<body>
+<article data-ng-controller="messagesCtrl">
+    <section>
+      <p><label for="from">From</label>
+        <section class='msg'>
+          {{message.from}}
+        </section>
+      </p>
+
+      <p><label for="subject">Subject</label>
+        <section class='msg'>
+          {{message.subject}}
+        </section>
+      </p>
+
+      <p><label for="body">Message</label>
+        <section class='msg'>
+          {{message.body}}
+        </section>
+      </p>
+    </section>
+
+      <button class="create"> Reply </button>
+  </article>
+</body>
+</html>
