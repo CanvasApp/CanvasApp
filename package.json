@@ -1,0 +1,50 @@
+{
+  "name": "CanvasApp",
+  "version": "1.0.0",
+  "description": "An app for canvas",
+  "main": "server.js",
+  "scripts": {
+    "test": "node_modules/grunt-cli/bin/grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CanvasApp/CanvasApp.git"
+  },
+  "author": "je",
+  "license": "mit",
+  "bugs": {
+    "url": "https://github.com/CanvasApp/CanvasApp/issues"
+  },
+  "homepage": "https://github.com/CanvasApp/CanvasApp",
+  "dependencies": {
+    "body-parser": "^1.10.0",
+    "express": "^4.10.4",
+    "moment": "^2.8.4",
+    "mongoose": "^3.8.20"
+  },
+  "devDependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "chai": "^1.10.0",
+    "chai-http": "^1.0.0",
+    "debowerify": "^1.1.1",
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^3.2.1",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-copy": "^0.7.0",
+<<<<<<< HEAD
+    "grunt-contrib-sass": "^0.8.1"
+=======
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-sass": "^0.8.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-jscs": "^1.0.0",
+    "grunt-karma": "^0.9.0",
+    "grunt-simple-mocha": "^0.4.0",
+    "jwt-simple": "^0.2.0",
+    "karma": "^0.12.28",
+    "passport": "^0.2.1",
+    "passport-http": "^0.2.2"
+>>>>>>> dev
+  }
+}

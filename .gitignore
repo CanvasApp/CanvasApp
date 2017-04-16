@@ -1,0 +1,6 @@
+node_modules/
+db/
+bower_components/
+CanvasApp/**/*bundle.js
+build/
+npm-debug.log
