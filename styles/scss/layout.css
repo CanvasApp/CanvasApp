@@ -1,0 +1,89 @@
+/*note: fix padding around the quiz button*/
+body {
+	background: #E1DED2; 
+}
+
+.logo {
+	margin-top: 20px;
+	height: 63px;
+}
+
+/*Dash*/
+
+nav {
+	margin-left: 300px;
+	margin-top: -50px;
+	font-family: "Forza";
+	font-size: 20px;
+}
+
+.navigation {
+	display: inline-block;
+}
+
+li {
+	font-family: "Forza";
+	font-size: 22px;
+}
+
+ul ul { /*dropdown part*/
+	display: none;
+}
+
+ul li:hover > ul {
+	display: block;
+}
+
+a:link {
+    color: black;
+    text-decoration: none;
+    font-family: "Forza";
+}
+
+a:visited {
+    color: black;
+    text-decoration: none;
+    font-family: "Forza";
+}
+
+/*Frontpage*/
+
+button:hover {
+	background: #5C5E5C;
+}
+
+.quiz { /*make this button sexy*/
+	font-family: "Forza";
+	font-size: 40px;
+	padding: 25px; 
+	position: relative;
+}
+
+.signin {
+	font-family: "Forza";
+	margin: 20% 5% 10% 80%;
+}
+
+p {
+	font-family: "Forza";
+	font-size: 24px;
+}
+
+.interest {
+	margin: 10% 10% 20% 30%;
+}
+
+/*button create account*/
+.create {
+	font-family: "Forza";
+	padding: 10px;
+	font-size: 16px;
+	display: inline-block;
+}
+
+/*quiz page*/
+.classes {
+	font-size: 20px;
+}
+
+
